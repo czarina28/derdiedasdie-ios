@@ -154,7 +154,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Nach“ takes the dative plural: nach vielen langen Gesprächen."
+    "explanation": "„Nach“ always takes the dative. „Gesprächen“ is plural. The quantifier „viel“ takes -en in the dative plural → „vielen“; the following adjective also takes -en → „langen“. So: „nach vielen langen Gesprächen“."
   },
   {
     "before": "Er hat ",
