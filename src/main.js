@@ -14,10 +14,10 @@ function home(){
  const completed=sessions.length;
  const topics=[['Articles & endings','der · die · das'],['Viel & viele','Quantity & endings'],['Genitive','Possession & cases'],['Verbs & prepositions','Fixed combinations'],['Word order & clauses','Build better sentences']];
  root.innerHTML=`<main class="home-screen"><header><span class="brand">der<span>die</span>das<span>die</span></span><span class="header-note">GERMAN, EVERY DAY.</span></header>
- <section class="home-hero"><div class="eyebrow">YOUR DAILY GERMAN</div><h1>A little practice.<br><em>A lot of progress.</em></h1><p>Ten thoughtful questions. Real German. A better instinct for the language.</p><button class="hero-start" data-mode="Mixed practice"><span>Start a mixed session <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
- <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Sessions finished</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>To revisit</span></div></section>
+ <section class="home-hero"><div class="eyebrow">YOUR DAILY GERMAN</div><h1>A little practice.<br><em>A lot of progress.</em></h1><p>Practice German grammar, ten questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Start a mixed session <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
+ <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Sessions finished</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to review</span></div></section>
  <section class="topic-section"><div class="section-heading"><h2>Choose your focus</h2><span>5 TOPICS</span></div><div class="topic-list">${topics.map(([name,detail],i)=>`<button data-mode="${name}"><span class="topic-index">${String(i+1).padStart(2,'0')}</span><span class="topic-copy"><strong>${name}</strong><small>${detail}</small></span><span class="topic-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></section>
- <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Review mistakes</span><span>${mistakes.size} saved →</span></button>
+ <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Practice your mistakes</span><span>${mistakes.size} questions to revisit →</span></button>
  <footer>Made for curious German learners. Every topic is free.</footer></main>`;
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
 }
@@ -30,7 +30,7 @@ function summary(){
 function render(){
  root.innerHTML=`<main><header class="practice-header"><button class="home-exit" id="exit" aria-label="Leave practice and return home">← <span>Home</span></button><span class="brand">der<span>die</span>das<span>die</span></span></header>
  <section class="intro quiz-intro"><div class="eyebrow">DAILY PRACTICE</div><h1>Complete the sentence.</h1><p>Choose an answer, then learn why it works.</p></section>
- <section class="quiz"><div class="meta"><span>${mode} · ${position} / ${deck.length}</span><span>${correct} / ${total} correct</span></div>
+ <section class="quiz"><div class="meta"><span>${mode} · Question ${position} of ${deck.length}${mode==='Review mistakes'?' · '+mistakes.size+' remaining in review bank':''}</span><span>${correct} / ${total} correct</span></div>
  <div class="progress-track" role="progressbar" aria-label="Session progress" aria-valuemin="0" aria-valuemax="${deck.length}" aria-valuenow="${position-1}"><div class="progress-fill" style="width:${Math.round((position-1)/deck.length*100)}%"></div></div>
  <h2 lang="de">${question.before}<span class="blank">_____</span>${question.after}</h2>
  <div class="answers" role="group" aria-label="Answer choices">${question.options.map((opt,i)=>`<button class="answer" data-i="${i}" lang="de">${opt}</button>`).join('')}</div>
