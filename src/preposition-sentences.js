@@ -458,12 +458,12 @@ export const prepositionSentences = [
     "after": " deinen Besuch am Samstag.",
     "options": [
       "auf",
-      "über",
       "mit",
-      "bei"
+      "bei",
+      "an"
     ],
     "answer": "auf",
-    "explanation": "The visit is still ahead, so „sich freuen auf“ expresses anticipation. „Sich freuen über“ instead expresses happiness about something; context determines the intended perspective."
+    "explanation": "„Sich freuen auf + accusative“ expresses anticipation of a future visit: „auf deinen Besuch am Samstag“. „Sich freuen über“ can also express happiness about a planned visit, so it is not offered as a wrong answer."
   },
   {
     "id": "prep-036",
