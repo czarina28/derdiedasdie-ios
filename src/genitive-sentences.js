@@ -122,7 +122,7 @@ export const genitiveSentences = [
   },
   {
     "before": "Die Ergebnisse ",
-    "after": " letzten Tests sind da.",
+    "after": " Tests, den wir gestern geschrieben haben, sind da.",
     "options": [
       "des",
       "dem",
@@ -130,7 +130,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Results of what? „Test“ is masculine singular: des letzten Tests. The noun takes genitive -s."
+    "explanation": "„Test“ is masculine. The relative clause „den wir gestern geschrieben haben“ refers to one masculine singular test, so the genitive is „des Tests“. For several tests, it would be „der Tests, die wir gestern geschrieben haben“."
   },
   {
     "before": "Das Ende ",
