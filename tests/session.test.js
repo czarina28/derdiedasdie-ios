@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {pickQuestions,pickFreshQuestions,SESSION_LENGTH} from '../src/session.js';
+import {pickQuestions,pickFreshQuestions,pickProgressiveQuestions,practiceStage,questionDifficulty,SESSION_LENGTH} from '../src/session.js';
 const sample=Array.from({length:30},(_,i)=>({id:i,topic:i%2?'Genitive':'Articles & endings'}));
 test('sessions contain at most ten distinct questions',()=>{
  for(let i=0;i<100;i++){const q=pickQuestions(sample);assert.equal(q.length,SESSION_LENGTH);assert.equal(new Set(q.map(x=>x.id)).size,q.length);}
@@ -26,3 +26,7 @@ test('review sessions work when fewer than ten questions are available',()=>{
  const q=pickFreshQuestions(sample.slice(0,3),'Mixed practice',[]);
  assert.equal(q.length,3);
 });
+
+test('stage uses recent mixed practice results',()=>{assert.equal(practiceStage([]),1);assert.equal(practiceStage([{mode:'Mixed practice',correct:9,total:10},{mode:'Mixed practice',correct:9,total:10}]),3);assert.equal(practiceStage([{mode:'Mixed practice',correct:7,total:10},{mode:'Mixed practice',correct:8,total:10}]),2);});
+test('progressive sessions preserve ten distinct questions',()=>{for(const stage of [1,2,3]){const deck=pickProgressiveQuestions(sample,'Mixed practice',[],stage);assert.equal(deck.length,10);assert.equal(new Set(deck.map(q=>q.id)).size,10);}});
+test('genitive questions are not automatically all advanced',()=>{assert.equal(questionDifficulty({topic:'Genitive',options:['des','dem','den','der']}),2);});
