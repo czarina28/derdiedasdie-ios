@@ -63,7 +63,12 @@ export const prepositionSentences = [
       "von"
     ],
     "answer": "für",
-    "explanation": "What are you apologizing for? „Sich für etwas entschuldigen“ uses „für + accusative“ for the reason. „Bei“ instead introduces the person: „Ich entschuldige mich bei ihr für den Fehler.“"
+    "explanation": "What are you apologizing for? „Sich für etwas entschuldigen“ uses „für + accusative“ for the reason. „Bei“ instead introduces the person: „Ich entschuldige mich bei ihr für den Fehler.“",
+    "wrongFeedback": {
+      "bei": "You chose „bei“, which introduces the PERSON receiving an apology, not the mistake. Also, „bei“ requires dative, but „den Fehler“ is accusative. For the reason, use „für den Fehler“.",
+      "an": "„Sich entschuldigen an“ is not the expression for apologizing about a mistake. Use „für + accusative“ for the reason: „für den Fehler“.",
+      "von": "„Von“ means 'from/of' in other constructions, but not the reason for an apology. Use „sich für etwas entschuldigen“."
+    }
   },
   {
     "id": "prep-006",
@@ -401,7 +406,12 @@ export const prepositionSentences = [
       "auf"
     ],
     "answer": "für",
-    "explanation": "„Sich für etwas interessieren“ takes accusative. The topic of interest follows „für“: „für die Geschichte Berlins“. Do not translate English 'interested in' word for word."
+    "explanation": "„Sich für etwas interessieren“ takes accusative. The topic of interest follows „für“: „für die Geschichte Berlins“. Do not translate English 'interested in' word for word.",
+    "wrongFeedback": {
+      "an": "„Sich interessieren an“ is not the standard construction. German uses „sich für etwas interessieren“ even when English says 'interested in'.",
+      "auf": "You chose „auf“. That works with verbs such as „sich auf etwas konzentrieren“, but „sich interessieren“ uses „für + accusative“: „für die Geschichte Berlins“.",
+      "über": "„Über“ can introduce the topic with „sprechen über“, but the verb „sich interessieren“ requires „für“."
+    }
   },
   {
     "id": "prep-032",
