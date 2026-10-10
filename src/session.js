@@ -16,3 +16,5 @@ export function pickFreshQuestions(items,topic='Mixed practice',recentIds=[],len
  }
  return [...selected,...older].slice(0,length);
 }
+
+export function practiceStage(history=[]){const recent=history.filter(s=>s.mode==='Mixed practice'&&s.total>=8).slice(-3);if(recent.length<2)return 1;const correct=recent.reduce((n,s)=>n+s.correct,0);const total=recent.reduce((n,s)=>n+s.total,0);return correct/total>=.85?3:correct/total>=.7?2:1;}
