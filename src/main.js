@@ -1,10 +1,8 @@
-import {sentences,validateSentence,checkAnswer} from './sentences.js';
-import {moreSentences} from './more-sentences.js';
-import {vielSentences} from './viel-sentences.js';
-import {genitiveSentences} from './genitive-sentences.js';
+import {checkAnswer} from './sentences.js';
+import {buildCatalog} from './catalog.js';
 import {pickFreshQuestions,pickProgressiveQuestions,practiceStage,shuffle} from './session.js';
 import './style.css';
-const bank=[...sentences,...moreSentences,...vielSentences,...genitiveSentences].filter(validateSentence).map((q,i)=>({...q,id:i,topic:i<sentences.length+moreSentences.length?'Articles & endings':i<sentences.length+moreSentences.length+vielSentences.length?'Viel & viele':'Genitive'}));
+const bank=buildCatalog();
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set();
 try{mistakes=new Set(JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]'));}catch{mistakes=new Set();}
