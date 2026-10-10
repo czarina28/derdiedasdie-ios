@@ -12,7 +12,7 @@ function next(){if(position>=deck.length){summary();return;}question={...deck[po
 function home(){
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
- const topics=[['Articles & endings','der · die · das'],['Viel & viele','Quantity & endings'],['Genitive','Possession & cases'],['Verbs & prepositions','Fixed combinations'],['Word order & clauses','Build better sentences']];
+ const topics=[['Articles & endings','der · die · das'],['Quantifiers & determiners','viel · beide · jeder'],['Genitive','Possession & cases'],['Verbs & prepositions','Fixed combinations'],['Word order & clauses','Build better sentences']];
  root.innerHTML=`<main class="home-screen"><header><span class="brand">der<span>die</span>das<span>die</span></span><span class="header-note">GERMAN, EVERY DAY.</span></header>
  <section class="home-hero"><div class="eyebrow">YOUR DAILY GERMAN</div><h1>A little practice.<br><em>A lot of progress.</em></h1><p>Practice German grammar, ten questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Start a mixed session <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Rounds completed</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to review</span></div></section>
