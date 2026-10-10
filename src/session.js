@@ -24,16 +24,19 @@ export function questionDifficulty(q){if(q.topic==='Genitive')return q.options.i
 export function pickProgressiveQuestions(items,topic,recentIds=[],stage=1){
  if(topic!=='Mixed practice')return pickFreshQuestions(items,topic,recentIds);
  const recent=new Set(recentIds);
- const targets=stage===1?[7,2,1]:stage===2?[4,4,2]:[2,4,4];
+ const topics=shuffle([...new Set(items.map(q=>q.topic))]);
+ const quotas=new Map(topics.map((name,i)=>[name,Math.floor(SESSION_LENGTH/topics.length)+(i<SESSION_LENGTH%topics.length?1:0)]));
  const chosen=[],used=new Set();
- for(let level=1;level<=3;level++){
-  const fresh=shuffle(items.filter(q=>questionDifficulty(q)===level&&!recent.has(q.id)));
-  const older=shuffle(items.filter(q=>questionDifficulty(q)===level&&recent.has(q.id)));
-  for(const q of [...fresh,...older].slice(0,targets[level-1])){
-   if(!used.has(q.id)){chosen.push(q);used.add(q.id);}
-  }
+ for(const name of topics){
+  const pool=items.filter(q=>q.topic===name);
+  const levels=stage===1?[1,2,3]:stage===2?[2,1,3]:[3,2,1];
+  const ordered=levels.flatMap(level=>{
+   const tier=pool.filter(q=>questionDifficulty(q)===level);
+   return [...shuffle(tier.filter(q=>!recent.has(q.id))),...shuffle(tier.filter(q=>recent.has(q.id)))];
+  });
+  for(const q of ordered.slice(0,quotas.get(name))){chosen.push(q);used.add(q.id);}
  }
  const remaining=shuffle(items.filter(q=>!used.has(q.id)&&!recent.has(q.id)));
  const older=shuffle(items.filter(q=>!used.has(q.id)&&recent.has(q.id)));
- return [...shuffle(chosen),...remaining,...older].slice(0,SESSION_LENGTH);
+ return shuffle([...chosen,...remaining.slice(0,Math.max(0,SESSION_LENGTH-chosen.length)),...older.slice(0,Math.max(0,SESSION_LENGTH-chosen.length-remaining.length))]).slice(0,SESSION_LENGTH);
 }
