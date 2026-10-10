@@ -31,14 +31,21 @@ test('stage uses recent mixed practice results',()=>{assert.equal(practiceStage(
 test('progressive sessions preserve ten distinct questions',()=>{for(const stage of [1,2,3]){const deck=pickProgressiveQuestions(sample,'Mixed practice',[],stage);assert.equal(deck.length,10);assert.equal(new Set(deck.map(q=>q.id)).size,10);}});
 test('genitive questions are not automatically all advanced',()=>{assert.equal(questionDifficulty({topic:'Genitive',options:['des','dem','den','der']}),2);});
 
-test('adaptive stages change difficulty proportions when all tiers are available',()=>{
+test('mixed practice balances three topics at every stage',()=>{
+ const bank=['Articles & endings','Viel & viele','Genitive'].flatMap((topic,t)=>Array.from({length:20},(_,i)=>({id:t*20+i,topic,answer:'des',options:['des','der']})));
+ for(const stage of [1,2,3])for(let run=0;run<30;run++){
+  const deck=pickProgressiveQuestions(bank,'Mixed practice',[],stage);
+  const counts=[...new Set(deck.map(q=>q.topic))].map(topic=>deck.filter(q=>q.topic===topic).length).sort();
+  assert.deepEqual(counts,[3,3,4]);
+ }
+});
+test('difficulty preference changes within a topic without increasing its share',()=>{
  const bank=[
- ...Array.from({length:20},(_,id)=>({id,topic:'Articles & endings',options:['der','die'],answer:'der'})),
- ...Array.from({length:20},(_,i)=>({id:i+20,topic:'Genitive',options:['des','der'],answer:'des'})),
- ...Array.from({length:20},(_,i)=>({id:i+40,topic:'Genitive',options:['meines','meiner'],answer:'meines'}))
+ ...Array.from({length:20},(_,i)=>({id:i,topic:'Articles & endings',answer:'der',options:['der','die']})),
+ ...Array.from({length:20},(_,i)=>({id:i+20,topic:'Viel & viele',answer:i%2?'vielen':'viel',options:['viel','vielen']})),
+ ...Array.from({length:20},(_,i)=>({id:i+40,topic:'Genitive',answer:'des',options:i%2?['meines','meiner']:['des','der']}))
  ];
- const count=stage=>pickProgressiveQuestions(bank,'Mixed practice',[],stage).reduce((a,q)=>(a[questionDifficulty(q)]++,a),{1:0,2:0,3:0});
- assert.deepEqual(count(1),{1:7,2:2,3:1});
- assert.deepEqual(count(2),{1:4,2:4,3:2});
- assert.deepEqual(count(3),{1:2,2:4,3:4});
+ const difficult=stage=>pickProgressiveQuestions(bank,'Mixed practice',[],stage).filter(q=>questionDifficulty(q)===3).length;
+ assert.equal(difficult(1),0);
+ assert.ok(difficult(3)>=3);
 });
