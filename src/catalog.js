@@ -17,12 +17,16 @@ export const QUESTION_SOURCES=[
 ];
 export function buildCatalog(){
  const catalog=[];
+ const seen=new Set();
  let legacyIndex=0;
  for(const source of QUESTION_SOURCES){
   for(let i=0;i<source.questions.length;i++){
    const q=source.questions[i];
    if(!validateSentence(q))continue;
-   catalog.push({...q,id:q.id??source.key+'-'+String(i+1).padStart(3,'0'),legacyId:legacyIndex++,topic:source.topic});
+   if(typeof q.id!=='string'||!q.id.startsWith(source.key+'-'))throw new Error('Missing or invalid permanent question ID in '+source.key);
+   if(seen.has(q.id))throw new Error('Duplicate question ID: '+q.id);
+   seen.add(q.id);
+   catalog.push({...q,legacyId:legacyIndex++,topic:source.topic});
   }
  }
  return catalog;
