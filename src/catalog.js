@@ -10,7 +10,7 @@ import {moreWordOrderSentences} from './more-word-order-sentences.js';
 
 export const TOPICS=Object.freeze({
  articles:'Articles & endings',
- viel:'Viel & viele',
+ viel:'Quantifiers & determiners',
  genitive:'Genitive',
  prepositions:'Verbs & prepositions',
  wordOrder:'Word order & clauses'
