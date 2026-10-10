@@ -2,6 +2,7 @@ export const TOPIC_LABELS = ['Cases & articles','Adjective endings','Preposition
 export function classifyQuestion(q){
  const [source,suffix]=q.id.split('-');
  const n=Number(suffix);
+ if(source==='advanced')return ['Advanced constructions',n<=5?'Reported speech':n<=10?'Unreal conditionals':n<=18?'Passive and alternatives':n<=23?'Participial attributes':'Complex connectors'];
  if(source==='verb')return ['Verb forms & tenses',n<=6?'Present tense':n<=10?'Perfect tense':n<=14?'Simple past':n<=16?'Future tense':n<=22?'Subjunctive and reported speech':n<=26?'Modal verbs':n<=29?'Imperatives':n<=32?'Infinitive constructions':n<=36?'Passive voice':'Complex tenses'];
  if(source==='pron')return ['Pronouns & determiners',n<=3||n===25?'Beide and beides':n<=10?'Relative pronouns':n<=16?'Personal and demonstrative pronouns':'Indefinite pronouns'];
  if(source==='adj')return ['Adjective endings','Strong, weak and mixed endings'];
