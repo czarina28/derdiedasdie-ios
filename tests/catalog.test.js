@@ -54,3 +54,24 @@ test('quantifiers topic includes the original and expanded exercises',()=>{
   assert.ok(q.options.includes(q.answer),q.id);
  }
 });
+
+test('answer choices cannot be duplicated after trimming or case folding',()=>{
+ for(const q of buildCatalog()){
+  const normalized=q.options.map(o=>o.trim().toLocaleLowerCase('de'));
+  assert.equal(new Set(normalized).size,4,q.id+' equivalent choices');
+  assert.ok(q.options.every(o=>o===o.trim()&&o.length>0),q.id+' malformed choice');
+ }
+});
+test('question text does not contain empty placeholders or unbalanced punctuation',()=>{
+ for(const q of buildCatalog()){
+  assert.ok(!q.before.includes('___')&&!q.after.includes('___'),q.id);
+  assert.ok(!q.before.includes('  ')&&!q.after.includes('  '),q.id);
+  assert.ok(!q.explanation.includes('TODO'),q.id);
+ }
+});
+test('reviewed ambiguity regressions are excluded',()=>{
+ const bank=new Map(buildCatalog().map(q=>[q.id,q]));
+ assert.ok(!bank.get('quant-001').options.includes('weniger'));
+ assert.ok(!bank.get('quant-016').options.includes('mehrere'));
+ assert.ok(!bank.get('quant-019').options.includes('alles'));
+});
