@@ -118,7 +118,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose decision? „Gericht“ is neuter: des Gerichts. The genitive singular noun takes -s."
+    "explanation": "„Gericht“ is neuter (das Gericht). The decision belongs to the court (Wessen Entscheidung?), so use genitive „des Gerichts“. The noun adds -s; compare dative „dem Gericht“."
   },
   {
     "before": "Die Ergebnisse ",
@@ -142,7 +142,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "The ending of what? „Film“ is masculine: des Films. The genitive singular noun takes -s."
+    "explanation": "„Ende“ is linked to „Film“ by genitive (das Ende wessen?). „Film“ is masculine: der Film → des Films. The article becomes „des“ and the noun adds -s."
   },
   {
     "before": "Die Tür ",
@@ -154,7 +154,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose door? „Zimmer“ is neuter: des Zimmers. Genitive singular takes -s."
+    "explanation": "The door belongs to the room (Wessen Tür?). „Zimmer“ is neuter: das Zimmer → des Zimmers. Genitive „des“ requires the noun's -s ending."
   },
   {
     "before": "Das Büro ",
@@ -166,7 +166,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose office? „Direktor“ is masculine: des Direktors. Genitive singular takes -s."
+    "explanation": "The office belongs to the director (Wessen Büro?). „Direktor“ is masculine: der Direktor → des Direktors. The noun adds -s in genitive singular."
   },
   {
     "before": "Die Aufgaben ",
@@ -178,7 +178,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose tasks? „Mitarbeiter“ is masculine: des neuen Mitarbeiters. The genitive noun takes -s."
+    "explanation": "„Mitarbeiter“ is masculine singular here; its genitive is „des neuen Mitarbeiters“. The article becomes „des“, the adjective takes -en, and the noun adds -s. Plural would be „der neuen Mitarbeiter“."
   },
   {
     "before": "Die Qualität ",
@@ -190,7 +190,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "The quality of what? „Produkt“ is neuter: des neuen Produkts. Genitive singular takes -s."
+    "explanation": "„Produkt“ is neuter (das Produkt). The quality is that of the product (Wessen Qualität?), so genitive „des neuen Produkts“ uses „des“, adjective -en, and noun -s."
   },
   {
     "before": "Die Kosten ",
@@ -202,7 +202,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "Costs of what? „Reparatur“ is feminine, so use genitive „der“. Feminine nouns do not add -s."
+    "explanation": "„Reparatur“ is feminine (die Reparatur). The costs are those of the repair, so use genitive „der Reparatur“. Feminine singular genitive uses „der“ without a noun ending."
   },
   {
     "before": "Die Adresse ",
@@ -214,7 +214,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose address? „Hotel“ is neuter: des Hotels. The noun takes genitive -s."
+    "explanation": "„Hotel“ is neuter (das Hotel). The address belongs to the hotel (Wessen Adresse?), so use genitive „des Hotels“. The noun adds -s."
   },
   {
     "before": "Wegen ",
@@ -262,7 +262,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "Names of whom? „Teilnehmer“ is plural: der Teilnehmer. Genitive plural uses „der“, and the noun does not add -n just for the genitive."
+    "explanation": "„Teilnehmer“ is plural here: the names belong to the participants. Genitive plural uses „der Teilnehmer“, with no extra noun ending. Singular would be „des Teilnehmers“."
   },
   {
     "before": "Die Meinung ",
@@ -274,7 +274,7 @@ export const genitiveSentences = [
       "mein"
     ],
     "answer": "meines",
-    "explanation": "Whose opinion? „Kollege“ is masculine singular: meines Kollegen. „Mein“ takes -es in the genitive, while the n-declension noun „Kollege“ takes -n."
+    "explanation": "„Kollege“ is masculine singular and follows the n-declension: der Kollege → des Kollegen. The possessive also changes: „mein“ → „meines“. Thus „die Meinung meines Kollegen“."
   },
   {
     "before": "Die Tasche ",
@@ -286,7 +286,7 @@ export const genitiveSentences = [
       "meinen"
     ],
     "answer": "meiner",
-    "explanation": "Whose bag? „Schwester“ is feminine singular: meiner Schwester. Possessive „mein“ takes -er in feminine genitive; the noun does not change."
+    "explanation": "„Schwester“ is feminine singular. To express whose bag, use genitive „meiner Schwester“: possessive „mein“ takes -er, while the feminine noun stays unchanged."
   },
   {
     "before": "Die Reparatur ",
@@ -298,7 +298,7 @@ export const genitiveSentences = [
       "mein"
     ],
     "answer": "meines",
-    "explanation": "Repair of what? „Auto“ is neuter: meines Autos. Possessive „mein“ takes -es in genitive; the noun adds -s."
+    "explanation": "„Auto“ is neuter. For the repair of my car, genitive „mein“ becomes „meines“ and „Auto“ adds -s: „meines Autos“."
   },
   {
     "before": "Die Farbe ",
@@ -310,7 +310,7 @@ export const genitiveSentences = [
       "deinen"
     ],
     "answer": "deiner",
-    "explanation": "Whose jacket? „Jacke“ is feminine: deiner Jacke. Possessive „dein“ takes -er in feminine genitive."
+    "explanation": "„Jacke“ is feminine. The genitive possessive „dein“ takes -er: „deiner Jacke“. The noun has no additional genitive ending."
   },
   {
     "before": "Das Spielzeug ",
@@ -322,7 +322,7 @@ export const genitiveSentences = [
       "unser"
     ],
     "answer": "unseres",
-    "explanation": "Whose toy? „Kind“ is neuter: unseres Kindes. Possessive „unser“ takes -es and the noun adds -es."
+    "explanation": "„Kind“ is neuter: das Kind → des Kindes. With the possessive, „unser“ becomes „unseres“ and the noun takes -es: „unseres Kindes“."
   },
   {
     "before": "Die Wohnung ",
@@ -334,7 +334,7 @@ export const genitiveSentences = [
       "meinem"
     ],
     "answer": "meiner",
-    "explanation": "Whose apartment? „Eltern“ is plural: meiner Eltern. Possessive „mein“ takes -er in genitive plural."
+    "explanation": "„Eltern“ is plural. Genitive plural possessive „mein“ becomes „meiner“: „meiner Eltern“. The noun does not take an extra ending."
   },
   {
     "before": "Die Vorschläge ",
@@ -346,7 +346,7 @@ export const genitiveSentences = [
       "unser"
     ],
     "answer": "unseres",
-    "explanation": "Whose suggestions? „Team“ is neuter: unseres Teams. Possessive „unser“ takes -es, and the noun adds -s."
+    "explanation": "„Team“ is neuter. To show that the suggestions belong to our team, use genitive „unseres Teams“: possessive -es and noun -s."
   },
   {
     "before": "Die Meinung ",
@@ -358,7 +358,7 @@ export const genitiveSentences = [
       "diesen"
     ],
     "answer": "dieser",
-    "explanation": "Whose opinion? „Lehrerin“ is feminine: dieser Lehrerin. Demonstrative „diese“ takes -er in feminine genitive."
+    "explanation": "„Lehrerin“ is feminine. The demonstrative „diese“ becomes „dieser“ in feminine genitive: „dieser Lehrerin“. The noun itself remains unchanged."
   },
   {
     "before": "Die Höhe ",
@@ -370,7 +370,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Height of what? „Berg“ is masculine: des Berges. The noun adds -es in genitive singular."
+    "explanation": "„Berg“ is masculine. For the mountain's height, use genitive „des Berges“: the article changes to „des“ and the noun adds -es."
   },
   {
     "before": "Die Geschichte ",
@@ -382,7 +382,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "The history of what? „Stadt“ is feminine: der Stadt. Feminine genitive uses „der“ and no noun ending."
+    "explanation": "„Stadt“ is feminine. „Die Geschichte der Stadt“ uses genitive to mean the city's history. Feminine genitive article is „der“, with no noun ending."
   },
   {
     "before": "Die Probleme ",
@@ -394,7 +394,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Problems of what? „Unternehmen“ is neuter: des Unternehmens. The noun takes genitive -s."
+    "explanation": "„Unternehmen“ is neuter. Its problems are expressed with genitive „des Unternehmens“: „das“ becomes „des“, and the noun adds -s."
   },
   {
     "before": "Die Eröffnung ",
@@ -406,7 +406,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Opening of what? „Museum“ is neuter: des neuen Museums. Genitive singular adds -s."
+    "explanation": "„Museum“ is neuter. The opening of the museum takes genitive „des neuen Museums“: article „des“, adjective -en, noun -s."
   },
   {
     "before": "Die Stimme ",
@@ -418,7 +418,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose voice? „Sänger“ is masculine: des Sängers. Genitive singular adds -s."
+    "explanation": "„Sänger“ is masculine. The voice belongs to the singer (Wessen Stimme?), so use „des Sängers“: genitive „des“ plus noun -s."
   },
   {
     "before": "Wegen ",
@@ -442,7 +442,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "„Trotz“ takes the genitive in standard German. „Erfolg“ is masculine: des großen Erfolgs. The noun adds -s."
+    "explanation": "„Trotz“ requires genitive in standard German. „Erfolg“ is masculine, so „der Erfolg“ becomes „des großen Erfolgs“: article „des“, adjective -en, noun -s."
   },
   {
     "before": "Während ",
@@ -466,7 +466,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "Whose work? „Ärzte“ is plural: der Ärzte. Genitive plural article is „der“; unlike dative plural, the noun doesn't add -n."
+    "explanation": "„Ärzte“ is plural. To describe the doctors' work, use genitive plural „der Ärzte“. Unlike dative plural „den Ärzten“, the genitive adds no -n."
   },
   {
     "before": "Die Aufgaben ",
@@ -478,6 +478,6 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "Whose assignments? „Kinder“ is plural: der Kinder. Genitive plural uses „der“ without adding a noun ending."
+    "explanation": "„Kinder“ is plural. The assignments belong to the children, so use genitive plural „der Kinder“. Compare dative plural „den Kindern“: genitive does not add -n."
   }
 ];
