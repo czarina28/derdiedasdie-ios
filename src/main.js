@@ -5,7 +5,7 @@ import './style.css';
 const bank=buildCatalog();
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set();
-try{mistakes=new Set(JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]'));}catch{mistakes=new Set();}
+try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');mistakes=new Set(saved.map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));}catch{mistakes=new Set();}
 
 function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');deck=topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic==='Review mistakes'?'Mixed practice':topic,recent);position=0;correct=0;total=0;if(deck.length)next();else home();}
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
