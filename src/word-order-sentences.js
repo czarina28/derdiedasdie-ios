@@ -67,7 +67,7 @@ export const wordOrderSentences = [
   },
   {
     "id": "order-006",
-    "before": "Ich weiß nicht, ",
+    "before": "Ich frage mich, ",
     "after": " er heute kommt.",
     "options": [
       "ob",
@@ -76,7 +76,7 @@ export const wordOrderSentences = [
       "deshalb"
     ],
     "answer": "ob",
-    "explanation": "„Ob“ introduces an indirect yes/no question ('whether'): „Ich weiß nicht, ob er heute kommt“. „Dass“ would state a fact rather than express uncertainty."
+    "explanation": "„Ob“ introduces an indirect yes/no question ('whether'): „Ich frage mich, ob er heute kommt.“ Unlike „wissen“, „sich fragen“ signals an open question, so „dass“ does not fit this construction."
   },
   {
     "id": "order-007",
