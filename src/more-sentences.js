@@ -539,7 +539,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "den",
-    "explanation": "A fixed position between plural things uses dative: zwischen den beiden Fenstern."
+    "explanation": "„Zwischen“ is a two-way preposition (Wechselpräposition). „Sitzt“ describes where she is (Wo?), so use dative, not accusative. „Fenstern“ is plural; the dative plural article is „den“: zwischen den beiden Fenstern. Compare: Sie setzt sich zwischen die beiden Fenster (Wohin? → accusative)."
   },
   {
     "before": "Wir gehen zu ",
