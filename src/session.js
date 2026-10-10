@@ -2,12 +2,24 @@ export const SESSION_LENGTH = 10;
 export function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 export function pickQuestions(items,topic='Mixed practice'){const pool=topic==='Mixed practice'?items:items.filter(x=>x.topic===topic);return shuffle(pool).slice(0,SESSION_LENGTH);}
 
+// Spread answer forms within a round, without sacrificing topic quotas or freshness.
+export function diversifyAnswers(items){
+ const remaining=[...items],result=[],counts=new Map();
+ while(remaining.length){
+  const min=Math.min(...remaining.map(q=>counts.get(q.answer)??0));
+  const index=remaining.findIndex(q=>(counts.get(q.answer)??0)===min);
+  const [q]=remaining.splice(index,1);
+  result.push(q);counts.set(q.answer,(counts.get(q.answer)??0)+1);
+ }
+ return result;
+}
+
 export function pickFreshQuestions(items,topic='Mixed practice',recentIds=[],length=SESSION_LENGTH){
  const pool=topic==='Mixed practice'?items:items.filter(x=>x.topic===topic);
  const recent=new Set(recentIds);
  const fresh=shuffle(pool.filter(q=>!recent.has(q.id)));
  const older=shuffle(pool.filter(q=>recent.has(q.id)));
- if(topic!=='Mixed practice')return [...fresh,...older].slice(0,length);
+ if(topic!=='Mixed practice')return diversifyAnswers(fresh).concat(diversifyAnswers(older)).slice(0,length);
  const groups=new Map();
  for(const q of fresh){if(!groups.has(q.topic))groups.set(q.topic,[]);groups.get(q.topic).push(q);}
  const selected=[];
@@ -38,5 +50,5 @@ export function pickProgressiveQuestions(items,topic,recentIds=[],stage=1){
  }
  const remaining=shuffle(items.filter(q=>!used.has(q.id)&&!recent.has(q.id)));
  const older=shuffle(items.filter(q=>!used.has(q.id)&&recent.has(q.id)));
- return shuffle([...chosen,...remaining.slice(0,Math.max(0,SESSION_LENGTH-chosen.length)),...older.slice(0,Math.max(0,SESSION_LENGTH-chosen.length-remaining.length))]).slice(0,SESSION_LENGTH);
+ return diversifyAnswers(shuffle([...chosen,...remaining.slice(0,Math.max(0,SESSION_LENGTH-chosen.length)),...older.slice(0,Math.max(0,SESSION_LENGTH-chosen.length-remaining.length))])).slice(0,SESSION_LENGTH);
 }
