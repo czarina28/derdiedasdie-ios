@@ -15,12 +15,12 @@ test('all verb-preposition questions have unique IDs and valid choices',()=>{
 });
 test('new topic is available in focused and mixed practice',()=>{
  const bank=buildCatalog();
- const focused=pickProgressiveQuestions(bank,'Verbs & prepositions',[],1);
+ const focused=pickProgressiveQuestions(bank,'Prepositions',[],1);
  assert.equal(focused.length,10);
- assert.ok(focused.every(q=>q.topic==='Verbs & prepositions'));
+ assert.ok(focused.every(q=>q.topic==='Prepositions'));
  for(const stage of [1,2,3]){
   const mixed=pickProgressiveQuestions(bank,'Mixed practice',[],stage);
-  assert.ok(mixed.some(q=>q.topic==='Verbs & prepositions'));
+  assert.ok(mixed.some(q=>q.topic==='Prepositions'));
  }
 });
 
