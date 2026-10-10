@@ -615,7 +615,7 @@ export const moreSentences = [
   },
   {
     "before": "Wir kaufen ",
-    "after": " frische Äpfel.",
+    "after": " frischen Äpfel.",
     "options": [
       "die",
       "der",
@@ -639,7 +639,7 @@ export const moreSentences = [
   },
   {
     "before": "Ich habe ",
-    "after": " neue Schuhe bestellt.",
+    "after": " neuen Schuhe bestellt.",
     "options": [
       "die",
       "den",
