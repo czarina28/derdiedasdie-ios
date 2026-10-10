@@ -2,6 +2,7 @@ export const TOPIC_LABELS = ['Cases & articles','Adjective endings','Preposition
 export function classifyQuestion(q){
  const [source,suffix]=q.id.split('-');
  const n=Number(suffix);
+ if(source==='adj')return ['Adjective endings','Strong, weak and mixed endings'];
  if(source==='genitive')return ['Cases & articles','Genitive'];
  if(source==='dativeplural')return ['Cases & articles','Dative plural'];
  if(source==='prep')return ['Prepositions','Verb-preposition pairs'];
