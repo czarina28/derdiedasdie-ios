@@ -275,7 +275,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "„Helfen“ takes the dative: dem neuen Mitarbeiter."
+    "explanation": "„Helfen“ requires a dative person. „Mitarbeiter“ is masculine (der Mitarbeiter), so „der“ becomes „dem“; the adjective takes -en: dem neuen Mitarbeiter."
   },
   {
     "before": "Sie legt das Buch auf ",
@@ -287,7 +287,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "Movement onto a surface: auf den kleinen Tisch."
+    "explanation": "„Auf“ is a two-way preposition. „Legen“ describes putting the book somewhere (Wohin?), so use accusative. „Tisch“ is masculine: auf den kleinen Tisch. Compare „Das Buch liegt auf dem Tisch“ (location, dative)."
   },
   {
     "before": "Das Buch liegt auf ",
@@ -299,7 +299,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "A fixed location: auf dem kleinen Tisch."
+    "explanation": "„Auf“ is a two-way preposition. „Liegen“ describes where the book is (Wo?), so use dative. „Tisch“ is masculine: auf dem kleinen Tisch. Compare „Ich lege das Buch auf den Tisch“ (destination, accusative)."
   },
   {
     "before": "Wir fahren in ",
@@ -311,7 +311,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "Movement toward a destination: in die schöne Stadt."
+    "explanation": "„In“ is a two-way preposition. Driving into the city answers Wohin?, so use accusative. „Stadt“ is feminine: in die schöne Stadt. Compare „in der Stadt wohnen“ (Wo?, dative)."
   },
   {
     "before": "Wir wohnen in ",
@@ -323,7 +323,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "A fixed location: in der schönen Stadt."
+    "explanation": "„In“ is a two-way preposition. „Wohnen“ answers Wo?, so use dative. „Stadt“ is feminine, so „die“ becomes „der“: in der schönen Stadt. Compare „in die Stadt fahren“ (Wohin?, accusative)."
   },
   {
     "before": "Er stellt die Tasche neben ",
@@ -335,7 +335,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "Placing something beside something: neben den alten Schrank."
+    "explanation": "„Neben“ is a two-way preposition. „Stellen“ expresses placing something at a destination (Wohin?), so use accusative. „Schrank“ is masculine: neben den alten Schrank."
   },
   {
     "before": "Die Tasche steht neben ",
@@ -347,7 +347,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "A fixed location: neben dem alten Schrank."
+    "explanation": "„Neben“ is a two-way preposition. „Stehen“ describes a fixed position (Wo?), so use dative. „Schrank“ is masculine: neben dem alten Schrank."
   },
   {
     "before": "Sie hat mit ",
@@ -395,7 +395,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einem",
-    "explanation": "„Arbeiten an“ takes the dative: an einem neuen Projekt."
+    "explanation": "The expression „an einem Projekt arbeiten“ uses dative for the thing being worked on. „Projekt“ is neuter, so „ein“ becomes „einem“; the adjective takes -en: an einem neuen Projekt."
   },
   {
     "before": "Ich habe eine Nachricht von ",
@@ -623,7 +623,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "The plural direct object takes „die“: die frischen Äpfel."
+    "explanation": "„Kaufen“ takes an accusative object. „Äpfel“ is plural, so the definite article is „die“ in the accusative; after „die“, the adjective takes weak -en: die frischen Äpfel."
   },
   {
     "before": "Er spricht mit ",
@@ -635,7 +635,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "den",
-    "explanation": "„Mit“ takes dative plural: mit den erfahrenen Kollegen."
+    "explanation": "„Mit“ requires dative. „Kollegen“ is plural, so definite plural „die“ becomes „den“. The adjective takes -en: mit den erfahrenen Kollegen. „Kollegen“ already ends in -n."
   },
   {
     "before": "Ich habe ",
@@ -647,7 +647,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "The plural direct object takes „die“: die neuen Schuhe."
+    "explanation": "„Bestellen“ takes an accusative object. „Schuhe“ is plural, so use „die“ in the accusative; the adjective after a definite plural article takes -en: die neuen Schuhe."
   },
   {
     "before": "Sie hat ",
