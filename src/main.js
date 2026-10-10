@@ -2,15 +2,15 @@ import {sentences,validateSentence,checkAnswer} from './sentences.js';
 import {moreSentences} from './more-sentences.js';
 import {vielSentences} from './viel-sentences.js';
 import {genitiveSentences} from './genitive-sentences.js';
-import {pickQuestions,shuffle} from './session.js';
+import {pickFreshQuestions,shuffle} from './session.js';
 import './style.css';
 const bank=[...sentences,...moreSentences,...vielSentences,...genitiveSentences].filter(validateSentence).map((q,i)=>({...q,id:i,topic:i<sentences.length+moreSentences.length?'Articles & endings':i<sentences.length+moreSentences.length+vielSentences.length?'Viel & viele':'Genitive'}));
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set();
 try{mistakes=new Set(JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]'));}catch{mistakes=new Set();}
 
-function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;deck=pickQuestions(pool,topic==='Review mistakes'?'Mixed practice':topic);position=0;correct=0;total=0;if(deck.length)next();else home();}
-function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};question.options=shuffle(question.options);answered=false;render();}
+function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');deck=pickFreshQuestions(pool,topic==='Review mistakes'?'Mixed practice':topic,recent);position=0;correct=0;total=0;if(deck.length)next();else home();}
+function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
 function home(){
  root.innerHTML='<main><header><span class="brand">der<span>die</span>das<span>die</span></span></header><section class="intro"><div class="eyebrow">PRACTICE</div><h1>Ten sentences. One good habit.</h1><p>Choose a topic to begin.</p></section><section class="mode-list">'+['Mixed practice','Articles & endings','Viel & viele','Genitive','Review mistakes'].map(m=>'<button data-mode="'+m+'">'+m+' →</button>').join('')+'</section></main>';
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
