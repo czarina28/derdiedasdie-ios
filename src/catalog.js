@@ -1,3 +1,4 @@
+import {ersatzinfinitivSentences} from './ersatzinfinitiv-sentences.js';
 import {connectionSentences} from './connection-sentences.js';
 import {advancedSentences} from './advanced-sentences.js';
 import {verbFormSentences} from './verb-form-sentences.js';
@@ -36,7 +37,8 @@ export const QUESTION_SOURCES=[
  {key:'pron',topic:'Pronouns & determiners',questions:pronounSentences},
  {key:'verb',topic:'Verb forms & tenses',questions:verbFormSentences},
  {key:'advanced',topic:'Advanced constructions',questions:advancedSentences},
- {key:'connect',topic:'Sentence connections',questions:connectionSentences}
+ {key:'connect',topic:'Sentence connections',questions:connectionSentences},
+ {key:'ersatz',topic:'Advanced constructions',questions:ersatzinfinitivSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
