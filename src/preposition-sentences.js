@@ -175,12 +175,12 @@ export const prepositionSentences = [
     "after": " starkem Heuschnupfen.",
     "options": [
       "unter",
-      "an",
       "für",
-      "über"
+      "über",
+      "gegen"
     ],
     "answer": "unter",
-    "explanation": "„Leiden unter“ takes the dative and emphasizes the burden caused by a condition: unter starkem Heuschnupfen."
+    "explanation": "„Leiden unter“ + dative emphasizes the burden of a condition: unter starkem Heuschnupfen. „Leiden an“ is ALSO possible here, so it is deliberately not a wrong-answer option."
   },
   {
     "id": "prep-015",
@@ -188,12 +188,12 @@ export const prepositionSentences = [
     "after": " einer seltenen Krankheit.",
     "options": [
       "an",
-      "unter",
       "für",
-      "über"
+      "über",
+      "gegen"
     ],
     "answer": "an",
-    "explanation": "„Leiden an“ takes the dative and is commonly used with illnesses: an einer seltenen Krankheit."
+    "explanation": "„Leiden an“ + dative commonly identifies an illness: an einer seltenen Krankheit. „Leiden unter“ can ALSO be correct here, so it is deliberately not offered as an incorrect choice."
   },
   {
     "id": "prep-016",
@@ -259,5 +259,109 @@ export const prepositionSentences = [
     ],
     "answer": "um",
     "explanation": "„Sich kümmern um“ takes the accusative: um die Kinder."
+  },
+  {
+    "id": "prep-021",
+    "before": "Ich erinnere mich noch gut ",
+    "after": " unser erstes Gespräch.",
+    "options": [
+      "an",
+      "über",
+      "für",
+      "mit"
+    ],
+    "answer": "an",
+    "explanation": "„Sich erinnern an“ + accusative means to remember something: an unser erstes Gespräch. Learn the verb and preposition together."
+  },
+  {
+    "id": "prep-022",
+    "before": "Erinnerst du dich ",
+    "after": " den Namen unserer Lehrerin?",
+    "options": [
+      "an",
+      "über",
+      "auf",
+      "bei"
+    ],
+    "answer": "an",
+    "explanation": "„Sich erinnern an“ takes the accusative: an den Namen. In a question about a thing, you can also ask „Woran erinnerst du dich?“"
+  },
+  {
+    "id": "prep-023",
+    "before": "Wir freuen uns schon ",
+    "after": " das Konzert nächste Woche.",
+    "options": [
+      "auf",
+      "über",
+      "mit",
+      "an"
+    ],
+    "answer": "auf",
+    "explanation": "„Sich freuen auf“ + accusative expresses anticipation of something still to come: auf das Konzert nächste Woche."
+  },
+  {
+    "id": "prep-024",
+    "before": "Sie hat sich sehr ",
+    "after": " die gute Nachricht gefreut.",
+    "options": [
+      "über",
+      "auf",
+      "an",
+      "mit"
+    ],
+    "answer": "über",
+    "explanation": "„Sich freuen über“ + accusative expresses happiness about news or something experienced: über die gute Nachricht."
+  },
+  {
+    "id": "prep-025",
+    "before": "Ich habe mich gestern ",
+    "after": " dem Kunden für den Fehler entschuldigt.",
+    "options": [
+      "bei",
+      "für",
+      "über",
+      "an"
+    ],
+    "answer": "bei",
+    "explanation": "„Sich bei jemandem entschuldigen“ identifies the person receiving the apology: bei dem Kunden (beim Kunden). „Für den Fehler“ names the reason."
+  },
+  {
+    "id": "prep-026",
+    "before": "Er hat sich bei seiner Kollegin ",
+    "after": " die Verspätung entschuldigt.",
+    "options": [
+      "für",
+      "bei",
+      "mit",
+      "an"
+    ],
+    "answer": "für",
+    "explanation": "„Sich für etwas entschuldigen“ + accusative identifies the reason for the apology: für die Verspätung. „Bei seiner Kollegin“ identifies the person."
+  },
+  {
+    "id": "prep-027",
+    "before": "Sie bewirbt sich ",
+    "after": " eine Stelle im Marketing.",
+    "options": [
+      "um",
+      "bei",
+      "für",
+      "an"
+    ],
+    "answer": "um",
+    "explanation": "„Sich bewerben um“ + accusative identifies the position sought: um eine Stelle. „Bei“ identifies the employer instead."
+  },
+  {
+    "id": "prep-028",
+    "before": "Er hat sich ",
+    "after": " einem großen Unternehmen beworben.",
+    "options": [
+      "bei",
+      "um",
+      "für",
+      "auf"
+    ],
+    "answer": "bei",
+    "explanation": "„Sich bewerben bei“ + dative identifies the employer: bei einem Unternehmen. „Um“ would identify the position."
   }
 ];
