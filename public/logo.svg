@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162 48" role="img" aria-labelledby="title desc">
+  <title id="title">derdiedasdie</title>
+  <desc id="desc">Three rounded tiles reading der, die, das</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity=".13"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <rect x="1" y="1" width="50" height="46" rx="10" fill="#2563eb"/>
+    <rect x="56" y="1" width="50" height="46" rx="10" fill="#ec4899"/>
+    <rect x="111" y="1" width="50" height="46" rx="10" fill="#22a95b"/>
+  </g>
+  <g fill="#fff" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800" text-anchor="middle">
+    <text x="26" y="30">der</text><text x="81" y="30">die</text><text x="136" y="30">das</text>
+  </g>
+</svg>
