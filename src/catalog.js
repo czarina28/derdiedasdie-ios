@@ -4,19 +4,22 @@ import {moreSentences} from './more-sentences.js';
 import {vielSentences} from './viel-sentences.js';
 import {genitiveSentences} from './genitive-sentences.js';
 import {prepositionSentences} from './preposition-sentences.js';
+import {wordOrderSentences} from './word-order-sentences.js';
 
 export const TOPICS=Object.freeze({
  articles:'Articles & endings',
  viel:'Viel & viele',
  genitive:'Genitive',
- prepositions:'Verbs & prepositions'
+ prepositions:'Verbs & prepositions',
+ wordOrder:'Word order & clauses'
 });
 export const QUESTION_SOURCES=[
  {key:'core',topic:TOPICS.articles,questions:sentences},
  {key:'everyday',topic:TOPICS.articles,questions:moreSentences},
  {key:'viel',topic:TOPICS.viel,questions:vielSentences},
  {key:'genitive',topic:TOPICS.genitive,questions:genitiveSentences},
- {key:'prep',topic:TOPICS.prepositions,questions:prepositionSentences}
+ {key:'prep',topic:TOPICS.prepositions,questions:prepositionSentences},
+ {key:'order',topic:TOPICS.wordOrder,questions:wordOrderSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
