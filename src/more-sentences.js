@@ -11,7 +11,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "„Mit“ takes the dative: mit dem neuen Nachbarn."
+    "explanation": "„Mit“ always governs dative. „Nachbar“ is masculine, so „der“ becomes „dem“. It is also a weak masculine noun: „dem neuen Nachbarn“, with -n on the noun."
   },
   {
     "before": "Sie hat ",
@@ -23,7 +23,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Blumenstrauß“ is masculine and the object of „kaufen“."
+    "explanation": "„Kaufen“ takes an accusative object. „Blumenstrauß“ is masculine (der Blumenstrauß), so „ein“ becomes „einen“ and the adjective takes -en: einen schönen Blumenstrauß."
   },
   {
     "before": "Wir besuchen morgen ",
@@ -35,7 +35,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "eine",
-    "explanation": "„Freundin“ is feminine: eine alte Freundin."
+    "explanation": "„Besuchen“ takes an accusative object. „Freundin“ is feminine; indefinite feminine accusative is „eine“, just like nominative: eine alte Freundin."
   },
   {
     "before": "Er wartet vor ",
@@ -47,7 +47,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "For a location, „vor“ takes the dative: vor dem großen Supermarkt."
+    "explanation": "„Vor“ is a two-way preposition. Waiting in front of the supermarket answers Wo?, so use dative. „Supermarkt“ is masculine: vor dem großen Supermarkt."
   },
   {
     "before": "Ich habe ",
@@ -59,7 +59,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Job“ is masculine and the direct object: einen neuen Job."
+    "explanation": "„Finden“ takes an accusative object. „Job“ is masculine, so „ein“ becomes „einen“ and the adjective takes -en: einen neuen Job."
   },
   {
     "before": "Wir brauchen ",
@@ -71,7 +71,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Tisch“ is masculine: einen größeren Tisch."
+    "explanation": "„Brauchen“ takes an accusative object. „Tisch“ is masculine, so „ein“ becomes „einen“; the adjective takes -en: einen größeren Tisch."
   },
   {
     "before": "Sie trägt heute ",
@@ -83,7 +83,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "ein",
-    "explanation": "„Kleid“ is neuter: ein blaues Kleid."
+    "explanation": "„Tragen“ takes an accusative object. „Kleid“ is neuter, so „ein“ stays „ein“ in accusative; the adjective takes -es: ein blaues Kleid."
   },
   {
     "before": "Das ist ",
@@ -95,7 +95,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "eine",
-    "explanation": "„Entscheidung“ is feminine: eine schwierige Entscheidung."
+    "explanation": "After „das ist“, the noun phrase is nominative, not accusative. „Entscheidung“ is feminine, so use „eine“: eine schwierige Entscheidung."
   },
   {
     "before": "Ich fahre mit ",
@@ -107,7 +107,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "„Mit“ takes the dative: mit dem alten Zug."
+    "explanation": "„Mit“ always governs dative, even when the sentence describes traveling. „Zug“ is masculine, so „der“ becomes „dem“: mit dem alten Zug."
   },
   {
     "before": "Wir haben ",
@@ -119,7 +119,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "eine",
-    "explanation": "„Katze“ is feminine: eine kleine Katze."
+    "explanation": "„Adoptieren“ takes an accusative object. „Katze“ is feminine, so indefinite accusative remains „eine“: eine kleine Katze."
   },
   {
     "before": "Er wohnt neben ",
@@ -131,7 +131,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "For a location, „neben“ takes the dative: neben dem neuen Bahnhof."
+    "explanation": "„Neben“ is a two-way preposition. „Wohnen“ describes location (Wo?), so use dative. „Bahnhof“ is masculine: neben dem neuen Bahnhof."
   },
   {
     "before": "Ich brauche ",
@@ -143,7 +143,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Mantel“ is masculine: einen warmen Mantel."
+    "explanation": "„Brauchen“ takes an accusative object. „Mantel“ is masculine, so „ein“ becomes „einen“ and the adjective takes -en: einen warmen Mantel."
   },
   {
     "before": "Wir haben ",
@@ -155,7 +155,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "ein",
-    "explanation": "„Museum“ is neuter: ein interessantes Museum."
+    "explanation": "„Besuchen“ takes an accusative object. „Museum“ is neuter, so „ein“ remains „ein“; the adjective carries -es: ein interessantes Museum."
   },
   {
     "before": "Sie kommt aus ",
@@ -167,7 +167,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einem",
-    "explanation": "„Aus“ takes the dative: aus einem kleinen Dorf."
+    "explanation": "„Aus“ always governs dative. „Dorf“ is neuter, so „ein“ becomes „einem“ and the adjective takes -en: aus einem kleinen Dorf."
   },
   {
     "before": "Ich danke ",
@@ -179,7 +179,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Danken“ takes the dative: der freundlichen Verkäuferin."
+    "explanation": "„Danken“ takes a dative person, unlike „jemanden loben“ (accusative). „Verkäuferin“ is feminine, so „die“ becomes „der“: der freundlichen Verkäuferin."
   },
   {
     "before": "Er hat ",
@@ -191,7 +191,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Koffer“ is masculine: einen schweren Koffer."
+    "explanation": "„Tragen“ takes an accusative object. „Koffer“ is masculine, so „ein“ becomes „einen“ and the adjective takes -en: einen schweren Koffer."
   },
   {
     "before": "Wir sitzen an ",
@@ -203,7 +203,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "For a fixed location, „an“ takes the dative: an dem großen Tisch."
+    "explanation": "„An“ is a two-way preposition. „Sitzen“ describes location (Wo?), so use dative. „Tisch“ is masculine: an dem großen Tisch (often „am großen Tisch“)."
   },
   {
     "before": "Ich suche ",
@@ -215,7 +215,7 @@ export const moreSentences = [
       "der"
     ],
     "answer": "das",
-    "explanation": "„Geschenk“ is neuter: das passende Geschenk."
+    "explanation": "„Suchen“ takes an accusative object. „Geschenk“ is neuter, so definite accusative „das“ is identical to nominative: das passende Geschenk."
   },
   {
     "before": "Sie gibt ",
@@ -227,7 +227,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "dem",
-    "explanation": "„Geben“ takes a dative recipient: dem kleinen Kind."
+    "explanation": "„Geben“ has a dative recipient and an accusative thing given. The child receives the book: „dem kleinen Kind“ (dative); „ein Buch“ is accusative."
   },
   {
     "before": "Wir gehen durch ",
@@ -239,7 +239,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Durch“ takes the accusative: durch den alten Park."
+    "explanation": "„Durch“ always governs accusative. „Park“ is masculine, so „der“ becomes „den“; the adjective takes -en: durch den alten Park."
   },
   {
     "before": "Ich erinnere mich an ",
@@ -251,7 +251,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Sich erinnern an“ takes the accusative: an den schönen Urlaub."
+    "explanation": "The fixed expression „sich erinnern an“ takes accusative. „Urlaub“ is masculine, so „der“ becomes „den“: an den schönen Urlaub."
   },
   {
     "before": "Er hat Angst vor ",
@@ -263,7 +263,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "„Angst vor“ takes the dative: vor dem großen Hund."
+    "explanation": "„Angst vor“ uses dative for what one fears. „Hund“ is masculine, so „der“ becomes „dem“; the adjective takes -en: vor dem großen Hund."
   },
   {
     "before": "Ich helfe ",
