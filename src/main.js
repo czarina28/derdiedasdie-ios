@@ -1,7 +1,8 @@
 import {sentences,validateSentence,checkAnswer} from './sentences.js';
 import {moreSentences} from './more-sentences.js';
+import {vielSentences} from './viel-sentences.js';
 import './style.css';
-const bank=[...sentences,...moreSentences].filter(validateSentence);
+const bank=[...sentences,...moreSentences,...vielSentences].filter(validateSentence);
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0;
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
