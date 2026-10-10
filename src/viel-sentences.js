@@ -46,7 +46,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Parks“ is plural: viele schöne Parks."
+    "explanation": "„Parks“ is a countable plural noun. With an accusative plural object after „es gibt“, use „viele“, and the adjective takes -e: viele schöne Parks."
   },
   {
     "before": "Ich habe nicht ",
@@ -58,7 +58,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Zeit“ is uncountable here: nicht viel Zeit."
+    "explanation": "„Zeit“ means an amount of time here, not countable individual items. Use uninflected „viel“: nicht viel Zeit; compare „viele Stunden“."
   },
   {
     "before": "Wir kennen ",
@@ -70,7 +70,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Leute“ is plural: viele nette Leute."
+    "explanation": "„Leute“ is plural and refers to countable people. The accusative object of „kennen“ takes „viele“: viele nette Leute."
   },
   {
     "before": "Er hat ",
@@ -82,7 +82,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Geduld“ is uncountable: viel Geduld."
+    "explanation": "„Geduld“ is an uncountable quality, so use uninflected „viel“ rather than plural „viele“: viel Geduld."
   },
   {
     "before": "Sie hat ",
@@ -94,7 +94,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Bücher“ is plural: viele interessante Bücher."
+    "explanation": "„Bücher“ is countable plural and the accusative object of „lesen“. Use „viele“, with adjective -e: viele interessante Bücher."
   },
   {
     "before": "Wir haben ",
@@ -106,7 +106,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Glück“ is uncountable in this expression: viel Glück."
+    "explanation": "„Glück“ refers to an amount of luck in „Glück haben“. It is uncountable here, so use uninflected „viel“: viel Glück gehabt."
   },
   {
     "before": "Ich sehe hier ",
@@ -118,7 +118,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Fahrräder“ is plural: viele Fahrräder."
+    "explanation": "„Fahrräder“ is countable plural. The accusative object of „sehen“ takes „viele“: viele Fahrräder."
   },
   {
     "before": "Mit ",
@@ -178,7 +178,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Ideen“ is plural accusative: viele gute Ideen."
+    "explanation": "„Ideen“ is countable plural and the accusative object of „sammeln“. Use „viele“; the following adjective takes -e: viele gute Ideen."
   },
   {
     "before": "Ich habe von ",
@@ -202,7 +202,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Geld“ is uncountable here: viel Geld."
+    "explanation": "„Geld“ refers to an amount, not separate countable items. Use uninflected „viel“: viel Geld. Compare „viele Euro“."
   },
   {
     "before": "Wir müssen ",
@@ -214,7 +214,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Entscheidungen“ is plural: viele wichtige Entscheidungen."
+    "explanation": "„Entscheidungen“ is countable plural and the accusative object of „treffen“. Use „viele“ with adjective -e: viele wichtige Entscheidungen."
   },
   {
     "before": "Er verbringt ",
@@ -226,7 +226,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Zeit“ is uncountable: viel Zeit."
+    "explanation": "„Zeit“ refers to duration, so it is uncountable here. Use uninflected „viel“: viel Zeit mit seiner Familie verbringen."
   },
   {
     "before": "Sie hat ",
@@ -238,7 +238,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Fehler“ is plural: viele kleine Fehler."
+    "explanation": "„Fehler“ has the same spelling in singular and plural, but „kleine Fehler“ is plural here. As an accusative object of „finden“, use „viele“: viele kleine Fehler."
   },
   {
     "before": "Wir arbeiten mit ",
@@ -262,7 +262,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "Here „viel“ refers to an amount of information: viel davon gehört."
+    "explanation": "„Viel davon hören“ refers to a large amount of information about something, not countable individual items. Use uninflected „viel“: schon viel davon gehört."
   },
   {
     "before": "Es gibt ",
@@ -274,7 +274,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Gründe“ is plural: viele Gründe."
+    "explanation": "„Gründe“ is countable plural. After „es gibt“ (which takes accusative), use „viele“: es gibt viele Gründe."
   },
   {
     "before": "Sie hat ",
@@ -286,6 +286,6 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Erfahrung“ is used as an uncountable quantity here: viel Erfahrung."
+    "explanation": "„Erfahrung“ means accumulated experience as an uncountable quantity. Use uninflected „viel“: viel Erfahrung. Compare plural „viele Erfahrungen“ for separate experiences."
   }
 ];
