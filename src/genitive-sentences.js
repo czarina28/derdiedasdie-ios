@@ -34,7 +34,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "„Wegen“ normally takes the genitive in formal standard German. „Wetter“ is neuter: des schlechten Wetters. The noun takes genitive -s."
+    "explanation": "„Wegen“ expresses a cause and normally takes genitive in formal standard German. „Wetter“ is neuter: das Wetter → des schlechten Wetters. The article becomes „des“, the adjective takes -en, and the noun adds -s. Informal „wegen dem Wetter“ uses dative."
   },
   {
     "before": "Trotz ",
@@ -46,7 +46,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "„Trotz“ takes the genitive in standard German. „Regen“ is masculine: des starken Regens. The noun takes genitive -s."
+    "explanation": "„Trotz“ means „despite“ and takes genitive in standard German. „Regen“ is masculine: der Regen → des starken Regens. The article changes to „des“, the adjective takes -en, and the noun adds -s."
   },
   {
     "before": "Während ",
@@ -58,7 +58,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Während“ takes the genitive. „Sitzung“ is feminine, and the feminine genitive article is „der“: während der langen Sitzung. The noun does not gain an ending."
+    "explanation": "„Während“ means „during“ here and takes genitive. „Sitzung“ is feminine: die Sitzung → während der langen Sitzung. The article changes to „der“, the adjective takes -en, and the feminine noun stays unchanged."
   },
   {
     "before": "Die Meinung ",
@@ -70,7 +70,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "Whose opinion? „Der neuen Chefin“ is feminine genitive. Feminine nouns do not add -s in the genitive."
+    "explanation": "„Die Meinung“ belongs to the boss (Wessen Meinung?). „Chefin“ is feminine: die Chefin → der neuen Chefin. Genitive feminine uses „der“ and adjective -en; the noun adds no ending."
   },
   {
     "before": "Die Fenster ",
@@ -82,7 +82,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose windows? „Gebäude“ is neuter: des alten Gebäudes. The noun takes genitive -s."
+    "explanation": "The windows belong to the building (Wessen Fenster?). „Gebäude“ is neuter: das Gebäude → des alten Gebäudes. Genitive „des“ is followed by adjective -en, and the noun adds -s."
   },
   {
     "before": "Der Name ",
@@ -94,7 +94,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose name? „Kind“ is neuter: des kleinen Kindes. Genitive singular adds -es."
+    "explanation": "The name belongs to the child (Wessen Name?). „Kind“ is neuter: das Kind → des kleinen Kindes. The genitive article is „des“, the adjective takes -en, and „Kind“ adds -es."
   },
   {
     "before": "Das Fahrrad ",
@@ -106,7 +106,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "Whose bicycle? „Mann“ is masculine: des jungen Mannes. Genitive singular adds -es."
+    "explanation": "The bicycle belongs to the man (Wessen Fahrrad?). „Mann“ is masculine: der Mann → des jungen Mannes. Genitive „des“ is followed by adjective -en, and „Mann“ adds -es."
   },
   {
     "before": "Die Entscheidung ",
@@ -226,7 +226,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Wegen“ normally takes the genitive in formal standard German. „Baustellen“ is plural: wegen der vielen Baustellen. Genitive plural uses „der“; the noun stays „Baustellen“."
+    "explanation": "„Wegen“ means „because of“ and normally takes genitive in formal standard German. „Baustellen“ is plural, so use genitive plural „der“: wegen der vielen Baustellen. Unlike dative plural, genitive does not add a noun ending here."
   },
   {
     "before": "Während ",
@@ -238,7 +238,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Während“ takes the genitive. „Ferien“ is plural, and the genitive plural article is „der“: während der Ferien."
+    "explanation": "„Während“ means „during“ and takes genitive. „Ferien“ is plural (die Ferien); its genitive article is „der“: während der Ferien. No extra noun ending is added."
   },
   {
     "before": "Trotz ",
@@ -250,7 +250,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Trotz“ takes the genitive in standard German. „Fragen“ is plural: trotz der vielen Fragen. Genitive plural uses „der“."
+    "explanation": "„Trotz“ means „despite“ and takes genitive in standard German. „Fragen“ is plural, so the genitive article is „der“: trotz der vielen Fragen. The noun keeps its plural form."
   },
   {
     "before": "Die Namen ",
@@ -430,7 +430,7 @@ export const genitiveSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Wegen“ normally takes genitive in formal standard German. „Wartezeit“ is feminine: wegen der langen Wartezeit."
+    "explanation": "„Wegen“ introduces a cause and normally takes genitive in formal standard German. „Wartezeit“ is feminine: die Wartezeit → wegen der langen Wartezeit. The article becomes „der“ and the adjective takes -en; the noun stays unchanged."
   },
   {
     "before": "Trotz ",
@@ -454,7 +454,7 @@ export const genitiveSentences = [
       "der"
     ],
     "answer": "des",
-    "explanation": "„Während“ takes genitive. „Jahr“ is neuter: des gesamten Jahres. The noun adds -es."
+    "explanation": "„Während“ means „during“ and takes genitive. „Jahr“ is neuter: das Jahr → des gesamten Jahres. The article becomes „des“, the adjective takes -en, and the noun adds -es."
   },
   {
     "before": "Die Arbeit ",
