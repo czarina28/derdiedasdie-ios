@@ -17,7 +17,7 @@ function home(){
  <section class="home-hero"><div class="eyebrow">YOUR DAILY GERMAN</div><h1>A little practice.<br><em>A lot of progress.</em></h1><p>Practice German grammar, ten questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Start a mixed session <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Rounds completed</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to review</span></div></section>
  <section class="topic-section"><div class="section-heading"><h2>Choose your focus</h2><span>5 TOPICS</span></div><div class="topic-list">${topics.map(([name,detail],i)=>`<button data-mode="${name}"><span class="topic-index">${String(i+1).padStart(2,'0')}</span><span class="topic-copy"><strong>${name}</strong><small>${detail}</small></span><span class="topic-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></section>
- <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Review mistakes <strong>(${mistakes.size})</strong></span><span aria-hidden="true">→</span></button>
+ <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Review mistakes <strong>(${mistakes.size})</strong></span></button>
  <footer>Made for curious German learners. Every topic is free.</footer></main>`;
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
 }
