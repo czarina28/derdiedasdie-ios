@@ -32,7 +32,7 @@ test('progressive sessions preserve ten distinct questions',()=>{for(const stage
 test('genitive questions are not automatically all advanced',()=>{assert.equal(questionDifficulty({topic:'Genitive',options:['des','dem','den','der']}),2);});
 
 test('mixed practice balances three topics at every stage',()=>{
- const bank=['Articles & endings','Viel & viele','Genitive'].flatMap((topic,t)=>Array.from({length:20},(_,i)=>({id:t*20+i,topic,answer:'des',options:['des','der']})));
+ const bank=['Articles & endings','Quantifiers & determiners','Genitive'].flatMap((topic,t)=>Array.from({length:20},(_,i)=>({id:t*20+i,topic,answer:'des',options:['des','der']})));
  for(const stage of [1,2,3])for(let run=0;run<30;run++){
   const deck=pickProgressiveQuestions(bank,'Mixed practice',[],stage);
   const counts=[...new Set(deck.map(q=>q.topic))].map(topic=>deck.filter(q=>q.topic===topic).length).sort();
@@ -42,7 +42,7 @@ test('mixed practice balances three topics at every stage',()=>{
 test('difficulty preference changes within a topic without increasing its share',()=>{
  const bank=[
  ...Array.from({length:20},(_,i)=>({id:i,topic:'Articles & endings',answer:'der',options:['der','die']})),
- ...Array.from({length:20},(_,i)=>({id:i+20,topic:'Viel & viele',answer:i%2?'vielen':'viel',options:['viel','vielen']})),
+ ...Array.from({length:20},(_,i)=>({id:i+20,topic:'Quantifiers & determiners',answer:i%2?'vielen':'viel',options:['viel','vielen']})),
  ...Array.from({length:20},(_,i)=>({id:i+40,topic:'Genitive',answer:'des',options:i%2?['meines','meiner']:['des','der']}))
  ];
  const difficult=stage=>pickProgressiveQuestions(bank,'Mixed practice',[],stage).filter(q=>questionDifficulty(q)===3).length;
