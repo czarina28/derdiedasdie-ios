@@ -1,0 +1,22 @@
+export const adjectiveEndingSentences=[
+ {id:'adj-001',before:"Ich trinke gern heiß",after:" Kaffee.",options:["en","er","es","em"],answer:"en",explanation:"After a masculine accusative noun without an article, the adjective takes -en: heißen Kaffee."},
+ {id:'adj-002',before:"Sie kauft ein neu",after:" Fahrrad.",options:["es","er","en","em"],answer:"es",explanation:"After ein, a neuter accusative singular noun takes adjective ending -es: ein neues Fahrrad."},
+ {id:'adj-003',before:"Das ist ein alt",after:" Haus.",options:["es","en","em","er"],answer:"es",explanation:"After ein, a neuter nominative singular noun takes adjective ending -es: ein altes Haus."},
+ {id:'adj-004',before:"Mit frisch",after:" Brot schmeckt die Suppe besser.",options:["em","es","en","er"],answer:"em",explanation:"Without an article, neuter dative singular takes -em: mit frischem Brot."},
+ {id:'adj-005',before:"Die klein",after:" Katze schläft.",options:["e","en","er","es"],answer:"e",explanation:"After the definite article die in nominative feminine singular, the adjective takes -e: die kleine Katze."},
+ {id:'adj-006',before:"Ich sehe den groß",after:" Hund.",options:["en","e","er","es"],answer:"en",explanation:"After den in masculine accusative singular, the adjective takes -en: den großen Hund."},
+ {id:'adj-007',before:"Wir wohnen in einem ruhig",after:" Viertel.",options:["en","em","es","er"],answer:"en",explanation:"After einem in dative neuter singular, the adjective takes -en: in einem ruhigen Viertel."},
+ {id:'adj-008',before:"Sie hilft einer alt",after:" Frau.",options:["en","e","er","es"],answer:"en",explanation:"After einer in dative feminine singular, the adjective takes -en: einer alten Frau."},
+ {id:'adj-009',before:"Gut",after:" Wein ist nicht immer teuer.",options:["er","e","en","es"],answer:"er",explanation:"Without an article, masculine nominative singular takes -er: guter Wein."},
+ {id:'adj-010',before:"Ich brauche kalt",after:" Wasser.",options:["es","en","em","er"],answer:"es",explanation:"Without an article, neuter accusative singular takes -es: kaltes Wasser."},
+ {id:'adj-011',before:"Wir treffen uns mit nett",after:" Kollegen.",options:["en","e","er","es"],answer:"en",explanation:"Without an article, dative plural takes -en: mit netten Kollegen."},
+ {id:'adj-012',before:"Die neu",after:" Bücher liegen auf dem Tisch.",options:["en","e","er","es"],answer:"en",explanation:"After die in nominative plural, the adjective takes -en: die neuen Bücher."},
+ {id:'adj-013',before:"Ich habe schön",after:" Blumen gekauft.",options:["e","en","er","es"],answer:"e",explanation:"Without an article, accusative plural takes -e: schöne Blumen."},
+ {id:'adj-014',before:"Er trägt einen schwarz",after:" Mantel.",options:["en","er","es","e"],answer:"en",explanation:"After einen in masculine accusative singular, the adjective takes -en: einen schwarzen Mantel."},
+ {id:'adj-015',before:"Das rot",after:" Auto steht draußen.",options:["e","es","en","er"],answer:"e",explanation:"After das in neuter nominative singular, the adjective takes -e: das rote Auto."},
+ {id:'adj-016',before:"Wegen schlecht",after:" Wetters bleiben wir zu Hause.",options:["en","em","es","er"],answer:"en",explanation:"Without an article, neuter genitive singular takes -en because the noun Wetters carries the genitive -s: schlechten Wetters."},
+ {id:'adj-017',before:"Mit einem gut",after:" Freund ist alles leichter.",options:["en","em","er","es"],answer:"en",explanation:"After einem in masculine dative singular, the adjective takes -en: mit einem guten Freund."},
+ {id:'adj-018',before:"Frisch",after:" Äpfel schmecken besonders gut.",options:["e","en","er","es"],answer:"e",explanation:"Without an article, nominative plural takes -e: frische Äpfel."},
+ {id:'adj-019',before:"Sie spricht mit der neu",after:" Chefin.",options:["en","e","er","es"],answer:"en",explanation:"After der in feminine dative singular, the adjective takes -en: mit der neuen Chefin."},
+ {id:'adj-020',before:"Ich esse gern ein frisch",after:" Brötchen.",options:["es","en","em","er"],answer:"es",explanation:"After ein in neuter accusative singular, the adjective takes -es: ein frisches Brötchen."}
+];
