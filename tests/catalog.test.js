@@ -40,3 +40,17 @@ test('known overlapping constructions are not used as false distractors',()=>{
  assert.ok(!byId.get('prep-035').options.includes('über'));
  assert.match(byId.get('order-006').before,/frage mich/);
 });
+
+test('quantifiers topic includes the original and expanded exercises',()=>{
+ const bank=buildCatalog();
+ const topic=bank.filter(q=>q.topic==='Quantifiers & determiners');
+ assert.equal(topic.length,44);
+ assert.equal(topic.filter(q=>q.id.startsWith('viel-')).length,24);
+ assert.equal(topic.filter(q=>q.id.startsWith('quant-')).length,20);
+ for(const q of topic){
+  assert.ok(q.before.trim()&&q.after.trim(),q.id+' missing context');
+  assert.equal(q.options.length,4,q.id);
+  assert.equal(new Set(q.options).size,4,q.id);
+  assert.ok(q.options.includes(q.answer),q.id);
+ }
+});
