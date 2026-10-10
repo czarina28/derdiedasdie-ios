@@ -26,3 +26,9 @@ test('expanded word-order questions keep unique answers and meaningful contexts'
   assert.ok(q.explanation.length>=40,q.id);
  }
 });
+
+test('word-order exercises reject alternate correct tense forms',()=>{
+ const byId=new Map(buildCatalog().map(q=>[q.id,q]));
+ assert.ok(!byId.get('orderextra-003').options.includes('machten'));
+ assert.ok(!byId.get('orderextra-026').options.includes('arbeitet'));
+});
