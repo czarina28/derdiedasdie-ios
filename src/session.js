@@ -21,4 +21,19 @@ export function practiceStage(history=[]){const recent=history.filter(s=>s.mode=
 
 export function questionDifficulty(q){if(q.topic==='Genitive')return q.options.includes('meines')||q.options.includes('unseres')?3:2;if(q.topic==='Viel & viele')return q.answer==='vielen'?2:1;return 1;}
 
-export function pickProgressiveQuestions(items,topic,recentIds,stage){const deck=pickFreshQuestions(items,topic,recentIds);if(topic!=='Mixed practice')return deck;const easy=deck.filter(q=>questionDifficulty(q)===1),other=deck.filter(q=>questionDifficulty(q)!==1);return stage===1?[...easy,...other]:stage===2?deck:[...other,...easy];}
+export function pickProgressiveQuestions(items,topic,recentIds=[],stage=1){
+ if(topic!=='Mixed practice')return pickFreshQuestions(items,topic,recentIds);
+ const recent=new Set(recentIds);
+ const targets=stage===1?[7,2,1]:stage===2?[4,4,2]:[2,4,4];
+ const chosen=[],used=new Set();
+ for(let level=1;level<=3;level++){
+  const fresh=shuffle(items.filter(q=>questionDifficulty(q)===level&&!recent.has(q.id)));
+  const older=shuffle(items.filter(q=>questionDifficulty(q)===level&&recent.has(q.id)));
+  for(const q of [...fresh,...older].slice(0,targets[level-1])){
+   if(!used.has(q.id)){chosen.push(q);used.add(q.id);}
+  }
+ }
+ const remaining=shuffle(items.filter(q=>!used.has(q.id)&&!recent.has(q.id)));
+ const older=shuffle(items.filter(q=>!used.has(q.id)&&recent.has(q.id)));
+ return [...shuffle(chosen),...remaining,...older].slice(0,SESSION_LENGTH);
+}
