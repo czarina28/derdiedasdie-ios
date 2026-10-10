@@ -6,8 +6,8 @@ import {buildCatalog} from '../src/catalog.js';
 import {pickProgressiveQuestions} from '../src/session.js';
 
 test('all verb-preposition questions have unique IDs and valid choices',()=>{
- assert.equal(prepositionSentences.length,20);
- assert.equal(new Set(prepositionSentences.map(q=>q.id)).size,20);
+ assert.equal(prepositionSentences.length,28);
+ assert.equal(new Set(prepositionSentences.map(q=>q.id)).size,28);
  for(const q of prepositionSentences){
   assert.ok(validateSentence(q),q.id);
   assert.ok(q.explanation.length>35,q.id);
@@ -21,5 +21,13 @@ test('new topic is available in focused and mixed practice',()=>{
  for(const stage of [1,2,3]){
   const mixed=pickProgressiveQuestions(bank,'Mixed practice',[],stage);
   assert.ok(mixed.some(q=>q.topic==='Verbs & prepositions'));
+ }
+});
+
+test('leiden questions do not mark valid alternative prepositions wrong',()=>{
+ for(const id of ['prep-014','prep-015']){
+  const q=prepositionSentences.find(item=>item.id===id);
+  assert.ok(q);
+  assert.ok(!q.options.includes(q.answer==='an'?'unter':'an'));
  }
 });
