@@ -10,7 +10,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Arbeit“ is uncountable here: viel Arbeit."
+    "explanation": "„Arbeit“ refers to an amount of work, not separate countable items. Uninflected „viel“ expresses quantity: viel Arbeit. Compare plural „viele Aufgaben“."
   },
   {
     "before": "Wir haben noch ",
@@ -22,7 +22,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viele",
-    "explanation": "„Fragen“ is plural: viele Fragen."
+    "explanation": "„Fragen“ is the plural of „die Frage“ and refers to countable questions. Use „viele“ in the accusative plural: viele Fragen, not uninflected „viel“."
   },
   {
     "before": "Sie trinkt morgens ",
@@ -34,7 +34,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "viel",
-    "explanation": "„Kaffee“ is an uncountable quantity here: viel Kaffee."
+    "explanation": "„Kaffee“ refers to an amount of coffee here, so use uninflected „viel“. „Viele Kaffees“ would mean several individual coffees or servings."
   },
   {
     "before": "In München gibt es ",
@@ -130,7 +130,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Mit“ takes the dative; plural is „mit vielen guten Freunden“."
+    "explanation": "„Mit“ requires the dative. „Freunden“ is plural; the quantifier „viel“ takes -en (vielen), the adjective takes -en (guten), and „Freunde“ adds -n in dative plural: mit vielen guten Freunden."
   },
   {
     "before": "Sie spricht mit ",
@@ -142,7 +142,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Mit“ takes the dative plural: mit vielen verschiedenen Kunden."
+    "explanation": "„Mit“ requires dative. „Kunden“ is plural, so „viel“ becomes „vielen“ and the following adjective takes -en: mit vielen verschiedenen Kunden."
   },
   {
     "before": "Nach ",
@@ -166,7 +166,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Helfen“ takes the dative plural: vielen neuen Kollegen."
+    "explanation": "„Helfen“ takes a dative person. „Kollegen“ is plural, so „viel“ becomes „vielen“ and the adjective takes -en: vielen neuen Kollegen."
   },
   {
     "before": "Wir haben ",
@@ -190,7 +190,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Von“ takes the dative plural: von vielen interessanten Projekten."
+    "explanation": "„Von“ requires dative. „Projekten“ is plural: „viel“ becomes „vielen“, the adjective takes -en, and „Projekte“ adds -n in the dative plural."
   },
   {
     "before": "Sie hat ",
@@ -250,7 +250,7 @@ export const vielSentences = [
       "vielem"
     ],
     "answer": "vielen",
-    "explanation": "„Mit“ takes dative plural: mit vielen unterschiedlichen Teams."
+    "explanation": "„Mit“ requires dative. „Teams“ is plural; „viel“ becomes „vielen“ and the adjective takes -en. Plurals ending in -s do not add another -n: mit vielen unterschiedlichen Teams."
   },
   {
     "before": "Ich habe schon ",
