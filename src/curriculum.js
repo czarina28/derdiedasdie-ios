@@ -2,6 +2,7 @@ export const TOPIC_LABELS = ['Cases & articles','Adjective endings','Preposition
 export function classifyQuestion(q){
  const [source,suffix]=q.id.split('-');
  const n=Number(suffix);
+ if(source==='pron')return ['Pronouns & determiners',n<=3||n===25?'Beide and beides':n<=10?'Relative pronouns':n<=16?'Personal and demonstrative pronouns':'Indefinite pronouns'];
  if(source==='adj')return ['Adjective endings','Strong, weak and mixed endings'];
  if(source==='genitive')return ['Cases & articles','Genitive'];
  if(source==='dativeplural')return ['Cases & articles','Dative plural'];
