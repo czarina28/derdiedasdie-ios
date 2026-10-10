@@ -1,6 +1,6 @@
 // Additional quantifier and determiner practice. Independent language review pending.
 export const quantifierSentences = [
- {"id":"quant-001","before":"Ich habe nur ","after":" Fragen zum Vertrag.","options":["wenige","wenig","wenigen","weniger"],"answer":"wenige","explanation":"„Fragen“ is accusative plural; use „wenige Fragen“ rather than uninflected „wenig“."},
+ {"id":"quant-001","before":"Ich habe nur ","after":" Fragen zum Vertrag.","options":["wenige","wenig","wenigen","weniges"],"answer":"wenige","explanation":"„Fragen“ is countable accusative plural; „wenige Fragen“ means a small number of questions. The other forms do not agree with this plural noun."},
  {"id":"quant-002","before":"Nach ","after":" Tagen kam eine Antwort.","options":["einigen","einige","einiges","einigem"],"answer":"einigen","explanation":"„Nach“ governs dative plural, so „einige“ becomes „einigen“."},
  {"id":"quant-003","before":"Wir haben ","after":" Vorschläge erhalten.","options":["mehrere","mehreren","mehrerer","mehreres"],"answer":"mehrere","explanation":"„Vorschläge“ is accusative plural, so use „mehrere Vorschläge“."},
  {"id":"quant-004","before":"Sie arbeitet mit ","after":" Abteilungen zusammen.","options":["mehreren","mehrere","mehrerer","mehreres"],"answer":"mehreren","explanation":"„Mit“ governs dative plural, so use „mehreren Abteilungen“."},
@@ -15,9 +15,9 @@ export const quantifierSentences = [
  {"id":"quant-013","before":"Auf dem Schild steht: ","after":" Mitarbeiter müssen ihre Ausweise zeigen.","options":["Sämtliche","Sämtlichen","Sämtlicher","Sämtliches"],"answer":"Sämtliche","explanation":"Plural „Mitarbeiter“ is the subject, so nominative plural „sämtliche“ is needed."},
  {"id":"quant-014","before":"Die Einladung ging an ","after":" Teilnehmer.","options":["sämtliche","sämtlichen","sämtlicher","sämtliches"],"answer":"sämtliche","explanation":"„An“ indicates the recipients and takes accusative plural: „an sämtliche Teilnehmer“."},
  {"id":"quant-015","before":"Wir haben ","after":" Zeit als erwartet.","options":["weniger","wenige","wenigen","wenigem"],"answer":"weniger","explanation":"„Weniger ... als“ compares quantities; „Zeit“ is uncountable."},
- {"id":"quant-016","before":"Es kamen ","after":" Gäste als gestern.","options":["mehr","mehrere","mehreren","mehreres"],"answer":"mehr","explanation":"„Mehr ... als“ is the comparative of quantity, even with plural nouns."},
+ {"id":"quant-016","before":"Es kamen ","after":" Gäste als gestern.","options":["mehr","mehreren","mehreres","mehrerer"],"answer":"mehr","explanation":"„Mehr ... als“ is the comparative of quantity. „Mehr Gäste als gestern“ compares the number of guests on two days."},
  {"id":"quant-017","before":"Er hat ","after":" Erfahrung als seine Kollegin.","options":["mehr","mehrere","mehreren","mehreres"],"answer":"mehr","explanation":"„Erfahrung“ is uncountable; „mehr“ compares amounts."},
  {"id":"quant-018","before":"Im Bericht steht: ","after":" der Bewerber hat unterschrieben.","options":["Jeder","Jeden","Jedem","Jedes"],"answer":"Jeder","explanation":"„Jeder“ is masculine nominative singular and the subject of „hat“."},
- {"id":"quant-019","before":"Das Ergebnis hat ","after":" überrascht.","options":["alle","allen","aller","alles"],"answer":"alle","explanation":"„Überraschen“ takes accusative; „alle“ means everyone here."},
+ {"id":"quant-019","before":"Das Ergebnis hat die Teilnehmer ","after":".","options":["alle überrascht","allen überrascht","aller überrascht","alles überrascht"],"answer":"alle überrascht","explanation":"„Alle“ refers back to the plural „Teilnehmer“ as an apposition: „die Teilnehmer alle überrascht“. The other forms do not fit this construction."},
  {"id":"quant-020","before":"Nach ","after":" Versuchen hat es geklappt.","options":["mehreren","mehrere","mehrerer","mehreres"],"answer":"mehreren","explanation":"„Nach“ governs dative plural; „Versuche“ also adds -n: „Versuchen“."}
 ];
