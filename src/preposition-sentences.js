@@ -11,7 +11,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "auf",
-    "explanation": "„Warten auf“ takes the accusative: auf den Bus. The preposition is part of the verb expression."
+    "explanation": "Think of „warten auf + accusative“ as one expression: waiting for someone or something. English 'for' does not translate to „für“ here. Say it as a unit: „Ich warte auf den Bus.“"
   },
   {
     "id": "prep-002",
@@ -24,7 +24,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "für",
-    "explanation": "„Sich interessieren für“ takes the accusative: für moderne Architektur."
+    "explanation": "„Sich interessieren für + accusative“ is the fixed expression for being interested in something. English 'interested in' may suggest „an“, but German uses „für“. Remember: „Ich interessiere mich für Kunst.“"
   },
   {
     "id": "prep-003",
@@ -37,7 +37,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "an",
-    "explanation": "„Teilnehmen an“ takes the dative: an der Besprechung."
+    "explanation": "„An etwas teilnehmen“ means to take part in an event and uses „an + dative“. „Auf“ might sound spatially plausible, but it is not the preposition governed by „teilnehmen“. Remember: „Ich nehme an der Besprechung teil.“"
   },
   {
     "id": "prep-004",
@@ -50,7 +50,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "bei",
-    "explanation": "Use „sich bei jemandem entschuldigen“ for the person you apologize to. „Bei“ takes the dative: bei seinen Kollegen."
+    "explanation": "Who receives the apology? „Sich bei jemandem entschuldigen“ uses „bei + dative“ for the person. „Für“ introduces the reason, not the person: „Ich entschuldige mich bei meinem Kollegen für den Fehler.“"
   },
   {
     "id": "prep-005",
@@ -63,7 +63,7 @@ export const prepositionSentences = [
       "von"
     ],
     "answer": "für",
-    "explanation": "Use „sich für etwas entschuldigen“ for what you are apologizing for. „Für“ takes the accusative: für den Fehler."
+    "explanation": "What are you apologizing for? „Sich für etwas entschuldigen“ uses „für + accusative“ for the reason. „Bei“ instead introduces the person: „Ich entschuldige mich bei ihr für den Fehler.“"
   },
   {
     "id": "prep-006",
@@ -76,7 +76,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "an",
-    "explanation": "„Sich erinnern an“ takes the accusative: an unseren ersten Urlaub."
+    "explanation": "„Sich an etwas erinnern“ means to remember something; „an + accusative“ belongs to the verb. „Über“ is tempting if you translate 'about', but not used in this construction. Remember: „Ich erinnere mich an unseren Urlaub.“"
   },
   {
     "id": "prep-007",
@@ -89,7 +89,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "auf",
-    "explanation": "„Sich freuen auf“ refers to something anticipated in the future: auf die Ferien."
+    "explanation": "„Sich freuen auf + accusative“ points forward to something anticipated. The holiday is next week, so „auf“ fits. Compare „Ich freue mich über die Nachricht“ when reacting to news."
   },
   {
     "id": "prep-008",
@@ -102,7 +102,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "über",
-    "explanation": "„Sich freuen über“ expresses happiness about something already received or experienced, such as this gift."
+    "explanation": "„Sich freuen über + accusative“ expresses happiness about something received or experienced. She has already received the gift, so „über“ is natural. „Auf“ would suggest anticipation of something still to come."
   },
   {
     "id": "prep-009",
@@ -115,7 +115,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "um",
-    "explanation": "„Sich bewerben um“ identifies the position being sought. Use „bei“ instead to name the employer."
+    "explanation": "„Sich bewerben um + accusative“ names the position being sought: „um diese Stelle“. „Bei“ instead names the employer: „Ich bewerbe mich bei dieser Firma um eine Stelle.“"
   },
   {
     "id": "prep-010",
@@ -128,7 +128,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "von",
-    "explanation": "„Abhängen von“ takes the dative: von mehreren Faktoren."
+    "explanation": "„Abhängen von + dative“ means to depend on something. English 'depend on' may tempt you to choose „auf“, but German uses „von“. Remember: „Das hängt vom Wetter ab.“"
   },
   {
     "id": "prep-011",
@@ -141,7 +141,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "mit",
-    "explanation": "Use „sich mit jemandem streiten“ to name the person you argue with. „Mit“ takes the dative: mit meiner Schwester."
+    "explanation": "„Sich mit jemandem streiten“ identifies the person you argue with: „mit meiner Schwester“ (dative). „Über“ introduces the subject of the dispute: „Wir streiten über Geld.“"
   },
   {
     "id": "prep-012",
@@ -154,7 +154,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "über",
-    "explanation": "Use „sich über etwas streiten“ to name the subject of an argument. „Über“ takes the accusative: über die Kosten."
+    "explanation": "„Sich über etwas streiten“ identifies what the argument is about: „über die Kosten“ (accusative). „Mit“ instead identifies the person: „Ich streite mit meinem Bruder über die Kosten.“"
   },
   {
     "id": "prep-013",
@@ -167,7 +167,7 @@ export const prepositionSentences = [
       "von"
     ],
     "answer": "auf",
-    "explanation": "„Bestehen auf“ means to insist on something and takes the dative: auf einer schriftlichen Bestätigung."
+    "explanation": "„Auf etwas bestehen“ means to insist on something and takes „auf + dative“: „auf einer Bestätigung“. Here „bestehen“ does not mean 'to consist of' („aus etwas bestehen“), which is a different construction."
   },
   {
     "id": "prep-014",
@@ -180,7 +180,7 @@ export const prepositionSentences = [
       "gegen"
     ],
     "answer": "unter",
-    "explanation": "„Leiden unter“ + dative emphasizes the burden of a condition: unter starkem Heuschnupfen. „Leiden an“ is ALSO possible here, so it is deliberately not a wrong-answer option."
+    "explanation": "„Unter etwas leiden“ emphasizes the burden or suffering caused by something. „An etwas leiden“ can ALSO be correct for an illness, including hay fever. Both take dative; this question tests „unter“ against unrelated prepositions, not against „an“."
   },
   {
     "id": "prep-015",
@@ -193,7 +193,7 @@ export const prepositionSentences = [
       "gegen"
     ],
     "answer": "an",
-    "explanation": "„Leiden an“ + dative commonly identifies an illness: an einer seltenen Krankheit. „Leiden unter“ can ALSO be correct here, so it is deliberately not offered as an incorrect choice."
+    "explanation": "„An einer Krankheit leiden“ is a common way to identify a medical condition. „Unter einer Krankheit leiden“ can ALSO be correct, with more emphasis on the suffering. Both take dative; „unter“ is not an incorrect alternative."
   },
   {
     "id": "prep-016",
@@ -206,7 +206,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "auf",
-    "explanation": "„Sich vorbereiten auf“ takes the accusative: auf die Prüfung."
+    "explanation": "„Sich auf etwas vorbereiten“ means to prepare for something: „auf die Prüfung“ (accusative). English 'for' may suggest „für“, but the reflexive verb normally uses „auf“. Remember: „Ich bereite mich auf die Prüfung vor.“"
   },
   {
     "id": "prep-017",
@@ -219,7 +219,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "mit",
-    "explanation": "„Telefonieren mit“ names the person you speak to and takes the dative: mit meinem alten Lehrer."
+    "explanation": "„Mit jemandem telefonieren“ identifies the person on the call and uses dative: „mit meinem Lehrer“. „Über“ can introduce a topic in other contexts, but not the conversation partner."
   },
   {
     "id": "prep-018",
@@ -232,7 +232,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "an",
-    "explanation": "„Zweifeln an“ takes the dative: an seiner Erklärung."
+    "explanation": "„An etwas zweifeln“ means to doubt something and takes „an + dative“. English 'doubt about' may suggest „über“, but the established construction is „an seiner Erklärung zweifeln“."
   },
   {
     "id": "prep-019",
@@ -245,7 +245,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "auf",
-    "explanation": "„Sich einigen auf“ takes the accusative and identifies the agreed outcome: auf einen Termin."
+    "explanation": "„Sich auf etwas einigen“ identifies the outcome agreed upon: „auf einen Termin“ (accusative). „Über“ can describe what people discuss, but here the sentence gives the agreed result."
   },
   {
     "id": "prep-020",
@@ -258,7 +258,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "um",
-    "explanation": "„Sich kümmern um“ takes the accusative: um die Kinder."
+    "explanation": "„Sich um jemanden kümmern“ means to look after someone and takes „um + accusative“. English 'care for' may suggest „für“, but the fixed German construction is „sich um die Kinder kümmern“."
   },
   {
     "id": "prep-021",
@@ -271,7 +271,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "an",
-    "explanation": "„Sich erinnern an“ + accusative means to remember something: an unser erstes Gespräch. Learn the verb and preposition together."
+    "explanation": "„Sich erinnern an + accusative“ is one unit. „Über“ may feel like English 'think about', but remembering uses „an“. Practice the whole phrase: „Ich erinnere mich an unser Gespräch.“"
   },
   {
     "id": "prep-022",
@@ -284,7 +284,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "an",
-    "explanation": "„Sich erinnern an“ takes the accusative: an den Namen. In a question about a thing, you can also ask „Woran erinnerst du dich?“"
+    "explanation": "„Sich an etwas erinnern“ takes accusative: „an den Namen“. With things, German also uses „woran“/„daran“: „Woran erinnerst du dich? Daran erinnere ich mich.“"
   },
   {
     "id": "prep-023",
@@ -297,7 +297,7 @@ export const prepositionSentences = [
       "an"
     ],
     "answer": "auf",
-    "explanation": "„Sich freuen auf“ + accusative expresses anticipation of something still to come: auf das Konzert nächste Woche."
+    "explanation": "The concert is next week: „sich freuen auf“ expresses looking forward to it. Contrast „sich freuen über“ for happiness about news or something experienced. Both take accusative."
   },
   {
     "id": "prep-024",
@@ -310,7 +310,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "über",
-    "explanation": "„Sich freuen über“ + accusative expresses happiness about news or something experienced: über die gute Nachricht."
+    "explanation": "She has received the good news, so „sich freuen über“ expresses her reaction. „Sich freuen auf“ would instead express anticipation. Both constructions are valid, but they express different perspectives."
   },
   {
     "id": "prep-025",
@@ -323,7 +323,7 @@ export const prepositionSentences = [
       "an"
     ],
     "answer": "bei",
-    "explanation": "„Sich bei jemandem entschuldigen“ identifies the person receiving the apology: bei dem Kunden (beim Kunden). „Für den Fehler“ names the reason."
+    "explanation": "The customer is the person receiving the apology, so use „bei + dative“: „bei dem Kunden“. The sentence already says „für den Fehler“ for the reason. Ask: apologize to WHOM? „bei“; for WHAT? „für“."
   },
   {
     "id": "prep-026",
@@ -336,7 +336,7 @@ export const prepositionSentences = [
       "an"
     ],
     "answer": "für",
-    "explanation": "„Sich für etwas entschuldigen“ + accusative identifies the reason for the apology: für die Verspätung. „Bei seiner Kollegin“ identifies the person."
+    "explanation": "The colleague is already named after „bei“: she receives the apology. The delay is the reason, so use „für + accusative“: „für die Verspätung“. Ask: apologize to WHOM? „bei“; for WHAT? „für“."
   },
   {
     "id": "prep-027",
@@ -349,7 +349,7 @@ export const prepositionSentences = [
       "an"
     ],
     "answer": "um",
-    "explanation": "„Sich bewerben um“ + accusative identifies the position sought: um eine Stelle. „Bei“ identifies the employer instead."
+    "explanation": "„Sich um eine Stelle bewerben“ identifies the position sought: „um eine Stelle“. „Bei“ would introduce the employer instead. Remember both together: „Ich bewerbe mich bei der Firma um die Stelle.“"
   },
   {
     "id": "prep-028",
@@ -362,6 +362,6 @@ export const prepositionSentences = [
       "auf"
     ],
     "answer": "bei",
-    "explanation": "„Sich bewerben bei“ + dative identifies the employer: bei einem Unternehmen. „Um“ would identify the position."
+    "explanation": "„Sich bei einem Unternehmen bewerben“ identifies the employer: „bei + dative“. „Um“ introduces the position, not the company. Remember: „Ich bewerbe mich bei der Firma um eine Stelle.“"
   }
 ];
