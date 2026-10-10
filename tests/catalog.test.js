@@ -80,7 +80,7 @@ test('reviewed ambiguity regressions are excluded',()=>{
 test('all active questions have recognized curriculum topics and subtopics',async()=>{
  const {TOPIC_LABELS}=await import('../src/curriculum.js');
  const bank=buildCatalog();
- assert.equal(bank.length,363);
+ assert.equal(bank.length,388);
  for(const q of bank){
   assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
   assert.ok(q.subtopic,q.id+' subtopic');
@@ -95,4 +95,13 @@ test('adjective ending drills are genuine suffix questions',()=>{
  assert.ok(questions.every(q=>q.topic==='Adjective endings'));
  assert.ok(questions.every(q=>q.options.every(option=>/^(e|en|em|er|es)$/.test(option))));
  assert.ok(questions.every(q=>q.answer.length>=1&&q.explanation.length>=40));
+});
+
+test('pronoun exercises cover distinct subtopics',()=>{
+ const items=buildCatalog().filter(q=>q.id.startsWith('pron-'));
+ assert.equal(items.length,25);
+ assert.ok(items.every(q=>q.topic==='Pronouns & determiners'));
+ assert.ok(new Set(items.map(q=>q.subtopic)).size>=4);
+ assert.equal(items.find(q=>q.id==='pron-002').answer,'beides');
+ assert.equal(items.find(q=>q.id==='pron-006').answer,'denen');
 });
