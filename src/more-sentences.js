@@ -359,7 +359,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "dem",
-    "explanation": "„Mit“ takes the dative: mit dem netten Chef."
+    "explanation": "„Mit“ always governs dative. „Chef“ is masculine (der Chef), so „der“ becomes „dem“; the adjective takes -en: mit dem netten Chef."
   },
   {
     "before": "Ich habe ",
@@ -371,7 +371,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "eine",
-    "explanation": "„Chefin“ is feminine: eine nette Chefin."
+    "explanation": "„Kennenlernen“ takes an accusative object. „Chefin“ is feminine, so indefinite accusative remains „eine“: eine nette Chefin."
   },
   {
     "before": "Er braucht ",
@@ -383,7 +383,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "ein",
-    "explanation": "„Passwort“ is neuter: ein neues Passwort."
+    "explanation": "„Brauchen“ takes an accusative object. „Passwort“ is neuter, so „ein“ stays „ein“; the adjective takes -es: ein neues Passwort."
   },
   {
     "before": "Wir arbeiten an ",
@@ -407,7 +407,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Von“ takes the dative: von der neuen Kollegin."
+    "explanation": "„Von“ always governs dative. „Kollegin“ is feminine, so „die“ becomes „der“ and the adjective takes -en: von der neuen Kollegin."
   },
   {
     "before": "Sie bewirbt sich um ",
@@ -419,7 +419,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "eine",
-    "explanation": "„Sich bewerben um“ takes the accusative: um eine neue Stelle."
+    "explanation": "The fixed expression „sich bewerben um“ requires accusative. „Stelle“ is feminine, so „eine“ stays „eine“ in accusative: um eine neue Stelle."
   },
   {
     "before": "Ich habe mich über ",
@@ -431,7 +431,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "„Sich freuen über“ takes the accusative: über die gute Nachricht."
+    "explanation": "„Sich freuen über“ takes accusative for something that has happened. „Nachricht“ is feminine, so „die“ stays „die“: über die gute Nachricht. Compare „sich auf etwas freuen“ for anticipation."
   },
   {
     "before": "Wir reden über ",
@@ -443,7 +443,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Reden über“ takes the accusative: über den wichtigen Termin."
+    "explanation": "„Reden über“ requires accusative when naming the topic. „Termin“ is masculine, so „der“ becomes „den“: über den wichtigen Termin."
   },
   {
     "before": "Er interessiert sich für ",
@@ -455,7 +455,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "„Sich interessieren für“ takes the accusative: für die neue Software."
+    "explanation": "„Sich interessieren für“ requires accusative. „Software“ is feminine, so „die“ remains „die“ in accusative: für die neue Software."
   },
   {
     "before": "Ich bin mit ",
@@ -467,7 +467,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Zufrieden mit“ takes the dative: mit der neuen Lösung."
+    "explanation": "„Zufrieden mit“ requires dative. „Lösung“ is feminine, so „die“ becomes „der“ and the adjective takes -en: mit der neuen Lösung."
   },
   {
     "before": "Wir warten auf ",
@@ -479,7 +479,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "„Warten auf“ takes the accusative: auf die nächste Besprechung."
+    "explanation": "„Warten auf“ requires accusative. „Besprechung“ is feminine, so „die“ remains „die“: auf die nächste Besprechung."
   },
   {
     "before": "Sie fährt ohne ",
@@ -491,7 +491,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Ohne“ takes the accusative: ohne den schweren Koffer."
+    "explanation": "„Ohne“ always governs accusative. „Koffer“ is masculine, so „der“ becomes „den“ and the adjective takes -en: ohne den schweren Koffer."
   },
   {
     "before": "Wir gehen nach ",
@@ -503,7 +503,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Nach“ takes the dative: nach der langen Sitzung."
+    "explanation": "„Nach“ always governs dative. „Sitzung“ is feminine, so „die“ becomes „der“ and the adjective takes -en: nach der langen Sitzung."
   },
   {
     "before": "Er kommt mit ",
@@ -515,7 +515,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "einer",
-    "explanation": "„Idee“ is feminine; after „mit“, use dative: einer guten Idee."
+    "explanation": "„Mit“ always governs dative. „Idee“ is feminine, so „eine“ becomes „einer“ and the adjective takes -en: mit einer guten Idee."
   },
   {
     "before": "Ich freue mich auf ",
@@ -527,7 +527,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Sich freuen auf“ takes the accusative: auf den freien Tag."
+    "explanation": "„Sich freuen auf“ requires accusative for something anticipated. „Tag“ is masculine, so „der“ becomes „den“: auf den freien Tag. Compare „sich über etwas freuen“."
   },
   {
     "before": "Sie sitzt zwischen ",
@@ -551,7 +551,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Zu“ takes the dative: zu der neuen Ärztin."
+    "explanation": "„Zu“ always governs dative. „Ärztin“ is feminine, so „die“ becomes „der“ and the adjective takes -en: zu der neuen Ärztin (often „zur Ärztin“)."
   },
   {
     "before": "Ich habe ",
@@ -563,7 +563,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "ein",
-    "explanation": "„Brot“ is neuter: ein frisches Brot."
+    "explanation": "„Kaufen“ takes an accusative object. „Brot“ is neuter, so „ein“ stays „ein“ and the adjective takes -es: ein frisches Brot."
   },
   {
     "before": "Er hat ",
@@ -575,7 +575,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "eine",
-    "explanation": "„Uhr“ is feminine: eine teure Uhr."
+    "explanation": "„Verlieren“ takes an accusative object. „Uhr“ is feminine, so indefinite accusative remains „eine“: eine teure Uhr."
   },
   {
     "before": "Wir treffen uns bei ",
@@ -587,7 +587,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Bei“ takes the dative: bei der alten Brücke."
+    "explanation": "„Bei“ always governs dative. „Brücke“ is feminine, so „die“ becomes „der“ and the adjective takes -en: bei der alten Brücke."
   },
   {
     "before": "Ich schreibe ",
@@ -599,7 +599,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Brief“ is masculine and the direct object: einen langen Brief."
+    "explanation": "„Schreiben“ takes an accusative object for what is written. „Brief“ is masculine, so „ein“ becomes „einen“: einen langen Brief."
   },
   {
     "before": "Sie öffnet ",
@@ -611,7 +611,7 @@ export const moreSentences = [
       "der"
     ],
     "answer": "das",
-    "explanation": "„Fenster“ is neuter: das große Fenster."
+    "explanation": "„Öffnen“ takes an accusative object. „Fenster“ is neuter, so „das“ stays „das“ in accusative; the adjective takes -e: das große Fenster."
   },
   {
     "before": "Wir kaufen ",
@@ -659,7 +659,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einen",
-    "explanation": "„Fehler“ is masculine: einen kleinen Fehler."
+    "explanation": "„Bemerken“ takes an accusative object. „Fehler“ is masculine, so „ein“ becomes „einen“ and the adjective takes -en: einen kleinen Fehler."
   },
   {
     "before": "Wir stehen vor ",
@@ -671,7 +671,7 @@ export const moreSentences = [
       "einem"
     ],
     "answer": "einer",
-    "explanation": "„Vor“ for a figurative situation takes dative here: vor einer wichtigen Entscheidung."
+    "explanation": "„Vor einer Entscheidung stehen“ is a fixed figurative expression with dative. „Entscheidung“ is feminine, so „eine“ becomes „einer“: vor einer wichtigen Entscheidung."
   },
   {
     "before": "Er fährt mit ",
@@ -683,7 +683,7 @@ export const moreSentences = [
       "einer"
     ],
     "answer": "einem",
-    "explanation": "„Mit“ takes the dative: mit einem schnellen Fahrrad."
+    "explanation": "„Mit“ always governs dative. „Fahrrad“ is neuter, so „ein“ becomes „einem“ and the adjective takes -en: mit einem schnellen Fahrrad."
   },
   {
     "before": "Ich habe ",
@@ -695,7 +695,7 @@ export const moreSentences = [
       "das"
     ],
     "answer": "die",
-    "explanation": "„Adresse“ is feminine and the direct object: die neue Adresse."
+    "explanation": "„Speichern“ takes an accusative object. „Adresse“ is feminine, so „die“ stays „die“ in accusative: die neue Adresse."
   },
   {
     "before": "Sie spricht über ",
@@ -707,7 +707,7 @@ export const moreSentences = [
       "des"
     ],
     "answer": "den",
-    "explanation": "„Über“ takes the accusative here: über den letzten Urlaub."
+    "explanation": "„Sprechen über“ requires accusative when naming a topic. „Urlaub“ is masculine, so „der“ becomes „den“: über den letzten Urlaub."
   },
   {
     "before": "Wir arbeiten seit ",
@@ -719,6 +719,6 @@ export const moreSentences = [
       "das"
     ],
     "answer": "der",
-    "explanation": "„Seit“ takes the dative: seit der letzten Woche."
+    "explanation": "„Seit“ requires dative for a time period continuing to the present. „Woche“ is feminine, so „die“ becomes „der“: seit der letzten Woche."
   }
 ];
