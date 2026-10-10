@@ -6,8 +6,8 @@ import {buildCatalog} from '../src/catalog.js';
 import {pickProgressiveQuestions} from '../src/session.js';
 
 test('all verb-preposition questions have unique IDs and valid choices',()=>{
- assert.equal(prepositionSentences.length,28);
- assert.equal(new Set(prepositionSentences.map(q=>q.id)).size,28);
+ assert.equal(prepositionSentences.length,57);
+ assert.equal(new Set(prepositionSentences.map(q=>q.id)).size,57);
  for(const q of prepositionSentences){
   assert.ok(validateSentence(q),q.id);
   assert.ok(q.explanation.length>35,q.id);
