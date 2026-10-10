@@ -1,12 +1,13 @@
 import {sentences,validateSentence,checkAnswer} from './sentences.js';
 import {moreSentences} from './more-sentences.js';
 import {vielSentences} from './viel-sentences.js';
+import {genitiveSentences} from './genitive-sentences.js';
 import './style.css';
-const bank=[...sentences,...moreSentences,...vielSentences].filter(validateSentence);
+const bank=[...sentences,...moreSentences,...vielSentences,...genitiveSentences].filter(validateSentence);
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0;
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function next(){if(!deck.length)deck=shuffle(bank);question=deck.pop();answered=false;render();}
+function next(){if(!deck.length)deck=shuffle(bank);question={...deck.pop()};question.options=shuffle(question.options);answered=false;render();}
 function render(){
  root.innerHTML=`<main><header><span class="brand">der<span>die</span>das<span>die</span></span><small>GERMAN PRACTICE · PROTOTYPE</small></header>
  <section class="intro"><div class="eyebrow">DAILY PRACTICE</div><h1>Complete the sentence.</h1><p>Everyday German. Choose what sounds right, then see why.</p></section>
