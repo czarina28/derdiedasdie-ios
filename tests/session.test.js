@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {pickQuestions,pickFreshQuestions,pickProgressiveQuestions,practiceStage,questionDifficulty,SESSION_LENGTH} from '../src/session.js';
+import {pickQuestions,pickFreshQuestions,pickProgressiveQuestions,practiceStage,questionDifficulty,diversifyAnswers,SESSION_LENGTH} from '../src/session.js';
 const sample=Array.from({length:30},(_,i)=>({id:i,topic:i%2?'Genitive':'Articles & endings'}));
 test('sessions contain at most ten distinct questions',()=>{
  for(let i=0;i<100;i++){const q=pickQuestions(sample);assert.equal(q.length,SESSION_LENGTH);assert.equal(new Set(q.map(x=>x.id)).size,q.length);}
@@ -48,4 +48,18 @@ test('difficulty preference changes within a topic without increasing its share'
  const difficult=stage=>pickProgressiveQuestions(bank,'Mixed practice',[],stage).filter(q=>questionDifficulty(q)===3).length;
  assert.equal(difficult(1),0);
  assert.ok(difficult(3)>=3);
+});
+
+test('answer diversification avoids immediate repeated forms when alternatives exist',()=>{
+ const items=[...Array.from({length:6},(_,id)=>({id,answer:'der'})),...Array.from({length:4},(_,i)=>({id:i+6,answer:'die'}))];
+ const ordered=diversifyAnswers(items);
+ assert.equal(ordered.length,10);
+ assert.equal(new Set(ordered.map(q=>q.id)).size,10);
+ for(let i=1;i<8;i++)assert.notEqual(ordered[i].answer,ordered[i-1].answer);
+});
+test('topic practice prefers fresh questions even when their answers repeat',()=>{
+ const items=Array.from({length:20},(_,id)=>({id,topic:'Articles & endings',answer:id<15?'der':'die'}));
+ const deck=pickFreshQuestions(items,'Articles & endings',[...Array(10).keys()]);
+ assert.equal(deck.length,10);
+ assert.ok(deck.every(q=>q.id>=10));
 });
