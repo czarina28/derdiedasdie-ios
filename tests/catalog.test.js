@@ -43,7 +43,7 @@ test('known overlapping constructions are not used as false distractors',()=>{
 
 test('quantifiers topic includes the original and expanded exercises',()=>{
  const bank=buildCatalog();
- const topic=bank.filter(q=>q.topic==='Quantifiers & determiners');
+ const topic=bank.filter(q=>q.id.startsWith('viel-')||q.id.startsWith('quant-'));
  assert.equal(topic.length,44);
  assert.equal(topic.filter(q=>q.id.startsWith('viel-')).length,24);
  assert.equal(topic.filter(q=>q.id.startsWith('quant-')).length,20);
@@ -74,4 +74,17 @@ test('reviewed ambiguity regressions are excluded',()=>{
  assert.ok(!bank.get('quant-001').options.includes('weniger'));
  assert.ok(!bank.get('quant-016').options.includes('mehrere'));
  assert.ok(!bank.get('quant-019').options.includes('alles'));
+});
+
+
+test('all active questions have recognized curriculum topics and subtopics',async()=>{
+ const {TOPIC_LABELS}=await import('../src/curriculum.js');
+ const bank=buildCatalog();
+ assert.equal(bank.length,278);
+ for(const q of bank){
+  assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
+  assert.ok(q.subtopic,q.id+' subtopic');
+ }
+ assert.ok(!bank.some(q=>q.id==='core-019'));
+ assert.equal(bank.find(q=>q.id==='orderextra-020').subtopic,'Relative pronouns');
 });
