@@ -4,7 +4,7 @@ import {buildCatalog} from '../src/catalog.js';
 test('word-order topic has 20 questions',()=>{
  const bank=buildCatalog();
  assert.equal(bank.filter(q=>q.topic==='Word order & clauses').length,20);
- assert.equal(bank.length,220);
+ assert.equal(bank.length,228);
 });
 
 test('reviewed distractors do not penalize valid alternatives',()=>{
