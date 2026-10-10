@@ -11,7 +11,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "auf",
-    "explanation": "„Warten auf“ verlangt den Akkusativ: auf den Bus. Die Präposition gehört zum Verb."
+    "explanation": "„Warten auf“ takes the accusative: auf den Bus. The preposition is part of the verb expression."
   },
   {
     "id": "prep-002",
@@ -24,7 +24,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "für",
-    "explanation": "„Sich interessieren für“ steht mit Akkusativ: für moderne Architektur."
+    "explanation": "„Sich interessieren für“ takes the accusative: für moderne Architektur."
   },
   {
     "id": "prep-003",
@@ -37,7 +37,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "an",
-    "explanation": "„Teilnehmen an“ verlangt den Dativ: an der Besprechung."
+    "explanation": "„Teilnehmen an“ takes the dative: an der Besprechung."
   },
   {
     "id": "prep-004",
@@ -50,7 +50,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "bei",
-    "explanation": "Bei der Person, der man sich entschuldigt, verwendet man „bei“ mit Dativ: bei seinen Kollegen."
+    "explanation": "Use „sich bei jemandem entschuldigen“ for the person you apologize to. „Bei“ takes the dative: bei seinen Kollegen."
   },
   {
     "id": "prep-005",
@@ -63,7 +63,7 @@ export const prepositionSentences = [
       "von"
     ],
     "answer": "für",
-    "explanation": "Den Grund einer Entschuldigung nennt man mit „für“ und Akkusativ: für den Fehler."
+    "explanation": "Use „sich für etwas entschuldigen“ for what you are apologizing for. „Für“ takes the accusative: für den Fehler."
   },
   {
     "id": "prep-006",
@@ -76,7 +76,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "an",
-    "explanation": "„Sich erinnern an“ verlangt Akkusativ: an unseren ersten Urlaub."
+    "explanation": "„Sich erinnern an“ takes the accusative: an unseren ersten Urlaub."
   },
   {
     "id": "prep-007",
@@ -89,7 +89,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "auf",
-    "explanation": "„Sich freuen auf“ bezieht sich auf etwas Zukünftiges: auf die Ferien."
+    "explanation": "„Sich freuen auf“ refers to something anticipated in the future: auf die Ferien."
   },
   {
     "id": "prep-008",
@@ -102,7 +102,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "über",
-    "explanation": "„Sich freuen über“ bezeichnet hier die Freude über etwas bereits Erhaltenes."
+    "explanation": "„Sich freuen über“ expresses happiness about something already received or experienced, such as this gift."
   },
   {
     "id": "prep-009",
@@ -115,7 +115,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "um",
-    "explanation": "„Sich bewerben um“ bezeichnet die angestrebte Stelle; „bei“ würde den Arbeitgeber bezeichnen."
+    "explanation": "„Sich bewerben um“ identifies the position being sought. Use „bei“ instead to name the employer."
   },
   {
     "id": "prep-010",
@@ -128,7 +128,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "von",
-    "explanation": "„Abhängen von“ verlangt Dativ: von mehreren Faktoren."
+    "explanation": "„Abhängen von“ takes the dative: von mehreren Faktoren."
   },
   {
     "id": "prep-011",
@@ -141,7 +141,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "mit",
-    "explanation": "Die Person, mit der man streitet, steht nach „mit“ im Dativ: mit meiner Schwester."
+    "explanation": "Use „sich mit jemandem streiten“ to name the person you argue with. „Mit“ takes the dative: mit meiner Schwester."
   },
   {
     "id": "prep-012",
@@ -154,7 +154,7 @@ export const prepositionSentences = [
       "bei"
     ],
     "answer": "über",
-    "explanation": "Das Streitthema wird mit „über“ und Akkusativ ausgedrückt: über die Kosten."
+    "explanation": "Use „sich über etwas streiten“ to name the subject of an argument. „Über“ takes the accusative: über die Kosten."
   },
   {
     "id": "prep-013",
@@ -167,7 +167,7 @@ export const prepositionSentences = [
       "von"
     ],
     "answer": "auf",
-    "explanation": "„Bestehen auf“ im Sinn von „darauf beharren“ verlangt Dativ: auf einer schriftlichen Bestätigung."
+    "explanation": "„Bestehen auf“ means to insist on something and takes the dative: auf einer schriftlichen Bestätigung."
   },
   {
     "id": "prep-014",
@@ -180,7 +180,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "unter",
-    "explanation": "„Leiden unter“ mit Dativ betont die Belastung durch Beschwerden: unter starkem Heuschnupfen."
+    "explanation": "„Leiden unter“ takes the dative and emphasizes the burden caused by a condition: unter starkem Heuschnupfen."
   },
   {
     "id": "prep-015",
@@ -193,7 +193,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "an",
-    "explanation": "„Leiden an“ mit Dativ wird typischerweise für Krankheiten verwendet: an einer seltenen Krankheit."
+    "explanation": "„Leiden an“ takes the dative and is commonly used with illnesses: an einer seltenen Krankheit."
   },
   {
     "id": "prep-016",
@@ -206,7 +206,7 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "auf",
-    "explanation": "„Sich vorbereiten auf“ verlangt Akkusativ: auf die Prüfung."
+    "explanation": "„Sich vorbereiten auf“ takes the accusative: auf die Prüfung."
   },
   {
     "id": "prep-017",
@@ -219,7 +219,7 @@ export const prepositionSentences = [
       "über"
     ],
     "answer": "mit",
-    "explanation": "„Telefonieren mit“ bezeichnet den Gesprächspartner und verlangt Dativ: mit meinem alten Lehrer."
+    "explanation": "„Telefonieren mit“ names the person you speak to and takes the dative: mit meinem alten Lehrer."
   },
   {
     "id": "prep-018",
@@ -232,7 +232,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "an",
-    "explanation": "„Zweifeln an“ verlangt Dativ: an seiner Erklärung."
+    "explanation": "„Zweifeln an“ takes the dative: an seiner Erklärung."
   },
   {
     "id": "prep-019",
@@ -245,7 +245,7 @@ export const prepositionSentences = [
       "für"
     ],
     "answer": "auf",
-    "explanation": "„Sich einigen auf“ mit Akkusativ bezeichnet das vereinbarte Ergebnis: auf einen Termin."
+    "explanation": "„Sich einigen auf“ takes the accusative and identifies the agreed outcome: auf einen Termin."
   },
   {
     "id": "prep-020",
@@ -258,6 +258,6 @@ export const prepositionSentences = [
       "mit"
     ],
     "answer": "um",
-    "explanation": "„Sich kümmern um“ verlangt Akkusativ: um die Kinder."
+    "explanation": "„Sich kümmern um“ takes the accusative: um die Kinder."
   }
 ];
