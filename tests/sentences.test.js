@@ -2,9 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {sentences,validateSentence,checkAnswer} from '../src/sentences.js';
 import {moreSentences} from '../src/more-sentences.js';
-const allQuestions=[...sentences,...moreSentences];
+import {vielSentences} from '../src/viel-sentences.js';
+const allQuestions=[...sentences,...moreSentences,...vielSentences];
 test('all sentence questions have unique choices and one correct answer',()=>{
- assert.ok(allQuestions.length>=75);
+ assert.ok(allQuestions.length>=100);
  for(const q of allQuestions){assert.ok(validateSentence(q),q.before+q.after);assert.equal(q.options.filter(x=>checkAnswer(q,x)).length,1);}
 });
 test('grading uses answer text rather than position',()=>{
