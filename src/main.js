@@ -7,6 +7,7 @@ import './style.css';
 const bank=[...sentences,...moreSentences,...vielSentences,...genitiveSentences].filter(validateSentence).map((q,i)=>({...q,id:i,topic:i<sentences.length+moreSentences.length?'Articles & endings':i<sentences.length+moreSentences.length+vielSentences.length?'Viel & viele':'Genitive'}));
 const root=document.getElementById('app');
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set();
+try{mistakes=new Set(JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]'));}catch{mistakes=new Set();}
 
 function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;deck=pickQuestions(pool,topic==='Review mistakes'?'Mixed practice':topic);position=0;correct=0;total=0;if(deck.length)next();else home();}
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};question.options=shuffle(question.options);answered=false;render();}
@@ -15,6 +16,7 @@ function home(){
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
 }
 function summary(){
+ const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');history.push({date:new Date().toISOString(),mode,correct,total});localStorage.setItem('derdiedasdie-sessions',JSON.stringify(history.slice(-100)));
  root.innerHTML='<main><header><span class="brand">derdiedasdie</span></header><section class="intro"><div class="eyebrow">SESSION COMPLETE</div><h1>'+correct+' out of '+total+'</h1><p>Good practice. Ready for another round?</p><button id="again">Another session</button><button id="back">Choose a topic</button></section></main>';
  document.getElementById('again').addEventListener('click',()=>start(mode));
  document.getElementById('back').addEventListener('click',home);
@@ -28,9 +30,9 @@ function render(){
  <div id="feedback" aria-live="polite"></div><button id="next" hidden>Next sentence →</button></section>
  <footer>Early prototype: sentence content awaits independent language review. No purchases enabled.</footer></main>`;
  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{
- if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);
+ if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
  document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;const v=question.options[Number(b.dataset.i)];if(v===question.answer)b.classList.add('right');else if(b===btn)b.classList.add('wrong');});
- document.getElementById('feedback').textContent=(ok?'Correct. ':'Not quite. ')+question.explanation;
+ document.getElementById('feedback').textContent=(ok?'✓ Correct. Why? ':'Not quite. Correct answer: '+question.answer+'. Why? ')+question.explanation;
  document.getElementById('next').hidden=false;
  }));
  document.getElementById('next').addEventListener('click',next);
