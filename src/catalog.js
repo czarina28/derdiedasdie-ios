@@ -1,3 +1,4 @@
+import {adjectiveEndingSentences} from './adjective-ending-sentences.js';
 import {classifyQuestion} from './curriculum.js';
 // Central catalog: keep topic metadata and question validation in one place.
 import {sentences,validateSentence} from './sentences.js';
@@ -26,7 +27,8 @@ export const QUESTION_SOURCES=[
  {key:'order',topic:TOPICS.wordOrder,questions:wordOrderSentences},
  {key:'dativeplural',topic:TOPICS.articles,questions:dativePluralSentences},
  {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences},
- {key:'quant',topic:TOPICS.viel,questions:quantifierSentences}
+ {key:'quant',topic:TOPICS.viel,questions:quantifierSentences},
+ {key:'adj',topic:'Adjective endings',questions:adjectiveEndingSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
