@@ -1,3 +1,4 @@
+import {classifyQuestion} from './curriculum.js';
 // Central catalog: keep topic metadata and question validation in one place.
 import {sentences,validateSentence} from './sentences.js';
 import {moreSentences} from './more-sentences.js';
@@ -38,7 +39,8 @@ export function buildCatalog(){
    if(typeof q.id!=='string'||!q.id.startsWith(source.key+'-'))throw new Error('Missing or invalid permanent question ID in '+source.key);
    if(seen.has(q.id))throw new Error('Duplicate question ID: '+q.id);
    seen.add(q.id);
-   catalog.push({...q,legacyId:legacyIndex++,topic:source.topic});
+   const [topic,subtopic]=classifyQuestion(q);
+   catalog.push({...q,legacyId:legacyIndex++,topic,subtopic});
   }
  }
  return catalog;
