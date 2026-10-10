@@ -1,3 +1,4 @@
+import {connectionSentences} from './connection-sentences.js';
 import {advancedSentences} from './advanced-sentences.js';
 import {verbFormSentences} from './verb-form-sentences.js';
 import {pronounSentences} from './pronoun-sentences.js';
@@ -34,7 +35,8 @@ export const QUESTION_SOURCES=[
  {key:'adj',topic:'Adjective endings',questions:adjectiveEndingSentences},
  {key:'pron',topic:'Pronouns & determiners',questions:pronounSentences},
  {key:'verb',topic:'Verb forms & tenses',questions:verbFormSentences},
- {key:'advanced',topic:'Advanced constructions',questions:advancedSentences}
+ {key:'advanced',topic:'Advanced constructions',questions:advancedSentences},
+ {key:'connect',topic:'Sentence connections',questions:connectionSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
