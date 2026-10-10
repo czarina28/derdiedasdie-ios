@@ -22,7 +22,7 @@ test('catalog preserves legacy positions for saved progress',()=>{
 
 test('every active question has one answer, distinct choices and a substantive explanation',()=>{
  const bank=buildCatalog();
- assert.equal(bank.length,228);
+ assert.equal(bank.length,258);
  for(const q of bank){
   assert.ok(q.before.trim() && q.after.trim(),q.id+' missing context');
   assert.equal(q.options.length,4,q.id+' should have four options');
