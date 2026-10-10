@@ -80,7 +80,7 @@ test('reviewed ambiguity regressions are excluded',()=>{
 test('all active questions have recognized curriculum topics and subtopics',async()=>{
  const {TOPIC_LABELS}=await import('../src/curriculum.js');
  const bank=buildCatalog();
- assert.equal(bank.length,428);
+ assert.equal(bank.length,458);
  for(const q of bank){
   assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
   assert.ok(q.subtopic,q.id+' subtopic');
@@ -113,4 +113,12 @@ test('verb drills span moods, tenses and passive constructions',()=>{
  assert.ok(new Set(items.map(q=>q.subtopic)).size>=8);
  assert.equal(items.find(q=>q.id==='verb-017').answer,'würde');
  assert.equal(items.find(q=>q.id==='verb-036').answer,'sind');
+});
+
+test('advanced construction exercises are available and categorized',()=>{
+ const items=buildCatalog().filter(q=>q.id.startsWith('advanced-'));
+ assert.equal(items.length,30);
+ assert.ok(items.every(q=>q.topic==='Advanced constructions'));
+ assert.equal(new Set(items.map(q=>q.subtopic)).size,5);
+ assert.equal(items.find(q=>q.id==='advanced-027').answer,'desto');
 });
