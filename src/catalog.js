@@ -1,3 +1,4 @@
+import {pronounSentences} from './pronoun-sentences.js';
 import {adjectiveEndingSentences} from './adjective-ending-sentences.js';
 import {classifyQuestion} from './curriculum.js';
 // Central catalog: keep topic metadata and question validation in one place.
@@ -28,7 +29,8 @@ export const QUESTION_SOURCES=[
  {key:'dativeplural',topic:TOPICS.articles,questions:dativePluralSentences},
  {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences},
  {key:'quant',topic:TOPICS.viel,questions:quantifierSentences},
- {key:'adj',topic:'Adjective endings',questions:adjectiveEndingSentences}
+ {key:'adj',topic:'Adjective endings',questions:adjectiveEndingSentences},
+ {key:'pron',topic:'Pronouns & determiners',questions:pronounSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
