@@ -80,7 +80,7 @@ test('reviewed ambiguity regressions are excluded',()=>{
 test('all active questions have recognized curriculum topics and subtopics',async()=>{
  const {TOPIC_LABELS}=await import('../src/curriculum.js');
  const bank=buildCatalog();
- assert.equal(bank.length,500);
+ assert.equal(bank.length,516);
  for(const q of bank){
   assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
   assert.ok(q.subtopic,q.id+' subtopic');
@@ -126,11 +126,22 @@ test('advanced construction exercises are available and categorized',()=>{
 test('500-question milestone preserves 42 new connector drills',()=>{
  const bank=buildCatalog();
  const items=bank.filter(q=>q.id.startsWith('connect-'));
- assert.equal(bank.length,500);
+ assert.equal(bank.length,516);
  assert.equal(items.length,42);
  assert.ok(items.every(q=>['Word order','Sentence connections'].includes(q.topic)));
  assert.ok(items.some(q=>q.topic==='Word order'));
  assert.ok(items.some(q=>q.topic==='Sentence connections'));
  assert.equal(items.find(q=>q.id==='connect-001').answer,'weil');
  assert.equal(items.find(q=>q.id==='connect-042').answer,'schalten');
+});
+
+test('Ersatzinfinitiv drills include past modal forms and subordinate word order',()=>{
+ const bank=buildCatalog();
+ const items=bank.filter(q=>q.id.startsWith('ersatz-'));
+ assert.equal(items.length,16);
+ assert.ok(items.every(q=>q.topic==='Advanced constructions'));
+ assert.equal(items.find(q=>q.id==='ersatz-001').answer,'sollen');
+ assert.equal(items.find(q=>q.id==='ersatz-012').answer,'müssen');
+ assert.equal(new Set(items.map(q=>q.subtopic)).size,2);
+ assert.equal(bank.length,516);
 });
