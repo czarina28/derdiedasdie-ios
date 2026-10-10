@@ -7,6 +7,7 @@ import {prepositionSentences} from './preposition-sentences.js';
 import {wordOrderSentences} from './word-order-sentences.js';
 import {dativePluralSentences} from './dative-plural-sentences.js';
 import {moreWordOrderSentences} from './more-word-order-sentences.js';
+import {quantifierSentences} from './quantifier-sentences.js';
 
 export const TOPICS=Object.freeze({
  articles:'Articles & endings',
@@ -23,7 +24,8 @@ export const QUESTION_SOURCES=[
  {key:'prep',topic:TOPICS.prepositions,questions:prepositionSentences},
  {key:'order',topic:TOPICS.wordOrder,questions:wordOrderSentences},
  {key:'dativeplural',topic:TOPICS.articles,questions:dativePluralSentences},
- {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences}
+ {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences},
+ {key:'quant',topic:TOPICS.viel,questions:quantifierSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
