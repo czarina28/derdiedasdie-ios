@@ -19,3 +19,24 @@ test('catalog preserves legacy positions for saved progress',()=>{
  const bank=buildCatalog();
  assert.deepEqual(bank.map(q=>q.legacyId),bank.map((_,i)=>i));
 });
+
+test('every active question has one answer, distinct choices and a substantive explanation',()=>{
+ const bank=buildCatalog();
+ assert.equal(bank.length,220);
+ for(const q of bank){
+  assert.ok(q.before.trim() && q.after.trim(),q.id+' missing context');
+  assert.equal(q.options.length,4,q.id+' should have four options');
+  assert.equal(new Set(q.options).size,4,q.id+' duplicate choices');
+  assert.equal(q.options.filter(option=>option===q.answer).length,1,q.id+' answer mismatch');
+  assert.ok(q.explanation.length>=40,q.id+' explanation too short');
+ }
+});
+test('known overlapping constructions are not used as false distractors',()=>{
+ const byId=new Map(buildCatalog().map(q=>[q.id,q]));
+ for(const id of ['prep-014','prep-015']){
+  const q=byId.get(id);
+  assert.ok(!q.options.includes(q.answer==='an'?'unter':'an'),id);
+ }
+ assert.ok(!byId.get('prep-035').options.includes('über'));
+ assert.match(byId.get('order-006').before,/frage mich/);
+});
