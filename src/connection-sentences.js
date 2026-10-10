@@ -1,0 +1,23 @@
+export const connectionSentences=[
+{id:'connect-001',before:"Ich bleibe zu Hause, ",after:" ich krank bin.",options:["weil","denn","trotzdem","sondern"],answer:"weil",explanation:"Weil introduces a subordinate clause with the finite verb at the end."},
+{id:'connect-002',before:"Ich bin krank, ",after:" bleibe ich zu Hause.",options:["deshalb","weil","obwohl","damit"],answer:"deshalb",explanation:"Deshalb begins a main clause and the finite verb follows immediately."},
+{id:'connect-003',before:"Ich gehe zur Arbeit, ",after:" ich müde bin.",options:["obwohl","denn","trotzdem","sondern"],answer:"obwohl",explanation:"Obwohl introduces a concessive subordinate clause with verb-final order."},
+{id:'connect-004',before:"Ich bin müde, ",after:" gehe ich zur Arbeit.",options:["trotzdem","obwohl","weil","damit"],answer:"trotzdem",explanation:"Trotzdem is a main-clause adverb followed directly by the finite verb."},
+{id:'connect-005',before:"Wir sprechen leise, ",after:" das Baby schlafen kann.",options:["damit","denn","trotzdem","deshalb"],answer:"damit",explanation:"Damit introduces a purpose clause and sends the finite verb to the end."},
+{id:'connect-006',before:"Er fährt nicht mit dem Auto, ",after:" mit dem Zug.",options:["sondern","weil","obwohl","damit"],answer:"sondern",explanation:"Sondern contrasts alternatives after a negation: nicht ... sondern."},
+{id:'connect-007',before:"Ich weiß nicht, ",after:" er morgen kommt.",options:["ob","denn","sondern","trotzdem"],answer:"ob",explanation:"Ob introduces an indirect yes-no question with verb-final word order."},
+{id:'connect-008',before:"Kannst du mir sagen, ",after:" der Bahnhof ist?",options:["wo","ob","denn","sondern"],answer:"wo",explanation:"Wo introduces an indirect question; the finite verb is placed at the end."},
+{id:'connect-009',before:"Ich frage mich, ",after:" sie so spät ist.",options:["warum","denn","sondern","trotzdem"],answer:"warum",explanation:"Warum introduces an indirect question with its finite verb at the end."},
+{id:'connect-010',before:"Ich rufe dich an, ",after:" ich angekommen bin.",options:["sobald","denn","sondern","deshalb"],answer:"sobald",explanation:"Sobald introduces a temporal clause meaning as soon as."},
+{id:'connect-011',before:"Ich warte hier, ",after:" du zurückkommst.",options:["bis","denn","trotzdem","sondern"],answer:"bis",explanation:"Bis introduces the endpoint of a period and requires verb-final order."},
+{id:'connect-012',before:"Wir gehen spazieren, ",after:" es nicht regnet.",options:["falls","denn","sondern","deshalb"],answer:"falls",explanation:"Falls introduces a conditional subordinate clause meaning if."},
+{id:'connect-013',before:"Ich lese, ",after:" ich auf den Zug warte.",options:["während","deshalb","trotzdem","sondern"],answer:"während",explanation:"Während introduces a subordinate clause expressing simultaneous actions."},
+{id:'connect-014',before:"Er ging nach Hause, ",after:" er die Arbeit beendet hatte.",options:["nachdem","denn","sondern","trotzdem"],answer:"nachdem",explanation:"Nachdem introduces an earlier completed action, here in the past perfect."},
+{id:'connect-015',before:"Ich schließe die Fenster, ",after:" ich das Haus verlasse.",options:["bevor","deshalb","trotzdem","sondern"],answer:"bevor",explanation:"Bevor introduces an event occurring after the action in the main clause."},
+{id:'connect-016',before:"Es regnet stark; ",after:" gehen wir spazieren.",options:["dennoch","obwohl","weil","damit"],answer:"dennoch",explanation:"Dennoch is a main-clause adverb meaning nevertheless, followed by the finite verb."},
+{id:'connect-017',before:"Ich weiß, ",after:" du heute keine Zeit hast.",options:["dass","denn","sondern","trotzdem"],answer:"dass",explanation:"Dass introduces a content clause with the finite verb at the end."},
+{id:'connect-018',before:"Heute ",after:" ich früher nach Hause.",options:["gehe","ich gehe","gehen","ginge"],answer:"gehe",explanation:"With Heute in first position, the finite verb follows in second position."},
+{id:'connect-019',before:"Morgen ",after:" wir das Ergebnis.",options:["besprechen","wir besprechen","bespricht","besprach"],answer:"besprechen",explanation:"Morgen occupies first position; the finite verb besprechen comes second."},
+{id:'connect-020',before:"Nach dem Essen ",after:" wir einen Spaziergang.",options:["machen","wir machen","macht","machten"],answer:"machen",explanation:"The initial time phrase occupies position one; the finite verb comes second."},
+{id:'connect-021',before:"In Berlin ",after:" meine Schwester seit 2020.",options:["wohnt","meine Schwester wohnt","wohnen","wohnte"],answer:"wohnt",explanation:"A fronted place phrase requires verb-second order: In Berlin wohnt meine Schwester."}
+];
