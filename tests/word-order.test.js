@@ -4,7 +4,7 @@ import {buildCatalog} from '../src/catalog.js';
 test('word-order topic retains at least 50 questions',()=>{
  const bank=buildCatalog();
  assert.ok(bank.filter(q=>q.topic==='Word order & clauses').length>=50);
- assert.ok(bank.length>=258,'catalog unexpectedly shrank');
+ assert.ok(bank.length>=278,'catalog unexpectedly shrank');
 });
 
 test('reviewed distractors do not penalize valid alternatives',()=>{
