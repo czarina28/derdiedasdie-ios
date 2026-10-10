@@ -3,17 +3,20 @@ import {sentences,validateSentence} from './sentences.js';
 import {moreSentences} from './more-sentences.js';
 import {vielSentences} from './viel-sentences.js';
 import {genitiveSentences} from './genitive-sentences.js';
+import {prepositionSentences} from './preposition-sentences.js';
 
 export const TOPICS=Object.freeze({
  articles:'Articles & endings',
  viel:'Viel & viele',
- genitive:'Genitive'
+ genitive:'Genitive',
+ prepositions:'Verbs & prepositions'
 });
 export const QUESTION_SOURCES=[
  {key:'core',topic:TOPICS.articles,questions:sentences},
  {key:'everyday',topic:TOPICS.articles,questions:moreSentences},
  {key:'viel',topic:TOPICS.viel,questions:vielSentences},
- {key:'genitive',topic:TOPICS.genitive,questions:genitiveSentences}
+ {key:'genitive',topic:TOPICS.genitive,questions:genitiveSentences},
+ {key:'prep',topic:TOPICS.prepositions,questions:prepositionSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
