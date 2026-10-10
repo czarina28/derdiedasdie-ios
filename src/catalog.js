@@ -6,6 +6,7 @@ import {genitiveSentences} from './genitive-sentences.js';
 import {prepositionSentences} from './preposition-sentences.js';
 import {wordOrderSentences} from './word-order-sentences.js';
 import {dativePluralSentences} from './dative-plural-sentences.js';
+import {moreWordOrderSentences} from './more-word-order-sentences.js';
 
 export const TOPICS=Object.freeze({
  articles:'Articles & endings',
@@ -21,7 +22,8 @@ export const QUESTION_SOURCES=[
  {key:'genitive',topic:TOPICS.genitive,questions:genitiveSentences},
  {key:'prep',topic:TOPICS.prepositions,questions:prepositionSentences},
  {key:'order',topic:TOPICS.wordOrder,questions:wordOrderSentences},
- {key:'dativeplural',topic:TOPICS.articles,questions:dativePluralSentences}
+ {key:'dativeplural',topic:TOPICS.articles,questions:dativePluralSentences},
+ {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
