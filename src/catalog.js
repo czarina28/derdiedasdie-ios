@@ -1,3 +1,4 @@
+import {verbFormSentences} from './verb-form-sentences.js';
 import {pronounSentences} from './pronoun-sentences.js';
 import {adjectiveEndingSentences} from './adjective-ending-sentences.js';
 import {classifyQuestion} from './curriculum.js';
@@ -30,7 +31,8 @@ export const QUESTION_SOURCES=[
  {key:'orderextra',topic:TOPICS.wordOrder,questions:moreWordOrderSentences},
  {key:'quant',topic:TOPICS.viel,questions:quantifierSentences},
  {key:'adj',topic:'Adjective endings',questions:adjectiveEndingSentences},
- {key:'pron',topic:'Pronouns & determiners',questions:pronounSentences}
+ {key:'pron',topic:'Pronouns & determiners',questions:pronounSentences},
+ {key:'verb',topic:'Verb forms & tenses',questions:verbFormSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
