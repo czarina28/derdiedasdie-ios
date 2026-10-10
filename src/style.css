@@ -82,3 +82,50 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .home-exit:hover{border-color:#c14c30;background:#fff0e7}
 .home-exit:focus-visible,.hero-start:focus-visible,.topic-list button:focus-visible,.review-link:focus-visible{outline:3px solid #d45d3e;outline-offset:3px}
 @media(max-width:420px){.home-hero{padding-top:35px}.home-hero h1{font-size:clamp(36px,9.2vw,46px)}.hero-start{min-height:84px;padding:18px}.home-stats strong{font-size:23px}.topic-list button{padding:13px 14px;gap:12px}.topic-copy strong{font-size:15px}.header-note{font-size:9px}}
+
+
+/* derdiedasdie.de brand trial — adapted from the main site's brand.css.
+   Keeps the app's compact mobile layout and existing interaction states. */
+:root{
+ --ddd-ink:#0f172a;--ddd-text:#334155;--ddd-muted:#64748b;
+ --ddd-line:#e2e8f0;--ddd-blue:#2563eb;--ddd-blue-dark:#1d4ed8;
+ --ddd-pink:#ec4899;--ddd-green:#22a95b;--ddd-yellow:#f59e0b;
+ --ddd-purple:#8b5cf6;--ddd-teal:#14b8a6;--ddd-soft:#f8fafc;
+ --ddd-shadow:0 14px 40px rgba(15,23,42,.08);--ddd-radius:22px;
+ color:var(--ddd-ink);background:var(--ddd-soft);
+ font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body{background:var(--ddd-soft);color:var(--ddd-ink)}
+header{border-bottom-color:var(--ddd-line)}
+.brand{color:var(--ddd-ink);letter-spacing:-.035em}
+.brand span{color:var(--ddd-blue)}
+.header-note,.section-heading>span,.meta{color:var(--ddd-muted)}
+.eyebrow,.home-hero h1 em,.blank,.topic-index,.topic-arrow,.review-link{color:var(--ddd-blue)}
+p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
+.quiz,.topic-list,.mode-list button,#back{background:#fff;border-color:var(--ddd-line);color:var(--ddd-ink)}
+.quiz{border-radius:var(--ddd-radius);box-shadow:var(--ddd-shadow)}
+.hero-start,#next,#again,.ddd-cta{
+ background:linear-gradient(135deg,#2f6df6,#1d5be8);
+ color:#fff;border-radius:14px;box-shadow:0 12px 28px rgba(37,99,235,.18)
+}
+.hero-start:hover,#next:hover,#again:hover{background:var(--ddd-blue-dark)}
+.hero-start small,.hero-start>span:last-child{color:#dbeafe}
+.home-stats{border-bottom-color:var(--ddd-line)}
+.home-stats div{border-right-color:var(--ddd-line)}
+.topic-list{border-radius:var(--ddd-radius)}
+.topic-list button{color:var(--ddd-ink);border-bottom-color:var(--ddd-line)}
+.topic-list button:hover,.mode-list button:hover,#back:hover{background:#eff6ff;border-color:var(--ddd-blue)}
+.answer{background:#fff;border-color:#cbd5e1;color:var(--ddd-ink)}
+.answer:not(:disabled):hover{background:#eff6ff;border-color:var(--ddd-blue)}
+.answer.right{background:#dcfce7;border-color:var(--ddd-green);color:#166534}
+.answer.wrong{background:#fce7f3;border-color:var(--ddd-pink);color:#9d174d}
+.progress-track{background:var(--ddd-line)}
+.progress-fill{background:var(--ddd-blue)}
+#feedback{color:var(--ddd-text)}
+#feedback:not(:empty){border-left-color:var(--ddd-blue);background:#eff6ff}
+.home-exit{border-color:var(--ddd-line);background:#fff;color:var(--ddd-text)}
+.home-exit:hover{background:#eff6ff;border-color:var(--ddd-blue)}
+.answer:focus-visible,.answer:not(:disabled):focus-visible,#next:focus-visible,
+.mode-list button:focus-visible,#again:focus-visible,#back:focus-visible,
+.home-exit:focus-visible,.hero-start:focus-visible,.topic-list button:focus-visible,
+.review-link:focus-visible{outline:3px solid var(--ddd-blue);outline-offset:3px}
