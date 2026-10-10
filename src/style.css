@@ -129,3 +129,8 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .mode-list button:focus-visible,#again:focus-visible,#back:focus-visible,
 .home-exit:focus-visible,.hero-start:focus-visible,.topic-list button:focus-visible,
 .review-link:focus-visible{outline:3px solid var(--ddd-blue);outline-offset:3px}
+
+/* Official logo on all app headers */
+.brand-logo{display:block;width:132px;height:auto;max-width:45vw;flex:0 0 auto}
+.practice-header .brand-logo{width:118px}
+@media(max-width:420px){.brand-logo{width:112px}.practice-header .brand-logo{width:108px}}
