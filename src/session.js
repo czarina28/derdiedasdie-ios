@@ -20,3 +20,5 @@ export function pickFreshQuestions(items,topic='Mixed practice',recentIds=[],len
 export function practiceStage(history=[]){const recent=history.filter(s=>s.mode==='Mixed practice'&&s.total>=8).slice(-3);if(recent.length<2)return 1;const correct=recent.reduce((n,s)=>n+s.correct,0);const total=recent.reduce((n,s)=>n+s.total,0);return correct/total>=.85?3:correct/total>=.7?2:1;}
 
 export function questionDifficulty(q){if(q.topic==='Genitive')return q.options.includes('meines')||q.options.includes('unseres')?3:2;if(q.topic==='Viel & viele')return q.answer==='vielen'?2:1;return 1;}
+
+export function pickProgressiveQuestions(items,topic,recentIds,stage){const deck=pickFreshQuestions(items,topic,recentIds);if(topic!=='Mixed practice')return deck;const easy=deck.filter(q=>questionDifficulty(q)===1),other=deck.filter(q=>questionDifficulty(q)!==1);return stage===1?[...easy,...other]:stage===2?deck:[...other,...easy];}
