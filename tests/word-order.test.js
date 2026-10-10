@@ -1,9 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {buildCatalog} from '../src/catalog.js';
-test('word-order topic retains at least 50 questions',()=>{
+test('original word-order bank is preserved across new topics',()=>{
  const bank=buildCatalog();
- assert.ok(bank.filter(q=>q.topic==='Word order & clauses').length>=50);
+ assert.equal(bank.filter(q=>q.id.startsWith('order-')||q.id.startsWith('orderextra-')).length,50);
+ assert.ok(bank.some(q=>q.topic==='Word order'));
+ assert.ok(bank.some(q=>q.topic==='Sentence connections'));
+ assert.ok(bank.some(q=>q.subtopic==='Relative pronouns'));
  assert.ok(bank.length>=278,'catalog unexpectedly shrank');
 });
 
