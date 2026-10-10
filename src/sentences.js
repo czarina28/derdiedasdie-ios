@@ -1,9 +1,9 @@
 // Curated, contextual practice items. These are not yet externally linguistically reviewed.
 // Keep the answer unique and distractors distinct; avoid decontextualized grammar-table prompts.
 export const sentences = [
- {before:"Ich habe gestern ",after:" interessanten Film gesehen.",options:["ein","einen","einem","einer"],answer:"einen",explanation:"Du hast einen Film gesehen. „Film“ is the direct object of „sehen“."},
- {before:"Sie fährt jeden Morgen mit ",after:" Fahrrad zur Arbeit.",options:["das","dem","den","des"],answer:"dem",explanation:"„Mit“ takes the dative: mit dem Fahrrad."},
- {before:"Wir warten schon seit einer Stunde auf ",after:" Bus.",options:["der","den","dem","des"],answer:"den",explanation:"When waiting for something, „auf“ takes the accusative: auf den Bus."},
+ {before:"Ich habe gestern ",after:" interessanten Film gesehen.",options:["ein","einen","einem","einer"],answer:"einen",explanation:"„Sehen“ takes an accusative object (Wen oder was?). „Film“ is masculine (der Film), so „ein“ becomes „einen“: einen interessanten Film. The adjective takes -en."},
+ {before:"Sie fährt jeden Morgen mit ",after:" Fahrrad zur Arbeit.",options:["das","dem","den","des"],answer:"dem",explanation:"„Mit“ requires the dative. „Fahrrad“ is neuter (das Fahrrad), so the definite article changes to „dem“: mit dem Fahrrad."},
+ {before:"Wir warten schon seit einer Stunde auf ",after:" Bus.",options:["der","den","dem","des"],answer:"den",explanation:"The expression „warten auf“ takes the accusative. „Bus“ is masculine (der Bus), so the accusative article is „den“: auf den Bus."},
  {before:"Kannst du mir bitte ",after:" Schlüssel geben?",options:["der","den","dem","des"],answer:"den",explanation:"The key is the thing being given: den Schlüssel."},
  {before:"Ich habe heute mit ",after:" neuen Kollegin gesprochen.",options:["meine","meiner","meinen","meines"],answer:"meiner",explanation:"„Mit“ takes the dative: mit meiner neuen Kollegin."},
  {before:"Wir wohnen in ",after:" kleinen Wohnung.",options:["eine","einen","einer","einem"],answer:"einer",explanation:"A fixed location with „in“ takes the dative: in einer kleinen Wohnung."},
