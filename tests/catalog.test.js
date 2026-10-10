@@ -80,7 +80,7 @@ test('reviewed ambiguity regressions are excluded',()=>{
 test('all active questions have recognized curriculum topics and subtopics',async()=>{
  const {TOPIC_LABELS}=await import('../src/curriculum.js');
  const bank=buildCatalog();
- assert.equal(bank.length,458);
+ assert.equal(bank.length,500);
  for(const q of bank){
   assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
   assert.ok(q.subtopic,q.id+' subtopic');
@@ -121,4 +121,16 @@ test('advanced construction exercises are available and categorized',()=>{
  assert.ok(items.every(q=>q.topic==='Advanced constructions'));
  assert.equal(new Set(items.map(q=>q.subtopic)).size,5);
  assert.equal(items.find(q=>q.id==='advanced-027').answer,'desto');
+});
+
+test('500-question milestone preserves 42 new connector drills',()=>{
+ const bank=buildCatalog();
+ const items=bank.filter(q=>q.id.startsWith('connect-'));
+ assert.equal(bank.length,500);
+ assert.equal(items.length,42);
+ assert.ok(items.every(q=>['Word order','Sentence connections'].includes(q.topic)));
+ assert.ok(items.some(q=>q.topic==='Word order'));
+ assert.ok(items.some(q=>q.topic==='Sentence connections'));
+ assert.equal(items.find(q=>q.id==='connect-001').answer,'weil');
+ assert.equal(items.find(q=>q.id==='connect-042').answer,'schalten');
 });
