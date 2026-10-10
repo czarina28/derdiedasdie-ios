@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.ios/
+ios/
+.DS_Store
+.env*
