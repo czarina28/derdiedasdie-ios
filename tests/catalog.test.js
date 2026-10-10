@@ -80,7 +80,7 @@ test('reviewed ambiguity regressions are excluded',()=>{
 test('all active questions have recognized curriculum topics and subtopics',async()=>{
  const {TOPIC_LABELS}=await import('../src/curriculum.js');
  const bank=buildCatalog();
- assert.equal(bank.length,338);
+ assert.equal(bank.length,363);
  for(const q of bank){
   assert.ok(TOPIC_LABELS.includes(q.topic),q.id+' topic');
   assert.ok(q.subtopic,q.id+' subtopic');
@@ -91,7 +91,7 @@ test('all active questions have recognized curriculum topics and subtopics',asyn
 
 test('adjective ending drills are genuine suffix questions',()=>{
  const questions=buildCatalog().filter(q=>q.id.startsWith('adj-'));
- assert.equal(questions.length,60);
+ assert.equal(questions.length,85);
  assert.ok(questions.every(q=>q.topic==='Adjective endings'));
  assert.ok(questions.every(q=>q.options.every(option=>/^(e|en|em|er|es)$/.test(option))));
  assert.ok(questions.every(q=>q.answer.length>=1&&q.explanation.length>=40));
