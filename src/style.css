@@ -212,3 +212,6 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .native-home .skill-list{gap:7px;margin-top:9px}
 .native-home .skill-row{padding:11px 13px}
 .native-home .topic-section{margin-top:18px}
+
+/* Homepage copy uses the available content width; quiz typography remains unchanged. */
+.home-screen .home-hero p,.home-screen .premium-teaser p{max-width:none}
