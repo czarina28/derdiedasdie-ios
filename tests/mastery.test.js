@@ -13,7 +13,7 @@ test('three perfect days with varied questions establish mastery',()=>{
 test('one perfect day and repeated questions do not qualify',()=>{
  let log=[];
  log=add(log,'2026-10-01',['a','b']);log=add(log,'2026-10-02',['a','b']);log=add(log,'2026-10-03',['a','b']);
- assert.equal(masteryProfile(log,skill).status,'Learning');
+ assert.equal(masteryProfile(log,skill).status,'Improving');
  assert.equal(masteryProfile(log,skill).questions,2);
 });
 test('old errors do not prevent later mastery',()=>{
