@@ -183,3 +183,32 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .plus-restore{width:100%;margin-top:12px;min-height:48px;border:1px solid var(--ddd-line);border-radius:12px;background:#fff;color:var(--ddd-muted);font:inherit;font-weight:700}
 .plus-restore:disabled{cursor:not-allowed}
 .plus-checkout .preview-note{font-size:12px;line-height:1.5;margin-top:15px}
+
+
+/* Home navigation: clear, touch-sized actions and clickable skill shortcuts. */
+.home-screen .review-link{width:100%;min-height:64px;margin:0 0 18px;padding:13px 18px;border:2px solid var(--ddd-blue,#2563eb);border-radius:14px;background:#eff6ff;color:var(--ddd-ink,#17362d);font:inherit;font-weight:750;cursor:pointer}
+.home-screen .review-link>span:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left}
+.home-screen .review-link small{font-size:12px;font-weight:500;color:var(--ddd-muted,#64748b)}
+.home-screen .review-link>span:last-child{font-size:22px;color:var(--ddd-blue,#2563eb)}
+.home-screen button.pattern-skill{width:100%;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.home-screen button.pattern-skill:hover{border-color:var(--ddd-blue,#2563eb);background:#eff6ff}
+.home-screen button.pattern-skill:focus-visible{outline:3px solid var(--ddd-blue,#2563eb);outline-offset:3px}
+.home-screen .review-link:focus-visible{outline:3px solid var(--ddd-blue,#2563eb);outline-offset:3px}
+
+/* Capacitor home: prioritise practice over website-style promotional content.
+   The website retains its full landing-page layout. */
+.native-home .header-note{display:none}
+.native-home .home-hero{padding:14px 0 10px}
+.native-home .home-hero h1{font-size:clamp(27px,7vw,36px);line-height:1.12;letter-spacing:-1.1px;margin:5px 0 10px}
+.native-home .home-hero p{display:none}
+.native-home .home-hero .hero-start{min-height:62px}
+.native-home .fix-feature{margin:0 0 9px}
+.native-home .fix-feature .hero-start{min-height:62px}
+.native-home .review-link{min-height:62px;margin-bottom:12px}
+.native-home .premium-teaser{display:none}
+.native-home .home-stats{padding:12px 0 14px}
+.native-home .home-stats strong{font-size:22px}
+.native-home .skill-section{margin:16px 0 20px}
+.native-home .skill-list{gap:7px;margin-top:9px}
+.native-home .skill-row{padding:11px 13px}
+.native-home .topic-section{margin-top:18px}
