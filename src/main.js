@@ -12,10 +12,20 @@ let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let masteryLog=[];
 try{const saved=JSON.parse(localStorage.getItem(MASTERY_KEY)||'[]');if(Array.isArray(saved))masteryLog=saved;}catch{}
+let planSkill=null;
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set(),reviewStartingCount=0,sessionAnswers=[];
 try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');mistakes=new Set(saved.map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));}catch{mistakes=new Set();}
 
-function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');reviewStartingCount=topic==='Review mistakes'?pool.length:0;deck=topic==='Fix My German'?pickFixQuestions(bank,learning,recent,[...mistakes]):topic==='Review mistakes'?shuffle(pool):topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic,recent);position=0;correct=0;total=0;sessionAnswers=[];if(deck.length)next();else if(topic==='Review mistakes')emptyReview();else home();}
+function start(topic){planSkill=null;mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');reviewStartingCount=topic==='Review mistakes'?pool.length:0;deck=topic==='Fix My German'?pickFixQuestions(bank,learning,recent,[...mistakes]):topic==='Review mistakes'?shuffle(pool):topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic,recent);position=0;correct=0;total=0;sessionAnswers=[];if(deck.length)next();else if(topic==='Review mistakes')emptyReview();else home();}
+function startSkill(skill){
+ const pool=bank.filter(q=>skillFor(q)===skill);
+ if(!pool.length)return;
+ const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');
+ planSkill=skill;mode='Plus: '+skill;
+ deck=pickFreshQuestions(pool,'Mixed practice',recent);
+ position=0;correct=0;total=0;sessionAnswers=[];
+ if(deck.length)next();
+}
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
 function premiumPreview(){
  const spots=weakSpots(bank,learning);
