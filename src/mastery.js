@@ -23,5 +23,5 @@ export function masteryProfile(log=[],skill){
  for(const [,d] of [...days].sort((a,b)=>a[0].localeCompare(b[0]))){if(d.perfect)run.push(d);else run=[];}
  const questions=new Set(run.flatMap(d=>[...d.ids])).size;
  const mastered=run.length>=3&&questions>=6;
- return {status:mastered?'Mastered':correct<total?'Improving':'Learning',accuracy:Math.round(100*correct/total),days:days.size,perfectDays:run.length,questions,goal:100};
+ return {status:mastered?'Mastered':sessions.length>1||correct<total?'Improving':'Learning',accuracy:Math.round(100*correct/total),days:days.size,perfectDays:run.length,questions,goal:100};
 }
