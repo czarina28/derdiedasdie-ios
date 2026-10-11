@@ -168,3 +168,18 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .premium-preview button.skill-row:hover{border-color:#2563eb;background:#eff6ff}
 .premium-preview button.skill-row:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
 .premium-preview #work-plan:disabled{opacity:.55;cursor:not-allowed}
+
+/* Plus purchase preview, sized for iPhone review screenshots. */
+.plus-checkout .home-hero{padding-bottom:14px}
+.plus-offer{background:#fff;border:1px solid var(--ddd-line);border-radius:18px;padding:22px;margin:16px 0 22px}
+.plus-offer h2{font-size:19px;margin:0 0 15px}
+.plus-offer ul{padding-left:21px;margin:0 0 23px;color:var(--ddd-text);line-height:1.65;font-size:15px}
+.plus-offer li{margin:8px 0}
+.plus-price{display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--ddd-line);padding-top:18px}
+.plus-price strong{font-size:31px;color:var(--ddd-ink)}
+.plus-price span{font-size:13px;color:var(--ddd-muted)}
+.plus-checkout .hero-start{width:100%;min-height:60px}
+.plus-checkout .hero-start:disabled{opacity:.55;cursor:not-allowed}
+.plus-restore{width:100%;margin-top:12px;min-height:48px;border:1px solid var(--ddd-line);border-radius:12px;background:#fff;color:var(--ddd-muted);font:inherit;font-weight:700}
+.plus-restore:disabled{cursor:not-allowed}
+.plus-checkout .preview-note{font-size:12px;line-height:1.5;margin-top:15px}
