@@ -1,3 +1,4 @@
+import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary} from './learning.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -5,19 +6,23 @@ import {pickFreshQuestions,pickProgressiveQuestions,practiceStage,shuffle} from 
 import './style.css';
 const bank=buildCatalog();
 const root=document.getElementById('app');
+let learning={};
+try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set(),reviewStartingCount=0;
 try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');mistakes=new Set(saved.map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));}catch{mistakes=new Set();}
 
-function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');reviewStartingCount=topic==='Review mistakes'?pool.length:0;deck=topic==='Review mistakes'?shuffle(pool):topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic,recent);position=0;correct=0;total=0;if(deck.length)next();else if(topic==='Review mistakes')emptyReview();else home();}
+function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');reviewStartingCount=topic==='Review mistakes'?pool.length:0;deck=topic==='Fix My German'?pickFixQuestions(bank,learning,recent,[...mistakes]):topic==='Review mistakes'?shuffle(pool):topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic,recent);position=0;correct=0;total=0;if(deck.length)next();else if(topic==='Review mistakes')emptyReview();else home();}
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
 function home(){
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
+ const progress=learningSummary(learning);
  const details={'Cases & articles':'Articles · genitive · dative plural','Adjective endings':'Strong · weak · mixed','Prepositions':'Verb + preposition','Pronouns & determiners':'Quantifiers · relative pronouns','Verb forms & tenses':'Conjugation · auxiliaries','Word order':'Verb position · clauses','Sentence connections':'weil · obwohl · deshalb','Advanced constructions':'Konjunktiv · passive'};
  const topics=TOPIC_LABELS.map(name=>[name,details[name],bank.filter(q=>q.topic===name).length]);
 
  root.innerHTML=`<main class="home-screen"><header><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie" width="162" height="48"><span class="header-note">GERMAN GRAMMAR PRACTICE</span></header>
  <section class="home-hero"><h1>You know better.<br><em>Now do better.</em></h1><p>You know the rules. Now make them automatic. Ten focused German grammar questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Put it into practice <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
+ <section class="fix-feature" aria-label="Personalized practice"><button class="hero-start" data-mode="Fix My German"><span>Fix My German <small>${progress.attempts?`${progress.persistent} patterns to work on · ${progress.improving} improving`:"10 questions · starts with a balanced mix and learns from your answers"}</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Rounds completed</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to revisit</span></div></section>
  <section class="topic-section"><div class="section-heading"><h2>Choose your focus</h2><span>8 TOPICS</span></div><div class="topic-list">${topics.map(([name,detail,count],i)=>`<button ${count?`data-mode="${name}"`:"disabled"}><span class="topic-index">${String(i+1).padStart(2,'0')}</span><span class="topic-copy"><strong>${name}</strong><small>${count?detail+` · ${count} questions`:"Coming soon"}</small></span><span class="topic-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></section>
  <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Practice what you missed <strong>(${mistakes.size})</strong></span></button>
@@ -51,7 +56,7 @@ function render(){
  <div id="feedback" aria-live="polite"></div><button id="next" hidden>${position===deck.length?'See results →':'Next sentence →'}</button></section>
  <footer>Early prototype: sentence content awaits independent language review. No purchases enabled.</footer></main>`;
  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{
- if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
+ if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);learning=recordAttempt(learning,question.id,ok);localStorage.setItem(LEARNING_KEY,JSON.stringify(learning));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
  document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;const v=question.options[Number(b.dataset.i)];if(v===question.answer)b.classList.add('right');else if(b===btn)b.classList.add('wrong');});
  const specific=!ok&&question.wrongFeedback?.[selected];
  document.getElementById('feedback').textContent=(ok?'✓ Correct. Why? ':'Not quite. Correct answer: '+question.answer+'. Why? ')+(specific?specific+' ':'')+question.explanation;
