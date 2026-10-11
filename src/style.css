@@ -157,3 +157,8 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .premium-preview .skill-section{margin:20px 0}
 .premium-preview .preview-note{font-size:13px;line-height:1.5;margin:24px 0}
 .premium-preview .hero-start{width:100%;min-height:56px}
+
+/* Align primary button title and supporting text to the same left edge. */
+.home-screen .hero-start>span:first-child{display:block;flex:1;min-width:0;text-align:left}
+.home-screen .hero-start>span:first-child small{display:block;text-align:left;margin-left:0;padding-left:0;letter-spacing:.2px}
+.home-screen .hero-start>span:last-child{flex:0 0 auto}
