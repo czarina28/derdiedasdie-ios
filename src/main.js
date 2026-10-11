@@ -1,5 +1,5 @@
 import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile,skillFor,sessionFeedback} from './learning.js';
-import {weakSpots,practicePlan} from './premium-plan.js';
+import {weakSpots,practicePlan,targetedQuestions} from './premium-plan.js';
 import {MASTERY_KEY,recordSkillSession,masteryProfile} from './mastery.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
@@ -22,7 +22,7 @@ function startSkill(skill){
  if(!pool.length)return;
  const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]');
  planSkill=skill;mode='Plus: '+skill;
- deck=pickFreshQuestions(pool,'Mixed practice',recent);
+ deck=targetedQuestions(pool,learning,skill,recent);
  position=0;correct=0;total=0;sessionAnswers=[];
  if(deck.length)next();
 }
@@ -73,10 +73,13 @@ function summary(){
  const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');history.push({date:new Date().toISOString(),mode,correct,total});localStorage.setItem('derdiedasdie-sessions',JSON.stringify(history.slice(-100)));
  masteryLog=recordSkillSession(masteryLog,sessionAnswers);localStorage.setItem(MASTERY_KEY,JSON.stringify(masteryLog));
  const feedback=sessionFeedback(sessionAnswers);
+ const skillProgress=planSkill?masteryProfile(masteryLog,planSkill):null;
  const focusText=feedback.focus.length?'Focus next: '+feedback.focus.slice(0,2).map(s=>s.name).join(' · ')+'.':'No mistakes this round. Keep practicing across different days to build consistency.';
  const strengthText=feedback.strengths.length?'Strong this round: '+feedback.strengths.slice(0,2).map(s=>s.name).join(' · ')+'.':'';
- root.innerHTML='<main><header><img class="brand-logo" src="'+import.meta.env.BASE_URL+'logo.svg" alt="derdiedasdie" width="162" height="48"></header><section class="intro session-summary"><div class="eyebrow">SESSION COMPLETE</div><h1>'+correct+' out of '+total+'</h1><p>'+ (correct===total?'Perfect round. Every answer correct.':correct>=8?'Strong round. Keep the momentum.':'Every mistake is a chance to learn. Try another round.') +'</p><div class="session-insights"><h2>Your grammar this round</h2><p>'+focusText+'</p>'+(strengthText?'<p>'+strengthText+'</p>':'')+'</div><button id="again">Another session</button><button id="back">Choose a topic</button></section></main>';
+ const planResult=planSkill?'<div class="session-insights"><h2>'+planSkill+' · '+skillProgress.status+'</h2><p>'+correct+' of '+total+' correct this session.</p><p>'+skillProgress.perfectDays+' of 3 perfect days · '+skillProgress.questions+' of 6 varied questions toward mastery.</p></div>':'';
+ root.innerHTML='<main><header><img class="brand-logo" src="'+import.meta.env.BASE_URL+'logo.svg" alt="derdiedasdie" width="162" height="48"></header><section class="intro session-summary"><div class="eyebrow">SESSION COMPLETE</div><h1>'+correct+' out of '+total+'</h1><p>'+ (correct===total?'Perfect round. Every answer correct.':correct>=8?'Strong round. Keep the momentum.':'Every mistake is a chance to learn. Try another round.') +'</p><div class="session-insights"><h2>Your grammar this round</h2><p>'+focusText+'</p>'+(strengthText?'<p>'+strengthText+'</p>':'')+'</div>'+planResult+'<button id="again">Another session</button>'+(planSkill?'<button id="back-plan">Back to my plan →</button>':'')+'<button id="back">Choose a topic</button></section></main>';
  document.getElementById('again').addEventListener('click',()=>planSkill?startSkill(planSkill):start(mode));
+ if(planSkill)document.getElementById('back-plan').addEventListener('click',premiumPreview);
  document.getElementById('back').addEventListener('click',home);
 }
 function render(){
