@@ -1,4 +1,4 @@
-import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary} from './learning.js';
+import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile} from './learning.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -17,6 +17,7 @@ function home(){
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
  const progress=learningSummary(learning);
+ const skills=skillProfile(bank,learning).slice(0,3);
  const details={'Cases & articles':'Articles · genitive · dative plural','Adjective endings':'Strong · weak · mixed','Prepositions':'Verb + preposition','Pronouns & determiners':'Quantifiers · relative pronouns','Verb forms & tenses':'Conjugation · auxiliaries','Word order':'Verb position · clauses','Sentence connections':'weil · obwohl · deshalb','Advanced constructions':'Konjunktiv · passive'};
  const topics=TOPIC_LABELS.map(name=>[name,details[name],bank.filter(q=>q.topic===name).length]);
 
@@ -24,6 +25,7 @@ function home(){
  <section class="home-hero"><h1>You know better.<br><em>Now do better.</em></h1><p>You know the rules. Now make them automatic. Ten focused German grammar questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Put it into practice <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="fix-feature" aria-label="Personalized practice"><button class="hero-start" data-mode="Fix My German"><span>Fix My German <small>${progress.attempts?`${progress.persistent} patterns to work on · ${progress.improving} improving`:"10 questions · starts with a balanced mix and learns from your answers"}</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Rounds completed</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to revisit</span></div></section>
+ <section class="skill-section" aria-label="Your grammar patterns"><div class="section-heading"><h2>Your grammar patterns</h2><span>PERSONAL TO YOU</span></div>${skills.length?`<div class="skill-list">${skills.map(s=>`<div class="skill-row"><strong>${s.name}</strong><span>${s.status} · ${s.questions} question${s.questions===1?"":"s"} tried</span></div>`).join("")}</div>`:`<p>Start practicing to discover which grammar patterns need attention. We’ll look for patterns across different questions.</p>`}</section>
  <section class="topic-section"><div class="section-heading"><h2>Choose your focus</h2><span>8 TOPICS</span></div><div class="topic-list">${topics.map(([name,detail,count],i)=>`<button ${count?`data-mode="${name}"`:"disabled"}><span class="topic-index">${String(i+1).padStart(2,'0')}</span><span class="topic-copy"><strong>${name}</strong><small>${count?detail+` · ${count} questions`:"Coming soon"}</small></span><span class="topic-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></section>
  <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Practice what you missed <strong>(${mistakes.size})</strong></span></button>
  <footer>Know it. Do it. Own it. Every topic is free.</footer></main>`;
