@@ -4,14 +4,37 @@ export const LEARNING_KEY='derdiedasdie-learning-v1';
 export function recordAttempt(history,id,correct,date=new Date().toISOString()){
  const next={...history};
  const prev=next[id]||{attempts:0,correct:0,streak:0,misses:0};
- next[id]={attempts:prev.attempts+1,correct:prev.correct+(correct?1:0),streak:correct?prev.streak+1:0,misses:prev.misses+(correct?0:1),lastSeen:date,lastMiss:correct?prev.lastMiss||null:date};
+ next[id]={attempts:prev.attempts+1,correct:prev.correct+(correct?1:0),streak:correct?prev.streak+1:0,misses:prev.misses+(correct?0:1),lastSeen:date,lastMiss:correct?prev.lastMiss||null:date,successDays:correct?[...new Set([...(prev.successDays||[]),date.slice(0,10)])].slice(-20):(prev.successDays||[]),lastCorrect:correct?date:(prev.lastCorrect||null)};
  return next;
 }
 export function skillFor(q){return q.subtopic||q.topic||'General grammar';}
 export function skillProfile(bank,history={}){
  const groups=new Map();
- for(const q of bank){const h=history[q.id];if(!h)continue;const name=skillFor(q);if(!groups.has(name))groups.set(name,{name,attempts:0,correct:0,questions:new Set(),recentSuccesses:0});const g=groups.get(name);g.attempts+=h.attempts;g.correct+=h.correct;g.questions.add(q.id);if(h.streak>=2)g.recentSuccesses++;}
- return [...groups.values()].map(g=>({name:g.name,attempts:g.attempts,accuracy:g.correct/g.attempts,questions:g.questions.size,status:g.questions.size>=3&&g.accuracy>=.85&&g.recentSuccesses>=2?'Getting consistent':g.accuracy>=.7?'Improving':'Needs practice'})).sort((a,b)=>a.accuracy-b.accuracy);
+ for(const q of bank){
+  const h=history[q.id];if(!h||!h.attempts)continue;
+  const name=skillFor(q);
+  if(!groups.has(name))groups.set(name,{name,attempts:0,correct:0,questions:new Set(),successDays:new Set(),recovered:new Set()});
+  const g=groups.get(name);
+  g.attempts+=h.attempts;g.correct+=h.correct;g.questions.add(q.id);
+  if(h.misses>0&&h.streak>=2)g.recovered.add(q.id);
+  for(const day of h.successDays||[])g.successDays.add(day);
+ }
+ return [...groups.values()].map(g=>{
+  const accuracy=g.correct/g.attempts;
+  // Consistency requires breadth and successful practice on separate days.
+  const consistent=g.questions.size>=3&&g.successDays.size>=2&&accuracy>=.85&&g.recovered.size>=2;
+  return {name:g.name,attempts:g.attempts,accuracy,questions:g.questions.size,days:g.successDays.size,status:consistent?'Getting consistent':g.attempts<3?'Still learning':accuracy>=.7?'Improving':'Needs practice'};
+ }).sort((a,b)=>a.accuracy-b.accuracy);
+}
+export function sessionFeedback(answers=[]){
+ const groups=new Map();
+ for(const {skill,correct} of answers){
+  const name=skill||'General grammar';
+  if(!groups.has(name))groups.set(name,{name,total:0,correct:0});
+  const g=groups.get(name);g.total++;if(correct)g.correct++;
+ }
+ const results=[...groups.values()];
+ return {focus:results.filter(g=>g.correct<g.total).sort((a,b)=>(b.total-b.correct)-(a.total-a.correct)),strengths:results.filter(g=>g.correct===g.total)};
 }
 export function pickFixQuestions(bank,history={},recentIds=[],legacyMistakes=[],length=SESSION_LENGTH){
  const recent=new Set(recentIds),missed=new Set(legacyMistakes);
