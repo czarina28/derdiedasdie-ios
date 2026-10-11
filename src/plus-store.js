@@ -1,5 +1,5 @@
 // StoreKit adapter. No purchase is enabled until product and receipt verification are configured.
-export const PLUS_PRODUCT_ID='com.czarina28.derdiedasdie.plus'; // Configure in App Store Connect.
+export const PLUS_PRODUCT_ID='de.derdiedasdie.app.plus'; // Configure in App Store Connect.
 export const PLUS_SALES_ENABLED=false;
 export async function store(){
  if(!window.Capacitor?.isNativePlatform?.())throw new Error('Purchases require the installed iPhone app.');
