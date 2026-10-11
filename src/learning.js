@@ -31,8 +31,10 @@ export function pickFixQuestions(bank,history={},recentIds=[],legacyMistakes=[],
  const practiced=shuffle(bank.filter(q=>history[q.id]&&!recent.has(q.id)&&score(q)===0));
  const selected=[],used=new Set();
  const take=(items,n)=>{for(const q of items){if(selected.length>=length||n<=0)break;if(!used.has(q.id)){selected.push(q);used.add(q.id);n--;}}};
- take(weak,Math.ceil(length*.4));
- take(related,Math.ceil(length*.2));
+ // Reserve up to 60% for actual missed questions; use related unseen
+ // questions only when there are fewer unresolved misses to revisit.
+ take(weak,Math.ceil(length*.6));
+ take(related,Math.max(0,Math.ceil(length*.6)-selected.length));
  take(fresh,Math.ceil(length*.3));
  take(practiced,Math.max(1,Math.floor(length*.1)));
  take(olderWeak,length-selected.length);
