@@ -1,4 +1,5 @@
 import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile,skillFor,sessionFeedback} from './learning.js';
+import {weakSpots,practicePlan} from './premium-plan.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -13,6 +14,13 @@ try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');
 
 function start(topic){mode=topic;const pool=topic==='Review mistakes'?bank.filter(q=>mistakes.has(q.id)):bank;const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');reviewStartingCount=topic==='Review mistakes'?pool.length:0;deck=topic==='Fix My German'?pickFixQuestions(bank,learning,recent,[...mistakes]):topic==='Review mistakes'?shuffle(pool):topic==='Mixed practice'?pickProgressiveQuestions(pool,topic,recent,practiceStage(history)):pickFreshQuestions(pool,topic,recent);position=0;correct=0;total=0;sessionAnswers=[];if(deck.length)next();else if(topic==='Review mistakes')emptyReview();else home();}
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
+function premiumPreview(){
+ const spots=weakSpots(bank,learning);
+ const plan=practicePlan(bank,learning);
+ root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Home</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">PLUS · COMING SOON</div><h1>Know your <em>weak spots.</em></h1><p>A preview of your personalized grammar plan. Purchases are not available yet.</p></section><section class="skill-section"><h2>My Weak Spots</h2>${spots.length?`<div class="skill-list">${spots.map(s=>`<div class="skill-row"><strong>${s.name}</strong><span>${s.accuracy}% accuracy · ${s.unresolved} unresolved</span></div>`).join('')}</div>`:'<p>Complete some practice sessions to discover your weak spots.</p>'}</section><section class="skill-section"><h2>Your three-step plan</h2>${plan.length?`<div class="skill-list">${plan.map(p=>`<div class="skill-row"><strong>Step ${p.day}: ${p.skill}</strong><span>${p.unresolved?`${p.unresolved} errors to revisit`:'Reinforce previous mistakes'}</span></div>`).join('')}</div>`:'<p>Your personalized plan will appear after you make some practice attempts.</p>'}</section><p class="preview-note">Preview only · No payment or premium access is enabled. All existing grammar exercises remain free.</p><button class="hero-start" id="return-practice">Continue free practice →</button></main>`;
+ document.getElementById('back-home').addEventListener('click',home);
+ document.getElementById('return-practice').addEventListener('click',()=>start('Mixed practice'));
+}
 function home(){
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
@@ -24,11 +32,13 @@ function home(){
  root.innerHTML=`<main class="home-screen"><header><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie" width="162" height="48"><span class="header-note">GERMAN GRAMMAR PRACTICE</span></header>
  <section class="home-hero"><h1>You know better.<br><em>Now do better.</em></h1><p>You know the rules. Now make them automatic. Ten focused German grammar questions at a time.</p><button class="hero-start" data-mode="Mixed practice"><span>Put it into practice <small>10 questions · all topics</small></span><span aria-hidden="true">↗</span></button></section>
  <section class="fix-feature" aria-label="Personalized practice"><button class="hero-start" data-mode="Fix My German"><span>Fix My German <small>${progress.attempts?`${skills.filter(s=>s.status==='Needs practice').length} grammar areas need practice · ${skills.filter(s=>s.status==='Improving').length} improving`:"10 questions · starts with a balanced mix and learns from your answers"}</small></span><span aria-hidden="true">↗</span></button></section>
+ <section class="premium-teaser"><span class="eyebrow">COMING SOON · PLUS</span><h2>Your personal grammar plan</h2><p>See your recurring weak spots and a focused plan for improving them.</p><button class="premium-preview-button" id="show-premium">Preview your plan →</button></section>
  <section class="home-stats" aria-label="Your progress"><div><strong>${completed}</strong><span>Rounds completed</span></div><div><strong>${bank.length}</strong><span>Practice questions</span></div><div><strong>${mistakes.size}</strong><span>Mistakes to revisit</span></div></section>
  <section class="skill-section" aria-label="Your grammar patterns"><div class="section-heading"><h2>Your grammar patterns</h2><span>PERSONAL TO YOU</span></div>${skills.length?`<div class="skill-list">${skills.map(s=>`<div class="skill-row"><strong>${s.name}</strong><span>${s.status} · ${s.questions} question${s.questions===1?"":"s"} tried</span></div>`).join("")}</div>`:`<p>Start practicing to discover which grammar patterns need attention. We’ll look for patterns across different questions.</p>`}</section>
  <section class="topic-section"><div class="section-heading"><h2>Choose your focus</h2><span>8 TOPICS</span></div><div class="topic-list">${topics.map(([name,detail,count],i)=>`<button ${count?`data-mode="${name}"`:"disabled"}><span class="topic-index">${String(i+1).padStart(2,'0')}</span><span class="topic-copy"><strong>${name}</strong><small>${count?detail+` · ${count} questions`:"Coming soon"}</small></span><span class="topic-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></section>
  <button class="review-link" data-mode="Review mistakes"><span>↺ &nbsp; Practice what you missed <strong>(${mistakes.size})</strong></span></button>
  <footer>Know it. Do it. Own it. Every topic is free.</footer></main>`;
+ document.getElementById('show-premium').addEventListener('click',premiumPreview);
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
 }
 function emptyReview(){
