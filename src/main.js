@@ -1,5 +1,6 @@
 import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile,skillFor,sessionFeedback} from './learning.js';
 import {weakSpots,practicePlan} from './premium-plan.js';
+import {MASTERY_KEY,recordSkillSession,masteryProfile} from './mastery.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -9,6 +10,8 @@ const bank=buildCatalog();
 const root=document.getElementById('app');
 let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
+let masteryLog=[];
+try{const saved=JSON.parse(localStorage.getItem(MASTERY_KEY)||'[]');if(Array.isArray(saved))masteryLog=saved;}catch{}
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set(),reviewStartingCount=0,sessionAnswers=[];
 try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');mistakes=new Set(saved.map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));}catch{mistakes=new Set();}
 
@@ -17,7 +20,8 @@ function next(){if(position>=deck.length){summary();return;}question={...deck[po
 function premiumPreview(){
  const spots=weakSpots(bank,learning);
  const plan=practicePlan(bank,learning);
- root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Home</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">PLUS · COMING SOON</div><h1>Make progress <em>you can see.</em></h1><p>Fix My German adapts one practice session. Plus is being developed to guide your improvement over multiple sessions. Here is what your current practice data can tell us.</p></section><section class="skill-section"><h2>My Weak Spots</h2>${spots.length?`<div class="skill-list">${spots.map(s=>`<div class="skill-row"><strong>${s.name}</strong><span>${s.accuracy}% accuracy · ${s.unresolved} unresolved</span></div>`).join('')}</div>`:'<p>Complete some practice sessions to discover your weak spots.</p>'}</section><section class="skill-section"><h2>Suggested focus order</h2>${plan.length?`<div class="skill-list">${plan.map(p=>`<div class="skill-row"><strong>Priority ${p.day}: ${p.skill}</strong><span>${p.unresolved?`${p.unresolved} errors to revisit`:'Reinforce previous mistakes'}</span></div>`).join('')}</div>`:'<p>Your personalized plan will appear after you make some practice attempts.</p>'}</section><p class="preview-note">This is an early preview based on your cumulative answers, not yet a multi-session improvement tracker. Purchases are not enabled. All existing grammar practice remains free.</p><button class="hero-start" id="return-practice">Continue free practice →</button></main>`;
+ const masterySkills=[...new Set(masteryLog.map(s=>s.skill))].map(skill=>({skill,...masteryProfile(masteryLog,skill)}));
+ root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Home</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">PLUS · COMING SOON</div><h1>Make progress <em>you can see.</em></h1><p>Fix My German adapts one practice session. Plus is being developed to guide your improvement over multiple sessions. Here is what your current practice data can tell us.</p></section><section class="skill-section"><h2>My Weak Spots</h2>${spots.length?`<div class="skill-list">${spots.map(s=>`<div class="skill-row"><strong>${s.name}</strong><span>${s.accuracy}% accuracy · ${s.unresolved} unresolved</span></div>`).join('')}</div>`:'<p>Complete some practice sessions to discover your weak spots.</p>'}</section><section class="skill-section"><h2>Mastery progress · 100% goal</h2>${masterySkills.length?`<div class="skill-list">${masterySkills.map(s=>`<div class="skill-row"><strong>${s.skill} · ${s.status}</strong><span>${s.accuracy}% overall · ${s.perfectDays}/3 perfect days · ${s.questions}/6 varied questions</span></div>`).join("")}</div>`:"<p>Finish a practice session to start tracking mastery across days.</p>"}</section><section class="skill-section"><h2>Suggested focus order</h2>${plan.length?`<div class="skill-list">${plan.map(p=>`<div class="skill-row"><strong>Priority ${p.day}: ${p.skill}</strong><span>${p.unresolved?`${p.unresolved} errors to revisit`:'Reinforce previous mistakes'}</span></div>`).join('')}</div>`:'<p>Your personalized plan will appear after you make some practice attempts.</p>'}</section><p class="preview-note">This is an early preview based on your cumulative answers, not yet a multi-session improvement tracker. Purchases are not enabled. All existing grammar practice remains free.</p><button class="hero-start" id="return-practice">Continue free practice →</button></main>`;
  document.getElementById('back-home').addEventListener('click',home);
  document.getElementById('return-practice').addEventListener('click',()=>start('Mixed practice'));
 }
@@ -55,6 +59,7 @@ function summary(){
  }
 
  const history=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');history.push({date:new Date().toISOString(),mode,correct,total});localStorage.setItem('derdiedasdie-sessions',JSON.stringify(history.slice(-100)));
+ masteryLog=recordSkillSession(masteryLog,sessionAnswers);localStorage.setItem(MASTERY_KEY,JSON.stringify(masteryLog));
  const feedback=sessionFeedback(sessionAnswers);
  const focusText=feedback.focus.length?'Focus next: '+feedback.focus.slice(0,2).map(s=>s.name).join(' · ')+'.':'No mistakes this round. Keep practicing across different days to build consistency.';
  const strengthText=feedback.strengths.length?'Strong this round: '+feedback.strengths.slice(0,2).map(s=>s.name).join(' · ')+'.':'';
@@ -72,7 +77,7 @@ function render(){
  <div id="feedback" aria-live="polite"></div><button id="next" hidden>${position===deck.length?'See results →':'Next sentence →'}</button></section>
  <footer>Early prototype: sentence content awaits independent language review. No purchases enabled.</footer></main>`;
  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{
- if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);sessionAnswers.push({skill:skillFor(question),correct:ok});learning=recordAttempt(learning,question.id,ok);localStorage.setItem(LEARNING_KEY,JSON.stringify(learning));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
+ if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);sessionAnswers.push({id:question.id,skill:skillFor(question),correct:ok});learning=recordAttempt(learning,question.id,ok);localStorage.setItem(LEARNING_KEY,JSON.stringify(learning));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
  document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;const v=question.options[Number(b.dataset.i)];if(v===question.answer)b.classList.add('right');else if(b===btn)b.classList.add('wrong');});
  const specific=!ok&&question.wrongFeedback?.[selected];
  document.getElementById('feedback').textContent=(ok?'✓ Correct. Why? ':'Not quite. Correct answer: '+question.answer+'. Why? ')+(specific?specific+' ':'')+question.explanation;
