@@ -126,7 +126,7 @@ test('advanced construction exercises are available and categorized',()=>{
 test('500-question milestone preserves 42 new connector drills',()=>{
  const bank=buildCatalog();
  const items=bank.filter(q=>q.id.startsWith('connect-'));
- assert.equal(bank.length,516);
+ assert.equal(bank.length,532);
  assert.equal(items.length,42);
  assert.ok(items.every(q=>['Word order','Sentence connections'].includes(q.topic)));
  assert.ok(items.some(q=>q.topic==='Word order'));
@@ -143,5 +143,5 @@ test('Ersatzinfinitiv drills include past modal forms and subordinate word order
  assert.equal(items.find(q=>q.id==='ersatz-001').answer,'sollen');
  assert.equal(items.find(q=>q.id==='ersatz-012').answer,'müssen');
  assert.equal(new Set(items.map(q=>q.subtopic)).size,2);
- assert.equal(bank.length,516);
+ assert.equal(bank.length,532);
 });
