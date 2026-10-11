@@ -1,0 +1,18 @@
+export const directionSentences=[
+{id:'direction-001',before:'Ich bin schon ',after:' Büro und beantworte E-Mails.',options:['im','ins','am','zum'],answer:'im',explanation:'Wo? You are already inside the office. Use dative: in dem Büro = im Büro.'},
+{id:'direction-002',before:'Ich fahre jetzt ',after:' Büro, um dort zu arbeiten.',options:['ins','im','am','beim'],answer:'ins',explanation:'Wohin? The office is the destination. Use accusative: in das Büro = ins Büro.'},
+{id:'direction-003',before:'Die Kinder spielen gerade ',after:' Garten hinter dem Haus.',options:['im','in den','ins','am'],answer:'im',explanation:'Wo? The children are playing inside the garden. Dative: in dem Garten = im Garten. Movement alone does not mean accusative.'},
+{id:'direction-004',before:'Die Kinder laufen aus dem Haus ',after:' Garten, um dort zu spielen.',options:['in den','im','ins','beim'],answer:'in den',explanation:'Wohin? They enter the garden. Garten is masculine, so in + accusative = in den Garten.'},
+{id:'direction-005',before:'Ich liege schon ',after:' Bett und lese.',options:['im','ins','ans','zum'],answer:'im',explanation:'Wo? You are already in bed: in dem Bett = im Bett.'},
+{id:'direction-006',before:'Ich bin müde und lege mich jetzt ',after:' Bett.',options:['ins','im','am','beim'],answer:'ins',explanation:'Wohin? You are getting into bed: in das Bett = ins Bett.'},
+{id:'direction-007',before:'Meine Schwester kocht gerade ',after:' Küche.',options:['in der','in die','ins','zur'],answer:'in der',explanation:'Wo? She is cooking in the kitchen. Küche is feminine; dative is in der Küche.'},
+{id:'direction-008',before:'Meine Schwester geht jetzt ',after:' Küche, um Kaffee zu machen.',options:['in die','in der','im','bei der'],answer:'in die',explanation:'Wohin? She is going into the kitchen. Feminine accusative: in die Küche.'},
+{id:'direction-009',before:'Ich bin heute Abend ',after:' und bleibe dort.',options:['zu Hause','nach Hause','ins Haus','von Hause'],answer:'zu Hause',explanation:'Wo? Zu Hause is the fixed expression for being at home.'},
+{id:'direction-010',before:'Es ist spät. Ich gehe jetzt ',after:'.',options:['nach Hause','zu Hause','im Hause','bei Hause'],answer:'nach Hause',explanation:'Wohin? Nach Hause is the fixed expression for going home.'},
+{id:'direction-011',before:'Wir sitzen schon ',after:' Restaurant und warten auf das Essen.',options:['im','ins','zum','ans'],answer:'im',explanation:'Wo? Already inside the restaurant: im Restaurant (dative).'},
+{id:'direction-012',before:'Wir gehen heute Abend ',after:' Restaurant an der Ecke, um dort zu essen.',options:['ins','im','beim','am'],answer:'ins',explanation:'Wohin? Entering the restaurant: ins Restaurant (accusative).'},
+{id:'direction-013',before:'Der Hund rennt seit zehn Minuten ',after:' Park herum.',options:['im','in den','ins','zum'],answer:'im',explanation:'Wo? The dog runs around within the park. Dative is used despite movement.'},
+{id:'direction-014',before:'Der Hund rennt von der Straße ',after:' Park hinein.',options:['in den','im','ins','am'],answer:'in den',explanation:'Wohin? The dog enters the park. Masculine accusative: in den Park.'},
+{id:'direction-015',before:'Ich bin gerade ',after:' Arbeit und kann nicht telefonieren.',options:['bei der','zur','nach der','in die'],answer:'bei der',explanation:'Wo? Bei der Arbeit describes being at work; bei always takes dative.'},
+{id:'direction-016',before:'Ich fahre morgens mit dem Rad ',after:' Arbeit.',options:['zur','bei der','in der','von der'],answer:'zur',explanation:'Wohin? Zur Arbeit expresses heading to work; zu takes dative, even for a destination.'}
+];
