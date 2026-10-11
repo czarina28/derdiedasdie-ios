@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {recordAttempt,pickFixQuestions,learningSummary} from '../src/learning.js';
+import {recordAttempt,pickFixQuestions,learningSummary,skillProfile,sessionFeedback} from '../src/learning.js';
 
 test('attempt history remembers repeated mistakes and later improvement',()=>{
  let h={};
@@ -28,4 +28,22 @@ test('Fix My German supports small banks and older mistake IDs',()=>{
  const deck=pickFixQuestions(bank,{},[],['a']);
  assert.equal(deck.length,3);
  assert.equal(new Set(deck.map(q=>q.id)).size,3);
+});
+
+test('grammar consistency requires multiple questions and separate successful days',()=>{
+ const bank=Array.from({length:4},(_,i)=>({id:'x'+i,subtopic:'Wo vs. Wohin?'}));
+ let h={};
+ for(let i=0;i<3;i++){
+  h=recordAttempt(h,'x'+i,false,'2026-01-01T09:00:00Z');
+  h=recordAttempt(h,'x'+i,true,'2026-01-01T10:00:00Z');
+  h=recordAttempt(h,'x'+i,true,'2026-01-01T11:00:00Z');
+ }
+ assert.notEqual(skillProfile(bank,h)[0].status,'Getting consistent');
+ for(let i=0;i<3;i++)for(let n=0;n<8;n++)h=recordAttempt(h,'x'+i,true,'2026-01-02T10:00:00Z');
+ assert.equal(skillProfile(bank,h)[0].status,'Getting consistent');
+});
+test('session feedback distinguishes errors from strengths by grammar pattern',()=>{
+ const feedback=sessionFeedback([{skill:'Wo vs. Wohin?',correct:false},{skill:'Wo vs. Wohin?',correct:true},{skill:'Verb position',correct:true}]);
+ assert.equal(feedback.focus[0].name,'Wo vs. Wohin?');
+ assert.equal(feedback.strengths[0].name,'Verb position');
 });
