@@ -1,3 +1,4 @@
+import {directionSentences} from './direction-sentences.js';
 import {ersatzinfinitivSentences} from './ersatzinfinitiv-sentences.js';
 import {connectionSentences} from './connection-sentences.js';
 import {advancedSentences} from './advanced-sentences.js';
@@ -38,7 +39,8 @@ export const QUESTION_SOURCES=[
  {key:'verb',topic:'Verb forms & tenses',questions:verbFormSentences},
  {key:'advanced',topic:'Advanced constructions',questions:advancedSentences},
  {key:'connect',topic:'Sentence connections',questions:connectionSentences},
- {key:'ersatz',topic:'Advanced constructions',questions:ersatzinfinitivSentences}
+ {key:'ersatz',topic:'Advanced constructions',questions:ersatzinfinitivSentences},
+ {key:'direction',topic:'Prepositions',questions:directionSentences}
 ];
 export function buildCatalog(){
  const catalog=[];
