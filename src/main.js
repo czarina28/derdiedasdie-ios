@@ -38,14 +38,17 @@ async function refreshPlusOwnership(){
 }
 function plusPurchaseScreen(){
  plusPreviewMode=false;
- root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" id="buy-plus" disabled>Checking PLUS…</button><button class="plus-restore" id="restore-plus">Restore Purchases</button><p class="preview-note" id="store-status" role="status">Checking Apple StoreKit…</p></main>`;
+ root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong id="plus-displayed-price">Checking price…</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" id="buy-plus" disabled>Checking PLUS…</button><button class="plus-restore" id="restore-plus">Restore Purchases</button><p class="preview-note" id="store-status" role="status">Checking Apple StoreKit…</p></main>`;
  const status=document.getElementById('store-status'),buy=document.getElementById('buy-plus'),restore=document.getElementById('restore-plus');
  const showOwned=()=>{buy.disabled=true;buy.textContent='PLUS unlocked ✓';status.textContent='Apple verified your PLUS purchase on this device.';};
  Promise.all([plusProduct(),refreshPlusOwnership()]).then(([product,owned])=>{
   if(!status.isConnected)return;
   if(owned){showOwned();return;}
-  if(!product){status.textContent='PLUS product not available from Apple.';buy.textContent='PLUS unavailable';return;}
-  buy.disabled=false;buy.textContent='Unlock PLUS · '+(product.priceString||'€4.99');
+  if(!product){status.textContent='PLUS product not available from Apple.';buy.textContent='PLUS unavailable';document.getElementById('plus-displayed-price').textContent='Price unavailable';return;}
+  const applePrice=product.priceString;
+  if(!applePrice){status.textContent='Apple did not provide a localized price.';buy.textContent='PLUS unavailable';return;}
+  document.getElementById('plus-displayed-price').textContent=applePrice;
+  buy.disabled=false;buy.textContent='Unlock PLUS · '+applePrice;
   status.textContent='One-time purchase. All grammar practice remains free.';
  }).catch(e=>{if(status.isConnected){status.textContent='Store unavailable: '+(e?.message||'Unknown error');buy.textContent='PLUS unavailable';}});
  buy.addEventListener('click',async()=>{
