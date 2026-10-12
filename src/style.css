@@ -412,3 +412,9 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .home-screen .review-link .review-chevron svg{display:block}
 :root[data-theme="dark"] .home-screen .review-link .review-chevron{background:#263f63;color:#a9d1ff}
 @media(prefers-color-scheme:dark){:root[data-theme="system"] .home-screen .review-link .review-chevron{background:#263f63;color:#a9d1ff}}
+
+/* Native dashboard Review Mistakes: substantial, crisp icon treatment. */
+.app-shortcuts .review-shortcut-icon{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#dbeafe;color:#1d4ed8;flex:none}
+.app-shortcuts .review-shortcut-icon svg{display:block}
+:root[data-theme="dark"] .app-shortcuts .review-shortcut-icon{background:#263f63;color:#a9d1ff}
+@media(prefers-color-scheme:dark){:root[data-theme="system"] .app-shortcuts .review-shortcut-icon{background:#263f63;color:#a9d1ff}}
