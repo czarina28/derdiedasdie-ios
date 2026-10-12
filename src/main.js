@@ -79,9 +79,30 @@ function plusPurchaseScreen(){
  });
  document.getElementById('back-plus').addEventListener('click',premiumPreview);
 }
+function appNavigation(tab){
+ return '<nav class="app-tabs" aria-label="App navigation"><button data-tab="home" class="'+(tab==='home'?'selected':'')+'"><span aria-hidden="true">⌂</span>Home</button><button data-tab="practice" class="'+(tab==='practice'?'selected':'')+'"><span aria-hidden="true">▤</span>Practice</button><button data-tab="progress" class="'+(tab==='progress'?'selected':'')+'"><span aria-hidden="true">▥</span>Progress</button><button data-tab="settings" class="'+(tab==='settings'?'selected':'')+'"><span aria-hidden="true">⚙</span>Settings</button></nav>';
+}
+function keepNavigationOnPlus(){
+ if(window.Capacitor?.isNativePlatform?.()!==true)return;
+ const page=root.querySelector('main.premium-preview');
+ if(!page)return;
+ const shell=document.createElement('main');
+ shell.className='app-shell plus-dashboard-shell'+(plusOwned?' plus-active':'');
+ const content=document.createElement('div');content.className='app-content';
+ page.remove();content.appendChild(page);shell.appendChild(content);
+ shell.insertAdjacentHTML('beforeend',appNavigation('progress'));
+ root.replaceChildren(shell);
+ shell.querySelectorAll('.app-tabs [data-tab]').forEach(button=>button.addEventListener('click',()=>{
+  const tab=button.dataset.tab;
+  if(tab==='progress'){plusPreviewMode=true;premiumPreview();return;}
+  home();
+  if(tab!=='home')root.querySelector('.app-tabs [data-tab="'+tab+'"]')?.click();
+ }));
+}
 function premiumPreview(){
  if(!plusPreviewMode && !plusOwned){
   root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Progress</button></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>Plus Progress</h2><ul><li>Mastery across multiple days</li><li>Personalized progress plan</li><li>Weak spots and improvement priorities</li></ul></section><button class="hero-start" id="preview-progress">Preview PLUS →</button><button class="premium-preview-button" id="show-plus-offer">Purchase information →</button><p class="preview-note">Preview only. No purchase or entitlement is granted.</p></main>`;
+  keepNavigationOnPlus();
   document.getElementById('back-home').addEventListener('click',home);
   document.getElementById('preview-progress').addEventListener('click',()=>{plusPreviewMode=true;premiumPreview();});
   document.getElementById('show-plus-offer').addEventListener('click',plusPurchaseScreen);
@@ -96,6 +117,7 @@ function premiumPreview(){
  const trendSection='<section class="skill-section"><h2>Progress over time</h2>'+(trend.length?'<p>'+trend.length+' recent rounds · '+(change===null?'Complete another round to see your trend.':(change>0?'+':'')+change+' percentage points vs earlier rounds')+'</p><div class="plus-trend" aria-label="Accuracy in recent rounds">'+trend.map((p,i)=>'<div class="plus-trend-col"><div class="plus-trend-bar" style="height:'+Math.max(4,p.accuracy)+'%" title="Round '+(i+1)+': '+p.accuracy+'%"></div><small>'+p.accuracy+'%</small></div>').join('')+'</div>':'<p>Complete a round to start tracking your progress.</p>')+'</section>';
 
  root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Home</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">${plusOwned?"PLUS · UNLOCKED":"PLUS · PREVIEW"}</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><button class="hero-start" id="work-plan" ${plan.length&&plusOwned?"":"disabled"}>${plusOwned?"Work my plan →":"Preview of your PLUS plan"}</button>${trendSection}<section class="skill-section"><h2>My Weak Spots</h2>${spots.length?`<div class="skill-list">${spots.map(s=>`<button class="skill-row plan-skill" data-skill="${s.name}"><strong>${s.name}</strong><span>${s.accuracy}% accuracy · ${s.unresolved} unresolved ↗</span></button>`).join('')}</div>`:'<p>Complete some practice sessions to discover your weak spots.</p>'}</section><section class="skill-section"><h2>Mastery progress · 100% goal</h2>${masterySkills.length?`<div class="skill-list">${masterySkills.map(s=>`<button class="skill-row plan-skill" data-skill="${s.skill}"><strong>${s.skill} · ${s.status}</strong><span>${s.accuracy}% overall · ${s.perfectDays}/3 perfect days · ${s.questions}/6 proven ability ↗</span></button>`).join("")}</div>`:"<p>Finish a practice session to start tracking mastery across days.</p>"}</section><section class="skill-section"><h2>Suggested focus order</h2>${plan.length?`<div class="skill-list">${plan.map(p=>`<button class="skill-row plan-skill" data-skill="${p.skill}"><strong>Priority ${p.day}: ${p.skill}</strong><span>${p.unresolved?`${p.unresolved} errors to revisit`:'Reinforce previous mistakes'} ↗</span></button>`).join('')}</div>`:'<p>Your personalized plan will appear after you make some practice attempts.</p>'}</section>${plusOwned?'':'<button class="premium-preview-button" id="show-plus-offer">Unlock PLUS →</button>'}<p class="preview-note">${plusOwned?"Your PLUS ownership is verified by Apple.":"PLUS insights shown as a preview. All grammar practice remains free."}</p><button class="hero-start" id="return-practice">Continue free practice →</button></main>`;
+ keepNavigationOnPlus();
  document.getElementById('show-plus-offer')?.addEventListener('click',plusPurchaseScreen);
  document.getElementById('work-plan').addEventListener('click',()=>{if(plusOwned&&plan.length)startSkill(plan[0].skill);});
  document.querySelectorAll('.plan-skill').forEach(b=>{b.disabled=!plusOwned;b.addEventListener('click',()=>{if(plusOwned)startSkill(b.dataset.skill);});});
@@ -131,7 +153,7 @@ function home(){
 function nativeDashboard(sessions,topics,skills,tab='home'){
  const last=sessions.at(-1);
  const score=last&&last.total?Math.round(last.correct/last.total*100):0;
- const nav='<nav class="app-tabs" aria-label="App navigation"><button data-tab="home" class="'+(tab==='home'?'selected':'')+'"><span aria-hidden="true">⌂</span>Home</button><button data-tab="practice" class="'+(tab==='practice'?'selected':'')+'"><span aria-hidden="true">▤</span>Practice</button><button data-tab="progress" class="'+(tab==='progress'?'selected':'')+'"><span aria-hidden="true">▥</span>Progress</button><button data-tab="settings" class="'+(tab==='settings'?'selected':'')+'"><span aria-hidden="true">⚙</span>Settings</button></nav>';
+ const nav=appNavigation(tab)
  const topicCards=topics.map(([name,detail,count])=>'<button class="app-topic" '+(count?'data-mode="'+name+'"':'disabled')+'><span><strong>'+name+'</strong><small>'+detail+'</small></span></button>').join('');
  const homeBody='<div class="app-greeting"><h1>Bereit für Deutsch?</h1><p>A little practice goes a long way.</p></div><section class="app-progress-card"><div class="app-card-head"><strong>Your progress</strong><span>Last session</span></div>'+(last?'<div class="app-score"><strong>'+last.correct+'/'+last.total+'</strong><span>correct answers</span></div><div class="app-meter"><span style="width:'+score+'%"></span></div>':'<p>Your first session is waiting.</p>')+'</section><button class="app-primary" data-mode="Mixed practice"><strong>Start Practice</strong><small>10 questions · About 3 minutes</small></button><div class="app-shortcuts"><button data-mode="Review mistakes"><span class="app-shortcut-icon review-shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a9 9 0 1 1 2.7 6.4"/><path d="M3 4v7h7"/><path d="m9 12 2 2 4-4"/></svg></span><strong>Review Mistakes</strong><small>'+mistakes.size+' saved questions</small></button><button data-tab="practice"><span class="app-shortcut-icon" aria-hidden="true">◎</span><strong>Choose Topic</strong><small>Focused practice</small></button></div>'+(plusOwned?'':'<button class="app-plus-nudge" id="home-plus"><span><strong>✦ Unlock PLUS</strong><small>Know what you&#39;ve mastered. Know what&#39;s next.</small></span><span aria-hidden="true">›</span></button>')+'<button class="app-weak" data-mode="Fix My German"><span><strong>Target Weak Spots</strong><small>Personalized practice based on your answers</small></span><span aria-hidden="true">›</span></button>';
  const practiceBody='<div class="app-page-title"><h1>Practice</h1><p>Choose how you want to learn today.</p></div><button class="app-primary" data-mode="Mixed practice"><strong>Mixed Practice</strong><small>10 questions · All topics</small></button><button class="app-weak" data-mode="Fix My German"><span><strong>Target Weak Spots</strong><small>Practice what needs attention</small></span><span aria-hidden="true">›</span></button><h2 class="app-subtitle">Grammar topics</h2><div class="app-topics">'+topicCards+'</div>';
