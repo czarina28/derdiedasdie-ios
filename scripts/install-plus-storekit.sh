@@ -33,19 +33,20 @@ abort 'App group not found' unless group
     target.source_build_phase.add_file_reference(file)
   end
 end
-# Capacitor's default storyboard uses CAPBridgeViewController. Change only
-# the controller class and module attributes; fail if layout differs.
+# Explicitly assign the custom bridge controller in the storyboard.
+# Capacitor templates may omit the customClass attribute entirely.
 storyboard='ios/App/App/Base.lproj/Main.storyboard'
 abort 'Main.storyboard missing' unless File.exist?(storyboard)
 xml=File.read(storyboard)
-if xml.include?('customClass="CAPBridgeViewController"')
-  xml=xml.sub('customClass="CAPBridgeViewController"', 'customClass="ViewController"')
-  # Replace any Capacitor module reference on the same view controller.
-  xml=xml.sub(/(customClass="ViewController"[^>]*?)customModule="Capacitor"/, '\\1customModule="App"')
-elsif !xml.include?('customClass="ViewController"')
-  abort 'Unknown storyboard bridge class: inspect before building'
-end
-File.write(storyboard,xml)
+require 'rexml/document'
+doc=REXML::Document.new(xml)
+controller=REXML::XPath.first(doc, '//viewController')
+abort 'No storyboard viewController found' unless controller
+controller.attributes['customClass']='ViewController'
+controller.attributes['customModule']='App'
+controller.attributes['customModuleProvider']='target'
+File.write(storyboard,doc.to_s)
+puts 'Storyboard controller: ' + controller.attributes['customClass'].to_s
 project.save
 RUBY
 echo "Native StoreKit 2 plugin installed in Xcode target"
