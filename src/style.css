@@ -384,3 +384,16 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 :root[data-theme="system"] .app-tabs button{color:#b7b9be}
 :root[data-theme="system"] .app-tabs button.selected{color:#f5c76b}
 }
+
+/* Four equally sized bottom navigation destinations; never wrap Settings. */
+.app-tabs{grid-template-columns:repeat(4,minmax(0,1fr));width:auto}
+.app-tabs button{min-width:0;white-space:nowrap;padding-left:2px;padding-right:2px}
+/* Explanation panels must have paired text/background colors in every theme. */
+:root[data-theme="dark"] #feedback:not(:empty){background:#26384b;color:#f1f5f9;border-left-color:#77b6ff}
+:root[data-theme="dark"] #feedback:not(:empty) *{color:inherit}
+:root[data-theme="dark"] .practice-screen.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px rgba(0,0,0,.45)}
+@media(prefers-color-scheme:dark){
+:root[data-theme="system"] #feedback:not(:empty){background:#26384b;color:#f1f5f9;border-left-color:#77b6ff}
+:root[data-theme="system"] #feedback:not(:empty) *{color:inherit}
+:root[data-theme="system"] .practice-screen.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px rgba(0,0,0,.45)}
+}
