@@ -418,3 +418,8 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .app-shortcuts .review-shortcut-icon svg{display:block}
 :root[data-theme="dark"] .app-shortcuts .review-shortcut-icon{background:#263f63;color:#a9d1ff}
 @media(prefers-color-scheme:dark){:root[data-theme="system"] .app-shortcuts .review-shortcut-icon{background:#263f63;color:#a9d1ff}}
+
+/* PLUS is a Progress destination: keep the same fixed four-tab shell. */
+.plus-dashboard-shell .app-content>.premium-preview{height:auto;min-height:100%;max-width:none;margin:0;padding:8px 2px 28px;display:block;overflow:visible;background:transparent}
+.plus-dashboard-shell .app-content>.premium-preview header{padding-top:0}
+.plus-dashboard-shell .app-tabs{flex-shrink:0}
