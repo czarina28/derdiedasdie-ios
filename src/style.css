@@ -461,3 +461,12 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 :root[data-theme="system"] .native-practice.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px #0006}
 }
 @media(max-width:380px){.native-practice{padding-left:14px;padding-right:14px}.native-practice .quiz{padding:18px 14px}.native-practice .practice-header-title{display:none}}
+
+/* PLUS insights should read as an in-app dashboard, not a long article. */
+.plus-dashboard-shell .home-hero{padding:20px 0 18px}
+.plus-dashboard-shell .home-hero h1{font-size:clamp(27px,7vw,38px);line-height:1.16}
+.plus-dashboard-shell .skill-section{margin-top:18px}
+.plus-dashboard-shell .skill-section h2{font-size:19px;letter-spacing:-.3px}
+.plus-dashboard-shell .plus-trend{border-radius:15px}
+.plus-dashboard-shell .skill-row{border-radius:13px;min-height:56px;touch-action:manipulation}
+.plus-dashboard-shell .hero-start{min-height:54px;border-radius:14px}
