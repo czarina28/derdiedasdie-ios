@@ -217,7 +217,7 @@ function summary(){
  root.innerHTML='<main><header><img class="brand-logo" src="'+import.meta.env.BASE_URL+'logo.svg" alt="derdiedasdie" width="162" height="48"></header><section class="intro session-summary"><div class="eyebrow">SESSION COMPLETE</div><h1>'+correct+' out of '+total+'</h1><p>'+ (correct===total?'Perfect round. Every answer correct.':correct>=8?'Strong round. Keep the momentum.':'Every mistake is a chance to learn. Try another round.') +'</p><div class="session-insights"><h2>Your grammar this round</h2><p>'+focusText+'</p>'+(strengthText?'<p>'+strengthText+'</p>':'')+'</div>'+planResult+'<button id="again">Another session</button>'+(planSkill?'<button id="back-plan">Back to my plan →</button>':'')+'<button id="back">Choose a topic</button></section></main>';
  document.getElementById('again').addEventListener('click',()=>planSkill?startSkill(planSkill):start(mode));
  if(planSkill)document.getElementById('back-plan').addEventListener('click',premiumPreview);
- document.getElementById('back').addEventListener('click',home);
+ document.getElementById('back').addEventListener('click',()=>{home();root.querySelector('.app-tabs [data-tab="practice"]')?.click();});
  keepNavigationOnSummary();
 }
 function render(){
