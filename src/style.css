@@ -557,3 +557,7 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 
 /* Build 17: stronger brand presence in app header */
 .app-top .brand-logo{width:154px;max-width:52vw;height:auto}
+
+/* Build 17: increase practice-screen logo without changing question layout */
+.practice-header .brand-logo{width:146px;max-width:34vw;height:auto}
+@media(max-width:420px){.practice-header .brand-logo{width:140px;max-width:34vw}}
