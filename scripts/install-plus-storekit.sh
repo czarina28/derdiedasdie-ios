@@ -33,15 +33,18 @@ abort 'App group not found' unless group
     target.source_build_phase.add_file_reference(file)
   end
 end
-# The Capacitor storyboard must instantiate our registered bridge subclass.
+# Capacitor's default storyboard uses CAPBridgeViewController. Change only
+# the controller class and module attributes; fail if layout differs.
 storyboard='ios/App/App/Base.lproj/Main.storyboard'
-if File.exist?(storyboard)
-  xml=File.read(storyboard)
-  xml=xml.gsub(/customClass="CAPBridgeViewController"/, 'customClass="ViewController" customModule="App" customModuleProvider="target"')
-  File.write(storyboard,xml)
-else
-  abort 'Main.storyboard missing: cannot register native bridge safely'
+abort 'Main.storyboard missing' unless File.exist?(storyboard)
+xml=File.read(storyboard)
+if xml.include?('customClass="CAPBridgeViewController"')
+  xml=xml.sub(/customClass="CAPBridgeViewController"[^>]*customModule="Capacitor"/,
+              'customClass="ViewController" customModule="App"')
+elsif !xml.include?('customClass="ViewController"')
+  abort 'Unknown storyboard bridge class: inspect before building'
 end
+File.write(storyboard,xml)
 project.save
 RUBY
 echo "Native StoreKit 2 plugin installed in Xcode target"
