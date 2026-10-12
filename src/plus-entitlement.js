@@ -29,7 +29,18 @@ export async function buyVerifiedPlus(){
 }
 
 export async function restoreVerifiedPlus(){
- await NativePurchases.restorePurchases();
- const ownership=await verifiedPlusEntitlement();
- return {active:ownership.active};
+ // StoreKit 2 can already expose verified ownership without AppStore.sync().
+ // Check that first: an Apple sync failure must not hide an existing entitlement.
+ const current=await verifiedPlusEntitlement();
+ if(current.active)return {active:true};
+ try{
+  await NativePurchases.restorePurchases();
+ }catch(error){
+  // Even if Apple sync fails, recheck current entitlements before reporting it.
+  const afterFailure=await verifiedPlusEntitlement();
+  if(afterFailure.active)return {active:true};
+  throw error;
+ }
+ const afterSync=await verifiedPlusEntitlement();
+ return {active:afterSync.active};
 }
