@@ -345,3 +345,42 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .app-shell.plus-active .app-plus-nudge strong{color:#78531b}
 .app-shell.plus-active .app-plus-progress{border-color:#c7a35d}
 .app-shell.plus-active .app-plus-label{color:#956c24}
+
+/* Settings */
+.settings-card{background:#fffdfa;border:1px solid #ded5c8;border-radius:17px;padding:20px;margin:12px 0;color:#26231f}
+.settings-card h2{font-size:18px;margin:0 0 14px}
+.settings-card label{display:block;margin-bottom:8px;font-size:14px}
+.settings-card select{width:100%;padding:13px;border-radius:10px;border:1px solid #d5c9ba;background:#faf7f1;color:#26231f;font:inherit}
+.settings-action{display:block;width:100%;margin-top:12px;padding:14px;border:1px solid #d5c9ba;border-radius:10px;background:#faf7f1;color:#26231f;font:inherit;font-weight:700;text-align:left}
+.settings-status{font-size:13px}
+@media(max-width:420px){.app-tabs button{font-size:11px}}
+/* Theme colors apply to every screen, including quizzes and PLUS insights. */
+:root[data-theme="dark"]{color-scheme:dark}
+@media(prefers-color-scheme:dark){:root[data-theme="system"]{color-scheme:dark}}
+:root[data-theme="dark"],:root[data-theme="dark"] body{background:#161b20;color:#f2eee7}
+:root[data-theme="dark"] main{background:#161b20;color:#f2eee7}
+:root[data-theme="dark"] p,:root[data-theme="dark"] small{color:#b7b9be}
+:root[data-theme="dark"] header{border-color:#3c4249}
+:root[data-theme="dark"] .quiz,:root[data-theme="dark"] .settings-card,:root[data-theme="dark"] .app-progress-card,:root[data-theme="dark"] .app-plus-progress,:root[data-theme="dark"] .app-plus-nudge,:root[data-theme="dark"] .app-shortcuts button,:root[data-theme="dark"] .app-weak,:root[data-theme="dark"] .app-topic,:root[data-theme="dark"] .skill-row{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="dark"] .answer,:root[data-theme="dark"] .settings-card select,:root[data-theme="dark"] .settings-action{background:#303942;color:#f2eee7;border-color:#59626e}
+:root[data-theme="dark"] .answer.right{background:#1b4b36;color:#dcffe9}
+:root[data-theme="dark"] .answer.wrong{background:#61322d;color:#ffe7e2}
+:root[data-theme="dark"] #feedback{color:#e3ded6}
+:root[data-theme="dark"] .app-tabs{background:#20262e;border-color:#414953}
+:root[data-theme="dark"] .app-tabs button{color:#b7b9be}
+:root[data-theme="dark"] .app-tabs button.selected{color:#f5c76b}
+:root[data-theme="dark"] .app-shell.plus-active .app-plus-nudge{background:#393020;border-color:#c7a35d}
+:root[data-theme="dark"] .app-shell.plus-active .app-plus-nudge strong{color:#f5c76b}
+@media(prefers-color-scheme:dark){
+:root[data-theme="system"],:root[data-theme="system"] body,:root[data-theme="system"] main{background:#161b20;color:#f2eee7}
+:root[data-theme="system"] p,:root[data-theme="system"] small{color:#b7b9be}
+:root[data-theme="system"] header{border-color:#3c4249}
+:root[data-theme="system"] .quiz,:root[data-theme="system"] .settings-card,:root[data-theme="system"] .app-progress-card,:root[data-theme="system"] .app-plus-progress,:root[data-theme="system"] .app-plus-nudge,:root[data-theme="system"] .app-shortcuts button,:root[data-theme="system"] .app-weak,:root[data-theme="system"] .app-topic,:root[data-theme="system"] .skill-row{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="system"] .answer,:root[data-theme="system"] .settings-card select,:root[data-theme="system"] .settings-action{background:#303942;color:#f2eee7;border-color:#59626e}
+:root[data-theme="system"] .answer.right{background:#1b4b36;color:#dcffe9}
+:root[data-theme="system"] .answer.wrong{background:#61322d;color:#ffe7e2}
+:root[data-theme="system"] #feedback{color:#e3ded6}
+:root[data-theme="system"] .app-tabs{background:#20262e;border-color:#414953}
+:root[data-theme="system"] .app-tabs button{color:#b7b9be}
+:root[data-theme="system"] .app-tabs button.selected{color:#f5c76b}
+}
