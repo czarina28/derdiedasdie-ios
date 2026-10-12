@@ -324,3 +324,9 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .app-plus-benefits strong{font-size:13px}
 .app-plus-benefits small{font-size:11px;text-align:left;letter-spacing:0;font-weight:500}
 .app-plus-progress .app-primary{min-height:64px}
+
+/* Plus Progress: recent round accuracy, not a fabricated mastery score. */
+.plus-trend{display:flex;align-items:flex-end;gap:9px;height:144px;padding:12px 4px 22px;border-bottom:1px solid #cbd5e1}
+.plus-trend-col{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
+.plus-trend-bar{width:100%;max-width:38px;background:#2563eb;border-radius:5px 5px 0 0;min-height:4px}
+.plus-trend-col small{position:absolute;top:100%;padding-top:4px;font-size:10px;color:#475569}
