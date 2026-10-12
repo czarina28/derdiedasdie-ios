@@ -313,3 +313,14 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
  margin:0;
  box-shadow:0 0 0 10px var(--ddd-soft),0 8px 24px rgba(15,23,42,.18);
 }
+
+/* Progress is the Plus value proposition, not extra practice questions. */
+.app-plus-progress{background:#fff;border:1px solid #dbeafe;border-radius:16px;padding:19px;margin:16px 0 20px}
+.app-plus-label{font-size:10px;letter-spacing:1.3px;font-weight:850;color:#2563eb}
+.app-plus-progress h2{font-size:20px;line-height:1.25;margin:10px 0}
+.app-plus-progress p{font-size:13px;margin:0 0 14px;line-height:1.5}
+.app-plus-benefits{display:grid;gap:0;margin:10px 0 16px}
+.app-plus-benefits div{display:flex;flex-direction:column;gap:4px;padding:11px 0;border-bottom:1px solid #e2e8f0}
+.app-plus-benefits strong{font-size:13px}
+.app-plus-benefits small{font-size:11px;text-align:left;letter-spacing:0;font-weight:500}
+.app-plus-progress .app-primary{min-height:64px}
