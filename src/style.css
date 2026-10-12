@@ -330,3 +330,10 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .plus-trend-col{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
 .plus-trend-bar{width:100%;max-width:38px;background:#2563eb;border-radius:5px 5px 0 0;min-height:4px}
 .plus-trend-col small{position:absolute;top:100%;padding-top:4px;font-size:10px;color:#475569}
+
+/* Quiet Home reminder: secondary to practice, never a modal or banner. */
+.app-plus-nudge{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;margin:10px 0 14px;padding:12px 14px;border:1px solid #dbeafe;border-radius:12px;background:#f8fbff;color:#1e3a8a;text-align:left;font:inherit;cursor:pointer}
+.app-plus-nudge span:first-child{display:flex;flex-direction:column;gap:4px}
+.app-plus-nudge strong{font-size:13px;font-weight:750}
+.app-plus-nudge small{font-size:11px;line-height:1.4;color:#475569;letter-spacing:0;text-align:left;font-weight:400}
+.app-plus-nudge>span:last-child{font-size:21px;color:#2563eb}
