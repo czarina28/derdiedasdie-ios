@@ -3,20 +3,21 @@ set -euo pipefail
 # Run AFTER npx cap sync ios and BEFORE xcodebuild.
 # Requires Ruby xcodeproj gem (normally installed with CocoaPods on Bitrise).
 test -f ios/App/App.xcodeproj/project.pbxproj || { echo "Missing generated Xcode project"; exit 1; }
-test -f ios/App/App/ViewController.swift || { echo "Missing Capacitor ViewController.swift"; exit 1; }
+
 cp native/PlusStoreKitPlugin.swift ios/App/App/PlusStoreKitPlugin.swift
 python3 - <<'PY'
 from pathlib import Path
 p=Path('ios/App/App/ViewController.swift')
-s=p.read_text()
-if 'registerPluginInstance(PlusStoreKitPlugin())' in s:
-    print('Plus plugin already registered')
-elif 'class ViewController: CAPBridgeViewController' in s:
-    s=s.replace('class ViewController: CAPBridgeViewController {',
-                'class ViewController: CAPBridgeViewController {\n    override open func capacitorDidLoad() {\n        bridge?.registerPluginInstance(PlusStoreKitPlugin())\n    }',1)
-    p.write_text(s)
+if p.exists():
+    s=p.read_text()
+    if 'registerPluginInstance(PlusStoreKitPlugin())' not in s:
+        if 'class ViewController: CAPBridgeViewController' not in s:
+            raise SystemExit('Unexpected ViewController.swift: registration needs review')
+        s=s.replace('class ViewController: CAPBridgeViewController {',
+                    'class ViewController: CAPBridgeViewController {\n    override open func capacitorDidLoad() {\n        bridge?.registerPluginInstance(PlusStoreKitPlugin())\n    }',1)
+        p.write_text(s)
 else:
-    raise SystemExit('Unexpected ViewController.swift: manual Capacitor plugin registration review needed')
+    p.write_text('import UIKit\nimport Capacitor\n\nclass ViewController: CAPBridgeViewController {\n    override open func capacitorDidLoad() {\n        bridge?.registerPluginInstance(PlusStoreKitPlugin())\n    }\n}\n')
 PY
 ruby - <<'RUBY'
 require 'xcodeproj'
@@ -26,9 +27,20 @@ target=project.targets.find { |t| t.name == 'App' }
 abort 'App target not found' unless target
 group=project.main_group.find_subpath('App', false)
 abort 'App group not found' unless group
-unless group.files.any? { |f| f.path == 'PlusStoreKitPlugin.swift' }
-  file=group.new_file('PlusStoreKitPlugin.swift')
-  target.source_build_phase.add_file_reference(file)
+['PlusStoreKitPlugin.swift','ViewController.swift'].each do |name|
+  unless group.files.any? { |f| f.path == name }
+    file=group.new_file(name)
+    target.source_build_phase.add_file_reference(file)
+  end
+end
+# The Capacitor storyboard must instantiate our registered bridge subclass.
+storyboard='ios/App/App/Base.lproj/Main.storyboard'
+if File.exist?(storyboard)
+  xml=File.read(storyboard)
+  xml=xml.gsub(/customClass="CAPBridgeViewController"/, 'customClass="ViewController" customModule="App" customModuleProvider="target"')
+  File.write(storyboard,xml)
+else
+  abort 'Main.storyboard missing: cannot register native bridge safely'
 end
 project.save
 RUBY
