@@ -298,3 +298,18 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .app-quiet-link{border:0;background:none;padding:19px 2px;color:#2563eb;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
 .app-shell button:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
 @media(max-width:360px){.app-shell{padding-left:15px;padding-right:15px}.app-tabs{margin-left:-15px;margin-right:-15px}.app-shortcuts button{padding:12px 10px}}
+
+/* Keep the next action reachable when a grammar explanation is long. */
+.practice-screen.answer-revealed{padding-bottom:calc(env(safe-area-inset-bottom) + 108px)}
+.practice-screen.answer-revealed #next:not([hidden]){
+ position:fixed;
+ z-index:20;
+ bottom:calc(env(safe-area-inset-bottom) + 12px);
+ left:50%;
+ transform:translateX(-50%);
+ width:calc(100% - 36px);
+ max-width:676px;
+ min-height:56px;
+ margin:0;
+ box-shadow:0 0 0 10px var(--ddd-soft),0 8px 24px rgba(15,23,42,.18);
+}
