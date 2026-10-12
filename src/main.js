@@ -2,7 +2,7 @@ import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile
 import {weakSpots,practicePlan,targetedQuestions} from './premium-plan.js';
 import {MASTERY_KEY,recordSkillSession,masteryProfile} from './mastery.js';
 import {progressTrend,progressChange,masteryOverview} from './progress-insights.js';
-import {plusProduct,restorePlus,PLUS_PRODUCT_ID} from './plus-store.js';
+import {plusProduct,restorePlus,purchaseErrorDetails,PLUS_PRODUCT_ID} from './plus-store.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -40,7 +40,7 @@ function plusPurchaseScreen(){
  }).catch(e=>{if(status.isConnected)status.textContent='Store unavailable: '+(e?.message||'Unknown error')+'. Purchases remain disabled.';});
  document.getElementById('restore-plus').addEventListener('click',async()=>{
   const button=document.getElementById('restore-plus');button.disabled=true;status.textContent='Checking purchases with Apple…';
-  try{const purchases=await restorePlus();status.textContent=purchases.length?'Apple returned '+purchases.length+' matching transaction(s). Plus is not unlocked until verification is implemented.':'No matching Plus purchases were returned.';}
+  try{const result=await restorePlus();const details=[result.lookupError&&'Lookup: '+purchaseErrorDetails(result.lookupError),result.restoreError&&'Restore: '+purchaseErrorDetails(result.restoreError)].filter(Boolean).join(' | ');status.textContent=(result.purchases.length?'Apple returned '+result.purchases.length+' matching transaction(s).':'No matching Plus purchases returned.')+(details?' '+details:' Purchase check completed.')+' Plus remains locked until verification is implemented.';}
   catch(e){status.textContent='Purchase check failed: '+(e?.message||'Unknown error');}
   finally{if(button.isConnected)button.disabled=false;}
  });
