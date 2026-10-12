@@ -20,9 +20,29 @@ export async function purchasePlus(){
 }
 export async function restorePlus(){
  const {NativePurchases,PURCHASE_TYPE}=await store();
- await NativePurchases.restorePurchases();
- const {purchases}=await NativePurchases.getPurchases({productType:PURCHASE_TYPE.INAPP});
- return purchases.filter(p=>p.productIdentifier===PLUS_PRODUCT_ID);
+ // First inspect currently visible purchases. An explicit restore may fail in
+ // sandbox even when product discovery succeeds; report both results separately.
+ let existing=[],lookupError=null,restoreError=null;
+ try{
+  const result=await NativePurchases.getPurchases({productType:PURCHASE_TYPE.INAPP});
+  existing=(result?.purchases||[]).filter(p=>p.productIdentifier===PLUS_PRODUCT_ID);
+ }catch(error){lookupError=error;}
+ try{await NativePurchases.restorePurchases();}
+ catch(error){restoreError=error;}
+ let restored=[];
+ if(!restoreError){
+  try{
+   const result=await NativePurchases.getPurchases({productType:PURCHASE_TYPE.INAPP});
+   restored=(result?.purchases||[]).filter(p=>p.productIdentifier===PLUS_PRODUCT_ID);
+  }catch(error){lookupError=error;}
+ }
+ return {purchases:restored.length?restored:existing,lookupError,restoreError};
+}
+export function purchaseErrorDetails(error){
+ if(!error)return '';
+ const parts=[error.message,error.code,error.domain,error.localizedDescription]
+  .filter(value=>value!==undefined&&value!==null&&String(value).trim());
+ return [...new Set(parts.map(String))].join(' · ')||'Unknown error';
 }
 // IMPORTANT: Never unlock Plus from a locally stored flag or unverified transaction.
 // Add Apple transaction validation and authoritative entitlement checks before enabling sales.
