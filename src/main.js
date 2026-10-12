@@ -176,7 +176,7 @@ function nativeDashboard(sessions,topics,skills,tab='home'){
  root.querySelector('#show-premium')?.addEventListener('click',premiumPreview);
 }
 function emptyReview(){
- root.innerHTML='<main><section class="intro session-summary"><div class="eyebrow">REVIEW MISTAKES</div><h1>All caught up.</h1><p>No mistakes waiting for review.</p><button id="back">Back home</button></section></main>';
+ root.innerHTML='<main><section class="intro session-summary"><div class="eyebrow">REVIEW MISTAKES</div><h1>All caught up.</h1><p>No mistakes waiting for review.</p><button id="back">Choose a topic</button></section></main>';
  document.getElementById('back').addEventListener('click',home);
 }
 function keepNavigationOnSummary(){
@@ -202,7 +202,7 @@ function summary(){
  if(mode==='Review mistakes'){
   const cleared=reviewStartingCount-mistakes.size;
   root.innerHTML='<main><section class="intro session-summary"><div class="eyebrow">REVIEW COMPLETE</div><h1>'+cleared+' cleared</h1><p>You reviewed '+total+' questions. '+(mistakes.size===0?'Your mistake list is empty.':mistakes.size+' still to revisit in a future review.')+'</p><button id="back">Back home</button></section></main>';
-  document.getElementById('back').addEventListener('click',home);
+  document.getElementById('back').addEventListener('click',()=>{home();root.querySelector('.app-tabs [data-tab="practice"]')?.click();});
   keepNavigationOnSummary();
   return;
  }
