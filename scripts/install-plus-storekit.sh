@@ -28,11 +28,16 @@ abort 'App target not found' unless target
 group=project.main_group.find_subpath('App', false)
 abort 'App group not found' unless group
 ['PlusStoreKitPlugin.swift','ViewController.swift'].each do |name|
-  unless group.files.any? { |f| f.path == name }
-    file=group.new_file(name)
+  file=group.files.find { |f| f.path == name } || group.new_file(name)
+  unless target.source_build_phase.files_references.include?(file)
     target.source_build_phase.add_file_reference(file)
   end
 end
+required=['PlusStoreKitPlugin.swift','ViewController.swift']
+compiled=target.source_build_phase.files_references.map(&:path)
+missing=required-compiled
+abort "Missing Swift files from App Compile Sources: #{missing.join(', ')}" unless missing.empty?
+puts "App Compile Sources verified: #{required.join(', ')}"
 # Explicitly assign the custom bridge controller in the storyboard.
 # Capacitor templates may omit the customClass attribute entirely.
 storyboard='ios/App/App/Base.lproj/Main.storyboard'
