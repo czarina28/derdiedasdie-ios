@@ -397,3 +397,11 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 :root[data-theme="system"] #feedback:not(:empty) *{color:inherit}
 :root[data-theme="system"] .practice-screen.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px rgba(0,0,0,.45)}
 }
+
+/* Session insight text: use the available card width, with natural wrapping. */
+.session-summary .session-insights{width:100%;min-width:0;box-sizing:border-box}
+.session-summary .session-insights h2{font-size:clamp(16px,4.2vw,19px);line-height:1.3;letter-spacing:0;overflow-wrap:normal;word-break:normal}
+.session-summary .session-insights p{max-width:none;width:100%;font-size:clamp(14px,3.7vw,16px);line-height:1.55;overflow-wrap:break-word;word-break:normal;hyphens:none}
+:root[data-theme="dark"] .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="dark"] .session-insights p{color:#e0e4e8}
+@media(prefers-color-scheme:dark){:root[data-theme="system"] .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}:root[data-theme="system"] .session-insights p{color:#e0e4e8}}
