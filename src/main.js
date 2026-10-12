@@ -2,6 +2,7 @@ import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile
 import {weakSpots,practicePlan,targetedQuestions} from './premium-plan.js';
 import {MASTERY_KEY,recordSkillSession,masteryProfile} from './mastery.js';
 import {progressTrend,progressChange,masteryOverview} from './progress-insights.js';
+import {plusProduct,restorePlus,PLUS_PRODUCT_ID} from './plus-store.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -31,7 +32,18 @@ function startSkill(skill,source='Plus'){
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
 function plusPurchaseScreen(){
  plusPreviewMode=false;
- root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" disabled>Buy Plus · €4.99</button><button class="plus-restore" disabled>Restore Purchases</button><p class="preview-note">Purchase preview only. Payments and restoration are not yet available. All existing grammar practice remains free.</p></main>`;
+ root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" disabled>Buy Plus · Not yet available</button><button class="plus-restore" id="restore-plus">Check existing purchases</button><p class="preview-note" id="store-status" role="status">Checking App Store product… Purchases are disabled while verification is being developed. All grammar practice remains free.</p></main>`;
+ const status=document.getElementById('store-status');
+ plusProduct().then(p=>{
+  if(!status.isConnected)return;
+  status.textContent=p?'App Store product found ('+PLUS_PRODUCT_ID+'). Buying remains disabled until entitlement verification is ready.':'Apple has not returned the Plus product yet. Check its App Store Connect configuration.';
+ }).catch(e=>{if(status.isConnected)status.textContent='Store unavailable: '+(e?.message||'Unknown error')+'. Purchases remain disabled.';});
+ document.getElementById('restore-plus').addEventListener('click',async()=>{
+  const button=document.getElementById('restore-plus');button.disabled=true;status.textContent='Checking purchases with Apple…';
+  try{const purchases=await restorePlus();status.textContent=purchases.length?'Apple returned '+purchases.length+' matching transaction(s). Plus is not unlocked until verification is implemented.':'No matching Plus purchases were returned.';}
+  catch(e){status.textContent='Purchase check failed: '+(e?.message||'Unknown error');}
+  finally{if(button.isConnected)button.disabled=false;}
+ });
  document.getElementById('back-plus').addEventListener('click',premiumPreview);
 }
 function premiumPreview(){
