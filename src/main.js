@@ -2,7 +2,8 @@ import {LEARNING_KEY,recordAttempt,pickFixQuestions,learningSummary,skillProfile
 import {weakSpots,practicePlan,targetedQuestions} from './premium-plan.js';
 import {MASTERY_KEY,recordSkillSession,masteryProfile} from './mastery.js';
 import {progressTrend,progressChange,masteryOverview} from './progress-insights.js';
-import {plusProduct,restorePlus,purchaseErrorDetails,PLUS_PRODUCT_ID} from './plus-store.js';
+import {plusProduct,PLUS_PRODUCT_ID} from './plus-store.js';
+import {verifiedPlusEntitlement,buyVerifiedPlus,restoreVerifiedPlus} from './plus-entitlement.js';
 import {TOPIC_LABELS} from './curriculum.js';
 import {checkAnswer} from './sentences.js';
 import {buildCatalog} from './catalog.js';
@@ -14,6 +15,7 @@ let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let masteryLog=[];
 try{const saved=JSON.parse(localStorage.getItem(MASTERY_KEY)||'[]');if(Array.isArray(saved))masteryLog=saved;}catch{}
+let plusOwned=false;
 let plusPreviewMode=false; // Session-only UI preview; never a purchase entitlement.
 let planSkill=null;
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set(),reviewStartingCount=0,sessionAnswers=[];
@@ -30,19 +32,40 @@ function startSkill(skill,source='Plus'){
  if(deck.length)next();
 }
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
+async function refreshPlusOwnership(){
+ try{plusOwned=(await verifiedPlusEntitlement()).active===true;}catch{plusOwned=false;}
+ return plusOwned;
+}
 function plusPurchaseScreen(){
  plusPreviewMode=false;
- root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" disabled>Buy Plus · Not yet available</button><button class="plus-restore" id="restore-plus">Check existing purchases</button><p class="preview-note" id="store-status" role="status">Checking App Store product… Purchases are disabled while verification is being developed. All grammar practice remains free.</p></main>`;
- const status=document.getElementById('store-status');
- plusProduct().then(p=>{
+ root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" id="buy-plus" disabled>Checking PLUS…</button><button class="plus-restore" id="restore-plus">Restore Purchases</button><p class="preview-note" id="store-status" role="status">Checking Apple StoreKit…</p></main>`;
+ const status=document.getElementById('store-status'),buy=document.getElementById('buy-plus'),restore=document.getElementById('restore-plus');
+ const showOwned=()=>{buy.disabled=true;buy.textContent='PLUS unlocked ✓';status.textContent='Apple verified your PLUS purchase on this device.';};
+ Promise.all([plusProduct(),refreshPlusOwnership()]).then(([product,owned])=>{
   if(!status.isConnected)return;
-  status.textContent=p?'App Store product found ('+PLUS_PRODUCT_ID+'). Buying remains disabled until entitlement verification is ready.':'Apple has not returned the Plus product yet. Check its App Store Connect configuration.';
- }).catch(e=>{if(status.isConnected)status.textContent='Store unavailable: '+(e?.message||'Unknown error')+'. Purchases remain disabled.';});
- document.getElementById('restore-plus').addEventListener('click',async()=>{
-  const button=document.getElementById('restore-plus');button.disabled=true;status.textContent='Checking purchases with Apple…';
-  try{const result=await restorePlus();const details=[result.lookupError&&'Lookup: '+purchaseErrorDetails(result.lookupError),result.restoreError&&'Restore: '+purchaseErrorDetails(result.restoreError)].filter(Boolean).join(' | ');status.textContent=(result.purchases.length?'Apple returned '+result.purchases.length+' matching transaction(s).':'No matching Plus purchases returned.')+(details?' '+details:' Purchase check completed.')+' Plus remains locked until verification is implemented.';}
-  catch(e){status.textContent='Purchase check failed: '+(e?.message||'Unknown error');}
-  finally{if(button.isConnected)button.disabled=false;}
+  if(owned){showOwned();return;}
+  if(!product){status.textContent='PLUS product not available from Apple.';buy.textContent='PLUS unavailable';return;}
+  buy.disabled=false;buy.textContent='Unlock PLUS · '+(product.priceString||'€4.99');
+  status.textContent='One-time purchase. All grammar practice remains free.';
+ }).catch(e=>{if(status.isConnected){status.textContent='Store unavailable: '+(e?.message||'Unknown error');buy.textContent='PLUS unavailable';}});
+ buy.addEventListener('click',async()=>{
+  buy.disabled=true;restore.disabled=true;status.textContent='Contacting Apple…';
+  try{
+   const result=await buyVerifiedPlus();
+   if(result.active){plusOwned=true;showOwned();}
+   else{status.textContent=result.cancelled?'Purchase cancelled.':result.pending?'Purchase pending Apple approval.':'Purchase not completed.';buy.disabled=false;}
+  }catch(e){status.textContent='Purchase failed: '+(e?.message||'Unknown error');buy.disabled=false;}
+  finally{restore.disabled=false;}
+ });
+ restore.addEventListener('click',async()=>{
+  restore.disabled=true;buy.disabled=true;status.textContent='Restoring purchases with Apple…';
+  try{
+   const result=await restoreVerifiedPlus();
+   plusOwned=result.active;
+   if(plusOwned)showOwned();
+   else{status.textContent='No verified PLUS purchase found for this Apple account.';buy.disabled=false;}
+  }catch(e){status.textContent='Restore failed: '+(e?.message||'Unknown error');buy.disabled=false;}
+  finally{restore.disabled=false;}
  });
  document.getElementById('back-plus').addEventListener('click',premiumPreview);
 }
