@@ -423,3 +423,41 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .plus-dashboard-shell .app-content>.premium-preview{height:auto;min-height:100%;max-width:none;margin:0;padding:8px 2px 28px;display:block;overflow:visible;background:transparent}
 .plus-dashboard-shell .app-content>.premium-preview header{padding-top:0}
 .plus-dashboard-shell .app-tabs{flex-shrink:0}
+
+/* Build 16: native-first practice and results */
+.native-practice{min-height:100dvh;padding:calc(env(safe-area-inset-top) + 12px) 18px calc(env(safe-area-inset-bottom) + 96px);max-width:680px}
+.native-practice .practice-header{display:flex;align-items:center;gap:12px;min-height:48px;border:0;padding:0 0 14px}
+.native-practice .practice-header-title{font-size:14px;font-weight:750;color:inherit;margin-right:auto}
+.native-practice .practice-header .brand-logo{width:100px;height:auto;margin-left:0}
+.native-practice .home-exit{min-height:42px;padding:9px 12px}
+.native-practice .quiz{border:0;border-radius:20px;padding:22px 18px 26px;box-shadow:none;flex:1}
+.native-practice .meta{font-size:11px;letter-spacing:0;text-transform:none;gap:12px;line-height:1.4}
+.native-practice .progress-track{height:7px;margin-top:15px}
+.native-practice .practice-question-label{font-size:13px;font-weight:750;letter-spacing:.2px;margin-top:36px;color:#64748b}
+.native-practice .quiz h2{font-size:clamp(26px,6.7vw,38px);line-height:1.4;margin:14px 0 28px;font-weight:700}
+.native-practice .answers{gap:12px}
+.native-practice .answer{min-height:76px;border-radius:15px;font-size:clamp(19px,5.5vw,24px);font-weight:750;touch-action:manipulation}
+.native-practice .answer:not(:disabled):active{transform:scale(.97)}
+.native-practice #feedback:not(:empty){margin-top:22px;border-radius:14px;padding:17px 18px;display:flex;flex-direction:column;gap:9px;line-height:1.5}
+.native-practice #feedback.feedback-correct{background:#e5f5e9;color:#165b38;border-left:4px solid #238451}
+.native-practice #feedback.feedback-incorrect{background:#fff0e8;color:#7f3826;border-left:4px solid #c25a3d}
+.native-practice .feedback-heading{display:block;font-size:16px;font-weight:850;color:inherit}
+.native-practice .feedback-explanation{display:block;font-size:15px;color:inherit;overflow-wrap:break-word}
+.native-practice.answer-revealed #next:not([hidden]){border-radius:14px;box-shadow:0 0 0 10px #f5f0e7,0 8px 24px #0002}
+.session-summary{padding-top:28px}
+.session-summary .session-insights{border-radius:18px;padding:20px}
+.session-summary .session-insights h2{font-weight:800}
+.session-summary #again,.session-summary #back,.session-summary #back-plan{min-height:52px;border-radius:13px}
+:root[data-theme="dark"] .native-practice .quiz,:root[data-theme="dark"] .session-summary .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="dark"] .native-practice .practice-question-label{color:#b6c7d8}
+:root[data-theme="dark"] .native-practice #feedback.feedback-correct{background:#193b30;color:#d9ffe8;border-left-color:#59cb91}
+:root[data-theme="dark"] .native-practice #feedback.feedback-incorrect{background:#4c2c29;color:#ffe7db;border-left-color:#f19b7c}
+:root[data-theme="dark"] .native-practice.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px #0006}
+@media(prefers-color-scheme:dark){
+:root[data-theme="system"] .native-practice .quiz,:root[data-theme="system"] .session-summary .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="system"] .native-practice .practice-question-label{color:#b6c7d8}
+:root[data-theme="system"] .native-practice #feedback.feedback-correct{background:#193b30;color:#d9ffe8;border-left-color:#59cb91}
+:root[data-theme="system"] .native-practice #feedback.feedback-incorrect{background:#4c2c29;color:#ffe7db;border-left-color:#f19b7c}
+:root[data-theme="system"] .native-practice.answer-revealed #next:not([hidden]){box-shadow:0 0 0 10px #161b20,0 8px 24px #0006}
+}
+@media(max-width:380px){.native-practice{padding-left:14px;padding-right:14px}.native-practice .quiz{padding:18px 14px}.native-practice .practice-header-title{display:none}}
