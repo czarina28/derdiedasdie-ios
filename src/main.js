@@ -11,6 +11,9 @@ import {pickFreshQuestions,pickProgressiveQuestions,practiceStage,shuffle} from 
 import './style.css';
 const bank=buildCatalog();
 const root=document.getElementById('app');
+// Browser-only layout preview. Does not simulate purchases or grant PLUS.
+const browserPreview=!window.Capacitor?.isNativePlatform?.() && new URLSearchParams(window.location.search).has('preview');
+const useAppLayout=()=>window.Capacitor?.isNativePlatform?.()===true || browserPreview;
 let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let masteryLog=[];
@@ -83,7 +86,7 @@ function appNavigation(tab){
  return '<nav class="app-tabs" aria-label="App navigation"><button data-tab="home" class="'+(tab==='home'?'selected':'')+'"><span aria-hidden="true">⌂</span>Home</button><button data-tab="practice" class="'+(tab==='practice'?'selected':'')+'"><span aria-hidden="true">▤</span>Practice</button><button data-tab="progress" class="'+(tab==='progress'?'selected':'')+'"><span aria-hidden="true">▥</span>Progress</button><button data-tab="settings" class="'+(tab==='settings'?'selected':'')+'"><span aria-hidden="true">⚙</span>Settings</button></nav>';
 }
 function keepNavigationOnPlus(){
- if(window.Capacitor?.isNativePlatform?.()!==true)return;
+ if(!useAppLayout())return;
  const page=root.querySelector('main.premium-preview');
  if(!page)return;
  const shell=document.createElement('main');
@@ -128,7 +131,7 @@ function home(){
  plusPreviewMode=false;
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
- const nativeHome=window.Capacitor?.isNativePlatform?.()===true;
+ const nativeHome=useAppLayout();
  const progress=learningSummary(learning);
  const skills=skillProfile(bank,learning).slice(0,3);
  const unresolved=bank.filter(q=>{const h=learning[q.id];return h&&h.misses>0&&h.streak<2;}).length;
