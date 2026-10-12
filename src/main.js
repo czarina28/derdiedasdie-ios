@@ -179,11 +179,31 @@ function emptyReview(){
  root.innerHTML='<main><section class="intro session-summary"><div class="eyebrow">REVIEW MISTAKES</div><h1>All caught up.</h1><p>No mistakes waiting for review.</p><button id="back">Back home</button></section></main>';
  document.getElementById('back').addEventListener('click',home);
 }
+function keepNavigationOnSummary(){
+ if(!useAppLayout())return;
+ const page=root.querySelector('main');
+ if(!page)return;
+ const shell=document.createElement('main');
+ shell.className='app-shell session-result-shell'+(plusOwned?' plus-active':'');
+ const content=document.createElement('div');
+ content.className='app-content';
+ page.remove();
+ content.appendChild(page);
+ shell.appendChild(content);
+ shell.insertAdjacentHTML('beforeend',appNavigation('practice'));
+ root.replaceChildren(shell);
+ shell.querySelectorAll('.app-tabs [data-tab]').forEach(button=>button.addEventListener('click',()=>{
+  const tab=button.dataset.tab;
+  home();
+  if(tab!=='home')root.querySelector('.app-tabs [data-tab="'+tab+'"]')?.click();
+ }));
+}
 function summary(){
  if(mode==='Review mistakes'){
   const cleared=reviewStartingCount-mistakes.size;
   root.innerHTML='<main><section class="intro session-summary"><div class="eyebrow">REVIEW COMPLETE</div><h1>'+cleared+' cleared</h1><p>You reviewed '+total+' questions. '+(mistakes.size===0?'Your mistake list is empty.':mistakes.size+' still to revisit in a future review.')+'</p><button id="back">Back home</button></section></main>';
   document.getElementById('back').addEventListener('click',home);
+  keepNavigationOnSummary();
   return;
  }
 
@@ -198,6 +218,7 @@ function summary(){
  document.getElementById('again').addEventListener('click',()=>planSkill?startSkill(planSkill):start(mode));
  if(planSkill)document.getElementById('back-plan').addEventListener('click',premiumPreview);
  document.getElementById('back').addEventListener('click',home);
+ keepNavigationOnSummary();
 }
 function render(){
  const existing=root.querySelector('main.practice-screen');
