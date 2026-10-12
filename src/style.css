@@ -554,3 +554,6 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 :root[data-theme="system"] .experience-progress-ring{background:conic-gradient(#75a8ff var(--progress),#414953 0)}}
 .experience-start:focus-visible,.experience-action:focus-visible,.experience-topic:focus-visible,.experience-mix:focus-visible,.experience-focus-row:focus-visible,.experience-plus-card button:focus-visible{outline:3px solid #e49b61;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.experience-start,.experience-action,.experience-topic,.experience-mix{transition:none}}
+
+/* Build 17: stronger brand presence in app header */
+.app-top .brand-logo{width:154px;max-width:52vw;height:auto}
