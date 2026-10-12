@@ -212,7 +212,15 @@ function render(){
  if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);sessionAnswers.push({id:question.id,skill:skillFor(question),correct:ok});learning=recordAttempt(learning,question.id,ok);localStorage.setItem(LEARNING_KEY,JSON.stringify(learning));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
  document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;const v=question.options[Number(b.dataset.i)];if(v===question.answer)b.classList.add('right');else if(b===btn)b.classList.add('wrong');});
  const specific=!ok&&question.wrongFeedback?.[selected];
- document.getElementById('feedback').textContent=(ok?'✓ Correct. Why? ':'Not quite. Correct answer: '+question.answer+'. Why? ')+(specific?specific+' ':'')+question.explanation;
+ const feedbackPanel=document.getElementById('feedback');
+ feedbackPanel.className=ok?'feedback-correct':'feedback-incorrect';
+ const feedbackHeading=document.createElement('strong');
+ feedbackHeading.className='feedback-heading';
+ feedbackHeading.textContent=ok?'✓ Correct!':'Not quite · '+question.answer+' is correct';
+ const feedbackExplanation=document.createElement('span');
+ feedbackExplanation.className='feedback-explanation';
+ feedbackExplanation.textContent=(specific?specific+' ':'')+question.explanation;
+ feedbackPanel.replaceChildren(feedbackHeading,feedbackExplanation);
  document.querySelector('.practice-screen').classList.add('answer-revealed');
  document.getElementById('next').hidden=false;
  document.getElementById('next').focus({preventScroll:true});
