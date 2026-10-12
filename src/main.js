@@ -57,7 +57,7 @@ function plusPurchaseScreen(){
   buy.disabled=true;restore.disabled=true;status.textContent='Contacting Apple…';
   try{
    const result=await buyVerifiedPlus();
-   if(result.active){plusOwned=true;showOwned();}
+   if(result.active){plusOwned=true;showOwned();premiumPreview();}
    else{status.textContent='Purchase not yet verified by Apple. Try Restore Purchases shortly.';buy.disabled=false;}
   }catch(e){status.textContent='Purchase failed: '+(e?.message||'Unknown error');buy.disabled=false;}
   finally{restore.disabled=false;}
@@ -67,7 +67,7 @@ function plusPurchaseScreen(){
   try{
    const result=await restoreVerifiedPlus();
    plusOwned=result.active;
-   if(plusOwned)showOwned();
+   if(plusOwned){showOwned();premiumPreview();}
    else{status.textContent='No verified PLUS purchase found for this Apple account.';buy.disabled=false;}
   }catch(e){status.textContent='Restore failed: '+(e?.message||'Unknown error');buy.disabled=false;}
   finally{restore.disabled=false;}
@@ -75,7 +75,7 @@ function plusPurchaseScreen(){
  document.getElementById('back-plus').addEventListener('click',premiumPreview);
 }
 function premiumPreview(){
- if(!plusPreviewMode){
+ if(!plusPreviewMode && !plusOwned){
   root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Progress</button></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>Plus Progress</h2><ul><li>Mastery across multiple days</li><li>Personalized progress plan</li><li>Weak spots and improvement priorities</li></ul></section><button class="hero-start" id="preview-progress">Preview PLUS →</button><button class="premium-preview-button" id="show-plus-offer">Purchase information →</button><p class="preview-note">Preview only. No purchase or entitlement is granted.</p></main>`;
   document.getElementById('back-home').addEventListener('click',home);
   document.getElementById('preview-progress').addEventListener('click',()=>{plusPreviewMode=true;premiumPreview();});
