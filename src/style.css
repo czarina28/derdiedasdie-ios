@@ -540,3 +540,17 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .experience-plus-card p{color:#d2e0f3;font-size:13px}
 .experience-plus-card button{background:#fff;border:0;border-radius:12px;color:#172b4c;padding:15px;width:100%;display:flex;justify-content:space-between;font:inherit;font-weight:800;margin-top:17px;cursor:pointer}
 @media(max-width:365px){.experience-progress-ring{width:100px;height:100px;flex-basis:100px}.experience-progress-ring>div{width:80px;height:80px}.experience-progress-hero{gap:12px}.experience-feature{padding:16px}}
+
+/* Build 17 appearance and accessibility */
+:root[data-theme="dark"] .app-shell{background:#161b20}
+:root[data-theme="dark"] .experience-feature,:root[data-theme="dark"] .experience-action,:root[data-theme="dark"] .experience-topic,:root[data-theme="dark"] .experience-focus-row,:root[data-theme="dark"] .experience-progress-hero,:root[data-theme="dark"] .experience-progress-stats>div{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="dark"] .experience-progress-ring>div{background:#252c34}
+:root[data-theme="dark"] .experience-welcome p,:root[data-theme="dark"] .experience-page-heading p,:root[data-theme="dark"] .experience-feature-main p,:root[data-theme="dark"] .experience-action small,:root[data-theme="dark"] .experience-topic small,:root[data-theme="dark"] .experience-topic-count,:root[data-theme="dark"] .experience-progress-copy p,:root[data-theme="dark"] .experience-progress-stats span,:root[data-theme="dark"] .experience-focus-row small{color:#b4c0cd}
+:root[data-theme="dark"] .experience-progress-ring{background:conic-gradient(#75a8ff var(--progress),#414953 0)}
+@media(prefers-color-scheme:dark){:root[data-theme="system"] .app-shell{background:#161b20}
+:root[data-theme="system"] .experience-feature,:root[data-theme="system"] .experience-action,:root[data-theme="system"] .experience-topic,:root[data-theme="system"] .experience-focus-row,:root[data-theme="system"] .experience-progress-hero,:root[data-theme="system"] .experience-progress-stats>div{background:#252c34;color:#f2eee7;border-color:#414953}
+:root[data-theme="system"] .experience-progress-ring>div{background:#252c34}
+:root[data-theme="system"] .experience-welcome p,:root[data-theme="system"] .experience-page-heading p,:root[data-theme="system"] .experience-feature-main p,:root[data-theme="system"] .experience-action small,:root[data-theme="system"] .experience-topic small,:root[data-theme="system"] .experience-topic-count,:root[data-theme="system"] .experience-progress-copy p,:root[data-theme="system"] .experience-progress-stats span,:root[data-theme="system"] .experience-focus-row small{color:#b4c0cd}
+:root[data-theme="system"] .experience-progress-ring{background:conic-gradient(#75a8ff var(--progress),#414953 0)}}
+.experience-start:focus-visible,.experience-action:focus-visible,.experience-topic:focus-visible,.experience-mix:focus-visible,.experience-focus-row:focus-visible,.experience-plus-card button:focus-visible{outline:3px solid #e49b61;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.experience-start,.experience-action,.experience-topic,.experience-mix{transition:none}}
