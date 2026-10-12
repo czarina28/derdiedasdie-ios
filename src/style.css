@@ -215,3 +215,33 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 
 /* Homepage copy uses the available content width; quiz typography remains unchanged. */
 .home-screen .home-hero p,.home-screen .premium-teaser p{max-width:none}
+
+/* iPhone-first dashboard: compact, tactile, and focused on doing. */
+.home-screen .native-welcome{display:none}
+.native-home{padding-top:calc(env(safe-area-inset-top) + 16px);padding-bottom:calc(env(safe-area-inset-bottom) + 28px)}
+.native-home header{border:0;padding:0 0 10px}
+.native-home .native-welcome{display:block;color:var(--ddd-muted);font-size:10px;font-weight:800;letter-spacing:1.5px}
+.native-home .home-hero{padding:8px 0 10px}
+.native-home .home-hero h1{margin:9px 0 17px;font-size:clamp(29px,8vw,39px);line-height:1.12}
+.native-home .home-hero .hero-start{min-height:78px}
+.native-home .hero-start{border-radius:18px;box-shadow:none;padding:16px 18px;font-size:18px}
+.native-home .hero-start small{font-size:12px;line-height:1.4}
+.native-home .fix-feature{margin:0 0 9px}
+.native-home .fix-feature .hero-start{min-height:76px;background:#fff;color:var(--ddd-ink);border:1px solid var(--ddd-line)}
+.native-home .fix-feature .hero-start small{color:var(--ddd-muted)}
+.native-home .fix-feature .hero-start>span:last-child{color:var(--ddd-blue)}
+.native-home .review-link{min-height:59px;background:#fff;border:1px solid var(--ddd-line);margin-bottom:8px;border-radius:16px}
+.native-home .home-stats{background:#fff;border:1px solid var(--ddd-line);border-radius:17px;padding:13px 10px;margin-top:6px}
+.native-home .home-stats div{padding:0 9px}
+.native-home .home-stats strong{font-size:21px}
+.native-home .home-stats span{font-size:10px}
+.native-home .skill-section{margin:23px 0 8px}
+.native-home .skill-row{border-color:var(--ddd-line);background:#fff;border-radius:13px}
+.native-home .topic-section{margin-top:10px;padding-top:18px}
+.native-home .topic-list{border-radius:17px}
+.native-home .topic-list button{min-height:66px}
+.native-home .premium-teaser{display:block;margin:24px 0 0;padding:17px;border-color:var(--ddd-line);box-shadow:none}
+.native-home .premium-teaser h2{font-size:18px}
+.native-home .premium-teaser p{font-size:13px}
+.native-home footer{padding-top:20px}
+@media(max-width:375px){.native-home .home-hero h1{font-size:29px}.native-home .hero-start{padding:14px}.native-home .home-stats div{padding:0 6px}}
