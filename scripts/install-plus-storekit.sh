@@ -39,8 +39,9 @@ storyboard='ios/App/App/Base.lproj/Main.storyboard'
 abort 'Main.storyboard missing' unless File.exist?(storyboard)
 xml=File.read(storyboard)
 if xml.include?('customClass="CAPBridgeViewController"')
-  xml=xml.sub(/customClass="CAPBridgeViewController"[^>]*customModule="Capacitor"/,
-              'customClass="ViewController" customModule="App"')
+  xml=xml.sub('customClass="CAPBridgeViewController"', 'customClass="ViewController"')
+  # Replace any Capacitor module reference on the same view controller.
+  xml=xml.sub(/(customClass="ViewController"[^>]*?)customModule="Capacitor"/, '\\1customModule="App"')
 elsif !xml.include?('customClass="ViewController"')
   abort 'Unknown storyboard bridge class: inspect before building'
 end
