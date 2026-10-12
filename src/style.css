@@ -478,6 +478,8 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .experience-welcome{padding:20px 2px 23px}
 .experience-welcome h1,.experience-page-heading h1{font-size:clamp(31px,8vw,43px);line-height:1.08;letter-spacing:-1.5px;margin:10px 0}
 .experience-welcome h1 em,.experience-page-heading h1 em{font-style:normal;color:#2563eb}
+/* Keep the two home tagline sentences visually separated on every iPhone width. */
+.experience-welcome h1 em{display:block;margin-top:0.12em}
 .experience-welcome p,.experience-page-heading p{font-size:14px;margin:0;color:#6b7280}
 .experience-feature{background:#fff;border:1px solid #e6e5e2;border-radius:23px;padding:21px;box-shadow:0 9px 28px #1422380a}
 .experience-feature-top{display:flex;justify-content:space-between;color:#64748b;font-size:10px;font-weight:850;letter-spacing:1.5px}
