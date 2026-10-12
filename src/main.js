@@ -41,7 +41,9 @@ function plusPurchaseScreen(){
  root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong id="plus-displayed-price">Checking price…</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" id="buy-plus" disabled>Checking PLUS…</button><button class="plus-restore" id="restore-plus">Restore Purchases</button><p class="preview-note" id="store-status" role="status">Checking Apple StoreKit…</p></main>`;
  const status=document.getElementById('store-status'),buy=document.getElementById('buy-plus'),restore=document.getElementById('restore-plus');
  const showOwned=()=>{buy.disabled=true;buy.textContent='PLUS unlocked ✓';status.textContent='Apple verified your PLUS purchase on this device.';};
- Promise.all([plusProduct(),refreshPlusOwnership()]).then(([product,owned])=>{
+ Promise.all([plusProduct(),verifiedPlusEntitlement()]).then(([product,entitlement])=>{
+  const owned=entitlement.active===true;
+  plusOwned=owned;
   if(!status.isConnected)return;
   if(owned){showOwned();return;}
   if(!product){status.textContent='PLUS product not available from Apple.';buy.textContent='PLUS unavailable';document.getElementById('plus-displayed-price').textContent='Price unavailable';return;}
@@ -56,7 +58,7 @@ function plusPurchaseScreen(){
   try{
    const result=await buyVerifiedPlus();
    if(result.active){plusOwned=true;showOwned();}
-   else{status.textContent=result.cancelled?'Purchase cancelled.':result.pending?'Purchase pending Apple approval.':'Purchase not completed.';buy.disabled=false;}
+   else{status.textContent='Purchase not yet verified by Apple. Try Restore Purchases shortly.';buy.disabled=false;}
   }catch(e){status.textContent='Purchase failed: '+(e?.message||'Unknown error');buy.disabled=false;}
   finally{restore.disabled=false;}
  });
