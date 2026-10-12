@@ -405,3 +405,10 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 :root[data-theme="dark"] .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}
 :root[data-theme="dark"] .session-insights p{color:#e0e4e8}
 @media(prefers-color-scheme:dark){:root[data-theme="system"] .session-insights{background:#252c34;color:#f2eee7;border-color:#414953}:root[data-theme="system"] .session-insights p{color:#e0e4e8}}
+
+/* Stronger, deliberate Review Mistakes navigation affordance. */
+.home-screen .review-link .review-chevron{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:#dbeafe;color:#1d4ed8;transition:transform .15s ease,background .15s ease}
+.home-screen .review-link:hover .review-chevron{background:#bfdbfe;transform:translateX(3px)}
+.home-screen .review-link .review-chevron svg{display:block}
+:root[data-theme="dark"] .home-screen .review-link .review-chevron{background:#263f63;color:#a9d1ff}
+@media(prefers-color-scheme:dark){:root[data-theme="system"] .home-screen .review-link .review-chevron{background:#263f63;color:#a9d1ff}}
