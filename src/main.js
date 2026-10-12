@@ -15,6 +15,11 @@ let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let masteryLog=[];
 try{const saved=JSON.parse(localStorage.getItem(MASTERY_KEY)||'[]');if(Array.isArray(saved))masteryLog=saved;}catch{}
+const THEME_KEY='derdiedasdie-theme';
+let appearance=localStorage.getItem(THEME_KEY)||'system';
+if(!['system','light','dark'].includes(appearance))appearance='system';
+function applyAppearance(){document.documentElement.dataset.theme=appearance;}
+applyAppearance();
 let plusOwned=false;
 let plusPreviewMode=false; // Session-only UI preview; never a purchase entitlement.
 let planSkill=null;
