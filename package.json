@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "test": "node --test"
+    "test": "node --test",
+    "build:ios": "vite build --mode capacitor"
   },
   "dependencies": {
     "@capacitor/core": "^8.5.0",
