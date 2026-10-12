@@ -12,6 +12,7 @@ let learning={};
 try{const saved=JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))learning=saved;}catch{learning={};}
 let masteryLog=[];
 try{const saved=JSON.parse(localStorage.getItem(MASTERY_KEY)||'[]');if(Array.isArray(saved))masteryLog=saved;}catch{}
+let plusPreviewMode=false; // Session-only UI preview; never a purchase entitlement.
 let planSkill=null;
 let deck=[],question=null,answered=false,correct=0,total=0,position=0,mode='Mixed practice',mistakes=new Set(),reviewStartingCount=0,sessionAnswers=[];
 try{const saved=JSON.parse(localStorage.getItem('derdiedasdie-mistakes')||'[]');mistakes=new Set(saved.map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));}catch{mistakes=new Set();}
@@ -28,10 +29,18 @@ function startSkill(skill,source='Plus'){
 }
 function next(){if(position>=deck.length){summary();return;}question={...deck[position++]};const recent=JSON.parse(localStorage.getItem('derdiedasdie-recent')||'[]').map(id=>typeof id==='number'?bank.find(q=>q.legacyId===id)?.id:id).filter(Boolean);recent.push(question.id);localStorage.setItem('derdiedasdie-recent',JSON.stringify(recent.slice(-Math.min(80,bank.length-10))));question.options=shuffle(question.options);answered=false;render();}
 function plusPurchaseScreen(){
+ plusPreviewMode=false;
  root.innerHTML=`<main class="plus-checkout"><header><button class="home-exit" id="back-plus">← Plus</button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie"></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>What's included</h2><ul><li>Personal practice plan for your weak spots</li><li>Long-term progress for each grammar skill</li><li>Mastery tracking across multiple days</li><li>Clear priorities for what to practice next</li></ul><div class="plus-price"><strong>€4.99</strong><span>One-time purchase · No subscription</span></div></section><button class="hero-start" disabled>Buy Plus · €4.99</button><button class="plus-restore" disabled>Restore Purchases</button><p class="preview-note">Purchase preview only. Payments and restoration are not yet available. All existing grammar practice remains free.</p></main>`;
  document.getElementById('back-plus').addEventListener('click',premiumPreview);
 }
 function premiumPreview(){
+ if(!plusPreviewMode){
+  root.innerHTML=`<main class="premium-preview"><header><button class="home-exit" id="back-home">← Progress</button></header><section class="home-hero"><div class="eyebrow">DERDIEDASDIE PLUS</div><h1>Know what you've mastered. <em>Know what's next.</em></h1><p>Track your grammar mastery, see how you're improving, and discover what to focus on next.</p></section><section class="plus-offer"><h2>Plus Progress</h2><ul><li>Mastery across multiple days</li><li>Personalized progress plan</li><li>Weak spots and improvement priorities</li></ul></section><button class="hero-start" id="preview-progress">Preview Plus Progress →</button><button class="premium-preview-button" id="show-plus-offer">Purchase information →</button><p class="preview-note">Preview only. No purchase or entitlement is granted.</p></main>`;
+  document.getElementById('back-home').addEventListener('click',home);
+  document.getElementById('preview-progress').addEventListener('click',()=>{plusPreviewMode=true;premiumPreview();});
+  document.getElementById('show-plus-offer').addEventListener('click',plusPurchaseScreen);
+  return;
+ }
  const spots=weakSpots(bank,learning);
  const plan=practicePlan(bank,learning);
  const masterySkills=[...new Set(masteryLog.map(s=>s.skill))].map(skill=>({skill,...masteryProfile(masteryLog,skill)}));
@@ -39,10 +48,11 @@ function premiumPreview(){
  document.getElementById('show-plus-offer').addEventListener('click',plusPurchaseScreen);
  document.getElementById('work-plan').addEventListener('click',()=>{if(plan.length)startSkill(plan[0].skill);});
  document.querySelectorAll('.plan-skill').forEach(b=>b.addEventListener('click',()=>startSkill(b.dataset.skill)));
- document.getElementById('back-home').addEventListener('click',home);
+ document.getElementById('back-home').addEventListener('click',()=>{plusPreviewMode=false;home();});
  document.getElementById('return-practice').addEventListener('click',()=>start('Mixed practice'));
 }
 function home(){
+ plusPreviewMode=false;
  const sessions=JSON.parse(localStorage.getItem('derdiedasdie-sessions')||'[]');
  const completed=sessions.length;
  const nativeHome=window.Capacitor?.isNativePlatform?.()===true;
