@@ -194,14 +194,20 @@ function summary(){
  document.getElementById('back').addEventListener('click',home);
 }
 function render(){
- root.innerHTML=`<main class="practice-screen"><header class="practice-header"><button class="home-exit" id="exit" aria-label="Leave practice and return home">← <span>Home</span></button><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie" width="162" height="48"></header>
- <section class="intro quiz-intro"><div class="eyebrow">DAILY PRACTICE</div><h1>Complete the sentence.</h1><p>Choose an answer, then learn why it works.</p></section>
- <section class="quiz"><div class="meta"><span>${mode} · Question ${position} of ${deck.length}${mode==='Review mistakes'?' · '+mistakes.size+' still to review':''}</span><span>${correct} / ${total} correct</span></div>
+ const existing=root.querySelector('main.practice-screen');
+ if(!existing){
+ root.innerHTML=`<main class="practice-screen native-practice"><header class="practice-header"><button class="home-exit" id="exit" aria-label="Leave practice and return home">← <span>Home</span></button><span class="practice-header-title">Grammar practice</span><img class="brand-logo" src="${import.meta.env.BASE_URL}logo.svg" alt="derdiedasdie" width="110" height="36"></header>
+ <section class="quiz" id="question-panel"></section></main>`;
+ document.getElementById('exit').addEventListener('click',home);
+ }
+ const panel=document.getElementById('question-panel');
+ panel.innerHTML=`<div class="meta"><span>${mode} · ${position} of ${deck.length}${mode==='Review mistakes'?' · '+mistakes.size+' to review':''}</span><span>${correct} / ${total} correct</span></div>
  <div class="progress-track" role="progressbar" aria-label="Session progress" aria-valuemin="0" aria-valuemax="${deck.length}" aria-valuenow="${position-1}"><div class="progress-fill" style="width:${Math.round((position-1)/deck.length*100)}%"></div></div>
+ <div class="practice-question-label">Complete the sentence</div>
  <h2 lang="de">${question.before}<span class="blank">_____</span>${question.after}</h2>
  <div class="answers" role="group" aria-label="Answer choices">${question.options.map((opt,i)=>`<button class="answer" data-i="${i}" lang="de">${opt}</button>`).join('')}</div>
- <div id="feedback" aria-live="polite"></div><button id="next" hidden>${position===deck.length?'See results →':'Next sentence →'}</button></section>
- <footer>Early prototype: sentence content awaits independent language review. No purchases enabled.</footer></main>`;
+ <div id="feedback" aria-live="polite"></div><button id="next" hidden>${position===deck.length?'See results →':'Next sentence →'}</button>`;
+ root.querySelector('.practice-screen').classList.remove('answer-revealed');
  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{
  if(answered)return;answered=true;total++;const selected=question.options[Number(btn.dataset.i)];const ok=checkAnswer(question,selected);if(ok){correct++;mistakes.delete(question.id);}else mistakes.add(question.id);sessionAnswers.push({id:question.id,skill:skillFor(question),correct:ok});learning=recordAttempt(learning,question.id,ok);localStorage.setItem(LEARNING_KEY,JSON.stringify(learning));localStorage.setItem('derdiedasdie-mistakes',JSON.stringify([...mistakes]));
  document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;const v=question.options[Number(b.dataset.i)];if(v===question.answer)b.classList.add('right');else if(b===btn)b.classList.add('wrong');});
@@ -212,7 +218,6 @@ function render(){
  document.getElementById('next').focus({preventScroll:true});
  }));
  document.getElementById('next').addEventListener('click',next);
- document.getElementById('exit').addEventListener('click',home);
 }
 if(!bank.length)throw new Error('No validated questions');
 refreshPlusOwnership().finally(()=>home());
