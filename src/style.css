@@ -337,3 +337,11 @@ p,.home-stats span,.topic-copy small,footer,small{color:var(--ddd-muted)}
 .app-plus-nudge strong{font-size:13px;font-weight:750}
 .app-plus-nudge small{font-size:11px;line-height:1.4;color:#475569;letter-spacing:0;text-align:left;font-weight:400}
 .app-plus-nudge>span:last-child{font-size:21px;color:#2563eb}
+
+/* Verified PLUS identity: restrained champagne/gold accents, never applied to previews. */
+.app-shell.plus-active .app-top{border-bottom:2px solid #c7a35d}
+.app-plus-badge{display:inline-flex;align-items:center;border:1px solid #b78d3e;background:#f7e8bf;color:#664713;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:850;letter-spacing:.8px;white-space:nowrap}
+.app-shell.plus-active .app-plus-nudge{border-color:#c7a35d;background:#fbf2d9}
+.app-shell.plus-active .app-plus-nudge strong{color:#78531b}
+.app-shell.plus-active .app-plus-progress{border-color:#c7a35d}
+.app-shell.plus-active .app-plus-label{color:#956c24}
