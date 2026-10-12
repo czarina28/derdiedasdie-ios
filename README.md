@@ -1,32 +1,33 @@
 # derdiedasdie iOS
 
-A mobile-first German practice app based on the existing derdiedasdie.de JavaScript trainers. The website remains a separate product.
+German grammar practice for iPhone, built with Vite, Capacitor 8, and JavaScript. The website at derdiedasdie.de is a separate product.
 
-## Product principles
+## Product rules
 
-- **Every learning subject is free.** Never put articles, adjective endings, noun endings, weak masculine nouns, prefixes, verb/preposition practice, flashcards, WortFünf, or C1 practice behind a paywall.
-- Free users can practice each subject and receive answer corrections and explanations.
-- Potential paid extras: personalized mistake review, advanced progress statistics, and custom study plans. Pricing and purchase implementation are not finalized.
-- Prioritize correct grammatical feedback, accessible difficulty, offline exercises, and an iPhone-safe layout.
-- Preserve original learning content and validate answer rules with tests before release.
+- **All grammar practice is free and unlimited**, including mixed practice, topic practice, Review Mistakes, and Target Weak Spots. Never paywall exercises, answers, corrections, or explanations.
+- **derdiedasdie PLUS** adds progress, mastery tracking across days, longitudinal insights, and personalized practice planning. Tagline: “Know what you've mastered. Know what's next.”
+- PLUS is a **one-time, non-consumable in-app purchase** with App Store Connect product ID `de.derdiedasdie.app.plus` (US price tier intended: $3.99). Display Apple's localized product price, never a hardcoded price.
+- PLUS ownership must be derived from verified native StoreKit current entitlements, never localStorage, a preview flag, or a purchase-response success alone. See `src/plus-entitlement.js`.
+- Mastery requires three distinct perfect days, six distinct questions, and at least two distinct question IDs on each perfect day. See `src/mastery.js`.
 
-## Planned technical approach
+## Development and browser preview
 
-- Vite + vanilla JavaScript for a unified mobile UI and reusable grammar modules.
-- Capacitor for the iOS shell.
-- Local storage for initial progress, with a more robust persistence strategy as needed.
-- StoreKit in-app purchase integration must be implemented and tested on a physical Apple device before submission.
-- Windows-first development; iOS builds require a macOS/Xcode environment or an appropriate cloud build pipeline.
+Work on `feature/native-home-dashboard`; do not change `main` as part of release preparation.
 
-## Initial scope
+```sh
+npm install
+npm test
+npm run build
+npm run dev
+```
 
-1. Mobile home screen, daily five-question challenge, and basic session scoring.
-2. Extract and test article/adjective-ending logic from the supplied website trainer.
-3. Add weak masculine nouns, prefixes, verb/preposition practice, and flashcards.
-4. Add clear explanation feedback and local progress.
-5. Integrate premium extras without restricting subjects.
-6. Add remaining modes after the core app is tested.
+Browser app-layout preview: `http://localhost:5173/derdiedasdie-ios/?preview`. Browser preview never grants PLUS or simulates Apple purchases.
 
-## Source files
+## Native release preparation
 
-Original trainer HTML/JavaScript files were supplied in the ChatGPT conversation and have not yet been copied into this repository. Do not assume the source code has been migrated.
+- Capacitor app ID: `de.derdiedasdie.app`; web output: `dist`.
+- The Capacitor bundle must be built with `npx vite build --mode capacitor` (or equivalent `npm run build -- --mode capacitor`) **before** `npx cap sync ios`. The default Vite build uses a GitHub Pages subpath and is not suitable for the iOS bundle.
+- `scripts/install-plus-storekit.sh` is a compatibility no-op for older Bitrise workflows. The active purchase implementation uses `@capgo/native-purchases`, not `native/PlusStoreKitPlugin.swift`.
+- Confirm the Bitrise workflow's branch, native project generation, version/build number, code signing, and release configuration before starting a build. The iOS project is not checked into this branch.
+- Test a real TestFlight installation: onboarding/home, all four tabs, full practice session, Review Mistakes, session completion, dark/light modes, safe areas, persistence after relaunch, and PLUS product discovery, purchase, restore, and entitlement handling.
+- Complete App Store Connect listing, privacy/support links, screenshots, and first IAP submission alongside the app version. Do not submit before the native purchase path is verified on device.
