@@ -141,6 +141,9 @@ function nativeDashboard(sessions,topics,skills,tab='home'){
  root.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.tab;if(destination==='progress'&&plusOwned){plusPreviewMode=true;premiumPreview();}else nativeDashboard(sessions,topics,skills,destination);}));
  root.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.mode)));
  root.querySelectorAll('.pattern-skill').forEach(b=>b.addEventListener('click',()=>startSkill(b.dataset.skill,'Focused')));
+ root.querySelector('#appearance-select')?.addEventListener('change',e=>{appearance=e.target.value;localStorage.setItem(THEME_KEY,appearance);applyAppearance();});
+ root.querySelector('#settings-upgrade')?.addEventListener('click',plusPurchaseScreen);
+ root.querySelector('#settings-restore')?.addEventListener('click',async()=>{const status=root.querySelector('#settings-status');const button=root.querySelector('#settings-restore');button.disabled=true;status.textContent='Checking Apple purchases…';try{const result=await restoreVerifiedPlus();plusOwned=result.active;nativeDashboard(sessions,topics,skills,'settings');root.querySelector('#settings-status').textContent=plusOwned?'Apple verified your PLUS purchase.':'No verified PLUS purchase found.';}catch(e){status.textContent='Restore failed: '+(e?.message||'Unknown error');}finally{const current=root.querySelector('#settings-restore');if(current)current.disabled=false;}});
  root.querySelector('#home-plus')?.addEventListener('click',premiumPreview);
  root.querySelector('#show-premium')?.addEventListener('click',premiumPreview);
 }
